@@ -1,0 +1,233 @@
+.goal-mov {
+    position: relative;
+    width: 189px;
+    height: 186px;
+
+    @include respond-to("lg") {
+        width: 160px;
+        height: 160px;
+    }
+
+    @include respond-to("sm") {
+        width: 120px;
+        height: 120px;
+    }
+
+    >img {
+        animation-name: rotateme;
+        animation-duration: 15s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
+        @include respond-to("lg") {
+            width: 160px;
+        }
+
+        @include respond-to("sm") {
+            width: 120px;
+        }
+    }
+
+    figure img {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid #a1a1a1;
+        border-radius: 50%;
+        padding: 26px;
+
+        @include respond-to("sm") {
+            padding: 16px;
+            width: 72px;
+        }
+    }
+}
+
+@keyframes rotateme {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.hover-img {
+    transition: .4s ease-in-out;
+
+    img {
+        transition: .4s ease-in-out;
+    }
+
+    &:hover img {
+        transform: scale(1.1);
+    }
+}
+
+.introduction {
+    position: relative;
+
+    @include respond-to("lg") {
+        margin-bottom: 40px;
+    }
+
+    img.introduction-2 {
+        right: 0;
+        position: absolute;
+        border: 20px solid #fff;
+        bottom: 0;
+        border-bottom: 0;
+
+        @include respond-to("xxl") {
+            width: 69%;
+        }
+
+        @include respond-to("xl") {
+            width: 63%;
+        }
+
+        @include respond-to("xl") {
+            width: 63%;
+            border: 10px solid #fff;
+            right: -3px;
+        }
+    }
+
+    figure.hover-img {
+        margin-bottom: 30px;
+    }
+}
+
+.experience {
+    background-color: $theme-colour;
+    padding: 25px;
+    display: flex;
+    position: absolute;
+    top: 7%;
+    right: 12%;
+    align-items: center;
+    width: 280px;
+    padding-bottom: 8px;
+
+    @include respond-to("lg") {
+        right: 0;
+    }
+
+    @include respond-to("sm") {
+        width: 230px;
+    }
+
+    h6 {
+        font-weight: bold;
+        font-size: 90px;
+        line-height: 86px;
+
+        @include respond-to("sm") {
+            font-size: 60px;
+            line-height: 60px;
+        }
+    }
+
+    span {
+        width: 53%;
+        font-size: 18px;
+        font-weight: bold;
+        padding-left: 15px;
+        transform: translateY(-8px);
+    }
+}
+
+.introduction-text {
+    display: flex;
+    background-color: #f5f5f5;
+    margin-bottom: 15px;
+    padding: 30px;
+    align-items: center;
+    position: relative;
+    @include transition;
+
+    @include respond-to("sm") {
+        flex-wrap: wrap;
+        gap: 24px;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        background-color: #fff;
+        border-radius: 50%;
+        left: 10%;
+        top: 22px;
+        @include transition;
+    }
+
+    &:hover {
+        &:after {
+            background-color: #525319;
+        }
+    }
+
+    .introduction-text:hover h4 {
+        color: $white-colour;
+    }
+
+    &:hover {
+
+        p,
+        h4 {
+            color: $white-colour;
+        }
+    }
+
+    &:hover i {
+        color: $white-colour;
+        transform: scale(1.1);
+    }
+
+    &:hover {
+        background-color: #181818;
+    }
+
+    i {
+        font-size: 82px;
+        margin-right: 40px;
+        position: relative;
+        z-index: 11;
+        line-height: 36px;
+        @include transition;
+    }
+
+    h4 {
+        padding-bottom: 10px;
+        font-size: 24px;
+        font-weight: 700;
+        @include transition;
+
+        @include respond-to("xxl") {
+            font-size: 20px;
+        }
+    }
+}
+
+.center {
+    text-align: center;
+    @include flexcenter;
+    margin-top: 60px;
+
+    @include respond-to("lg") {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        text-align: left;
+        gap: 20px;
+    }
+
+    h3 {
+        font-size: 23px;
+        font-weight: bold;
+        margin-right: 40px;
+    }
+}

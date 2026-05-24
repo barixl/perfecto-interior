@@ -1,0 +1,26 @@
+.architect-text.two {
+    img {
+        filter: invert(1);
+        padding-bottom: 18px;
+    }
+
+    h3 {
+        font-size: 26px;
+        line-height: 16px;
+    }
+
+    padding-top: 40px;
+}
+
+.hover-img-two.about-page {
+    margin-bottom: 20px;
+}
+
+.architect-text.two h3 {
+    font-size: 22px;
+    line-height: 16px;
+
+    @include respond-to("md") {
+        font-size: 20px;
+    }
+}

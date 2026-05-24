@@ -1,0 +1,250 @@
+@font-face {
+  font-family: "flaticon_mycollection";
+  src: url("./flaticon_mycollection.woff2?85f0b2ac1a061cd894b016db2e8e9efe") format("woff2"), url("./flaticon_mycollection.woff?85f0b2ac1a061cd894b016db2e8e9efe") format("woff"), url("./flaticon_mycollection.eot?85f0b2ac1a061cd894b016db2e8e9efe#iefix") format("embedded-opentype"), url("./flaticon_mycollection.ttf?85f0b2ac1a061cd894b016db2e8e9efe") format("truetype"), url("./flaticon_mycollection.svg?85f0b2ac1a061cd894b016db2e8e9efe#flaticon_mycollection") format("svg");
+}
+i[class^=flaticon-]:before, i[class*=" flaticon-"]:before {
+  font-family: flaticon_mycollection !important;
+  font-style: normal;
+  font-weight: normal !important;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.flaticon-location:before {
+  content: "\f101";
+}
+
+.flaticon-search:before {
+  content: "\f102";
+}
+
+.flaticon-facebook:before {
+  content: "\f103";
+}
+
+.flaticon-twitter:before {
+  content: "\f104";
+}
+
+.flaticon-instagram:before {
+  content: "\f105";
+}
+
+.flaticon-paper-plane:before {
+  content: "\f106";
+}
+
+.flaticon-checked-data:before {
+  content: "\f107";
+}
+
+.flaticon-calendar:before {
+  content: "\f108";
+}
+
+.flaticon-comment:before {
+  content: "\f109";
+}
+
+.flaticon-right-arrow:before {
+  content: "\f10a";
+}
+
+.flaticon-pinterest:before {
+  content: "\f10b";
+}
+
+.flaticon-iphone:before {
+  content: "\f10c";
+}
+
+.flaticon-map-location:before {
+  content: "\f10d";
+}
+
+.flaticon-mail-inbox-app:before {
+  content: "\f10e";
+}
+
+.flaticon-share:before {
+  content: "\f10f";
+}
+
+.flaticon-quotation-mark:before {
+  content: "\f110";
+}
+
+.flaticon-plus:before {
+  content: "\f111";
+}
+
+.flaticon-calculation-operations-minus-sign:before {
+  content: "\f112";
+}
+
+.flaticon-blueprint:before {
+  content: "\f113";
+}
+
+.flaticon-networks:before {
+  content: "\f114";
+}
+
+.flaticon-architect:before {
+  content: "\f115";
+}
+
+.flaticon-measure:before {
+  content: "\f116";
+}
+
+.flaticon-cloud:before {
+  content: "\f117";
+}
+
+.flaticon-home:before {
+  content: "\f118";
+}
+
+.flaticon-architecture:before {
+  content: "\f119";
+}
+
+.flaticon-architect-1:before {
+  content: "\f11a";
+}
+
+.flaticon-buildings:before {
+  content: "\f11b";
+}
+
+.flaticon-infrastructure:before {
+  content: "\f11c";
+}
+
+.flaticon-cityscape:before {
+  content: "\f11d";
+}
+
+.flaticon-engineering:before {
+  content: "\f11e";
+}
+
+.flaticon-lightbulb:before {
+  content: "\f11f";
+}
+
+.flaticon-interior-design:before {
+  content: "\f120";
+}
+
+.flaticon-paintwork:before {
+  content: "\f121";
+}
+
+.flaticon-plan:before {
+  content: "\f122";
+}
+
+.flaticon-design:before {
+  content: "\f123";
+}
+
+.flaticon-house-design:before {
+  content: "\f124";
+}
+
+.flaticon-interior-design-1:before {
+  content: "\f125";
+}
+
+.flaticon-lamp:before {
+  content: "\f126";
+}
+
+.flaticon-blueprint-1:before {
+  content: "\f127";
+}
+
+.flaticon-denver:before {
+  content: "\f128";
+}
+
+.flaticon-office-building:before {
+  content: "\f129";
+}
+
+.flaticon-blueprint-2:before {
+  content: "\f12a";
+}
+
+.flaticon-drawing-compass:before {
+  content: "\f12b";
+}
+
+.flaticon-architectural:before {
+  content: "\f12c";
+}
+
+.flaticon-architecture-1:before {
+  content: "\f12d";
+}
+
+.flaticon-building:before {
+  content: "\f12e";
+}
+
+.flaticon-planing:before {
+  content: "\f12f";
+}
+
+.flaticon-town-plan:before {
+  content: "\f130";
+}
+
+.flaticon-skyline:before {
+  content: "\f131";
+}
+
+.flaticon-house:before {
+  content: "\f132";
+}
+
+.flaticon-planning:before {
+  content: "\f133";
+}
+
+.flaticon-drawing:before {
+  content: "\f134";
+}
+
+.flaticon-modern-house:before {
+  content: "\f135";
+}
+
+.flaticon-modern-house-1:before {
+  content: "\f136";
+}
+
+.flaticon-hospital:before {
+  content: "\f137";
+}
+
+.flaticon-public-health-center:before {
+  content: "\f138";
+}
+
+.flaticon-school:before {
+  content: "\f139";
+}
+
+.flaticon-school-1:before {
+  content: "\f13a";
+}
+
+.flaticon-youtube:before {
+  content: "\f13b";
+}/*# sourceMappingURL=flaticon_mycollection.css.map */

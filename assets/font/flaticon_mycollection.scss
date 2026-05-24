@@ -1,0 +1,261 @@
+$flaticon_mycollection-font: "flaticon_mycollection";
+
+@font-face {
+    font-family: $flaticon_mycollection-font;
+    src: url("./flaticon_mycollection.woff2?85f0b2ac1a061cd894b016db2e8e9efe") format("woff2"),
+url("./flaticon_mycollection.woff?85f0b2ac1a061cd894b016db2e8e9efe") format("woff"),
+url("./flaticon_mycollection.eot?85f0b2ac1a061cd894b016db2e8e9efe#iefix") format("embedded-opentype"),
+url("./flaticon_mycollection.ttf?85f0b2ac1a061cd894b016db2e8e9efe") format("truetype"),
+url("./flaticon_mycollection.svg?85f0b2ac1a061cd894b016db2e8e9efe#flaticon_mycollection") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon_mycollection !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$flaticon_mycollection-map: (
+    "location": "\f101",
+    "search": "\f102",
+    "facebook": "\f103",
+    "twitter": "\f104",
+    "instagram": "\f105",
+    "paper-plane": "\f106",
+    "checked-data": "\f107",
+    "calendar": "\f108",
+    "comment": "\f109",
+    "right-arrow": "\f10a",
+    "pinterest": "\f10b",
+    "iphone": "\f10c",
+    "map-location": "\f10d",
+    "mail-inbox-app": "\f10e",
+    "share": "\f10f",
+    "quotation-mark": "\f110",
+    "plus": "\f111",
+    "calculation-operations-minus-sign": "\f112",
+    "blueprint": "\f113",
+    "networks": "\f114",
+    "architect": "\f115",
+    "measure": "\f116",
+    "cloud": "\f117",
+    "home": "\f118",
+    "architecture": "\f119",
+    "architect-1": "\f11a",
+    "buildings": "\f11b",
+    "infrastructure": "\f11c",
+    "cityscape": "\f11d",
+    "engineering": "\f11e",
+    "lightbulb": "\f11f",
+    "interior-design": "\f120",
+    "paintwork": "\f121",
+    "plan": "\f122",
+    "design": "\f123",
+    "house-design": "\f124",
+    "interior-design-1": "\f125",
+    "lamp": "\f126",
+    "blueprint-1": "\f127",
+    "denver": "\f128",
+    "office-building": "\f129",
+    "blueprint-2": "\f12a",
+    "drawing-compass": "\f12b",
+    "architectural": "\f12c",
+    "architecture-1": "\f12d",
+    "building": "\f12e",
+    "planing": "\f12f",
+    "town-plan": "\f130",
+    "skyline": "\f131",
+    "house": "\f132",
+    "planning": "\f133",
+    "drawing": "\f134",
+    "modern-house": "\f135",
+    "modern-house-1": "\f136",
+    "hospital": "\f137",
+    "public-health-center": "\f138",
+    "school": "\f139",
+    "school-1": "\f13a",
+    "youtube": "\f13b",
+);
+
+.flaticon-location:before {
+    content: map-get($flaticon_mycollection-map, "location");
+}
+.flaticon-search:before {
+    content: map-get($flaticon_mycollection-map, "search");
+}
+.flaticon-facebook:before {
+    content: map-get($flaticon_mycollection-map, "facebook");
+}
+.flaticon-twitter:before {
+    content: map-get($flaticon_mycollection-map, "twitter");
+}
+.flaticon-instagram:before {
+    content: map-get($flaticon_mycollection-map, "instagram");
+}
+.flaticon-paper-plane:before {
+    content: map-get($flaticon_mycollection-map, "paper-plane");
+}
+.flaticon-checked-data:before {
+    content: map-get($flaticon_mycollection-map, "checked-data");
+}
+.flaticon-calendar:before {
+    content: map-get($flaticon_mycollection-map, "calendar");
+}
+.flaticon-comment:before {
+    content: map-get($flaticon_mycollection-map, "comment");
+}
+.flaticon-right-arrow:before {
+    content: map-get($flaticon_mycollection-map, "right-arrow");
+}
+.flaticon-pinterest:before {
+    content: map-get($flaticon_mycollection-map, "pinterest");
+}
+.flaticon-iphone:before {
+    content: map-get($flaticon_mycollection-map, "iphone");
+}
+.flaticon-map-location:before {
+    content: map-get($flaticon_mycollection-map, "map-location");
+}
+.flaticon-mail-inbox-app:before {
+    content: map-get($flaticon_mycollection-map, "mail-inbox-app");
+}
+.flaticon-share:before {
+    content: map-get($flaticon_mycollection-map, "share");
+}
+.flaticon-quotation-mark:before {
+    content: map-get($flaticon_mycollection-map, "quotation-mark");
+}
+.flaticon-plus:before {
+    content: map-get($flaticon_mycollection-map, "plus");
+}
+.flaticon-calculation-operations-minus-sign:before {
+    content: map-get($flaticon_mycollection-map, "calculation-operations-minus-sign");
+}
+.flaticon-blueprint:before {
+    content: map-get($flaticon_mycollection-map, "blueprint");
+}
+.flaticon-networks:before {
+    content: map-get($flaticon_mycollection-map, "networks");
+}
+.flaticon-architect:before {
+    content: map-get($flaticon_mycollection-map, "architect");
+}
+.flaticon-measure:before {
+    content: map-get($flaticon_mycollection-map, "measure");
+}
+.flaticon-cloud:before {
+    content: map-get($flaticon_mycollection-map, "cloud");
+}
+.flaticon-home:before {
+    content: map-get($flaticon_mycollection-map, "home");
+}
+.flaticon-architecture:before {
+    content: map-get($flaticon_mycollection-map, "architecture");
+}
+.flaticon-architect-1:before {
+    content: map-get($flaticon_mycollection-map, "architect-1");
+}
+.flaticon-buildings:before {
+    content: map-get($flaticon_mycollection-map, "buildings");
+}
+.flaticon-infrastructure:before {
+    content: map-get($flaticon_mycollection-map, "infrastructure");
+}
+.flaticon-cityscape:before {
+    content: map-get($flaticon_mycollection-map, "cityscape");
+}
+.flaticon-engineering:before {
+    content: map-get($flaticon_mycollection-map, "engineering");
+}
+.flaticon-lightbulb:before {
+    content: map-get($flaticon_mycollection-map, "lightbulb");
+}
+.flaticon-interior-design:before {
+    content: map-get($flaticon_mycollection-map, "interior-design");
+}
+.flaticon-paintwork:before {
+    content: map-get($flaticon_mycollection-map, "paintwork");
+}
+.flaticon-plan:before {
+    content: map-get($flaticon_mycollection-map, "plan");
+}
+.flaticon-design:before {
+    content: map-get($flaticon_mycollection-map, "design");
+}
+.flaticon-house-design:before {
+    content: map-get($flaticon_mycollection-map, "house-design");
+}
+.flaticon-interior-design-1:before {
+    content: map-get($flaticon_mycollection-map, "interior-design-1");
+}
+.flaticon-lamp:before {
+    content: map-get($flaticon_mycollection-map, "lamp");
+}
+.flaticon-blueprint-1:before {
+    content: map-get($flaticon_mycollection-map, "blueprint-1");
+}
+.flaticon-denver:before {
+    content: map-get($flaticon_mycollection-map, "denver");
+}
+.flaticon-office-building:before {
+    content: map-get($flaticon_mycollection-map, "office-building");
+}
+.flaticon-blueprint-2:before {
+    content: map-get($flaticon_mycollection-map, "blueprint-2");
+}
+.flaticon-drawing-compass:before {
+    content: map-get($flaticon_mycollection-map, "drawing-compass");
+}
+.flaticon-architectural:before {
+    content: map-get($flaticon_mycollection-map, "architectural");
+}
+.flaticon-architecture-1:before {
+    content: map-get($flaticon_mycollection-map, "architecture-1");
+}
+.flaticon-building:before {
+    content: map-get($flaticon_mycollection-map, "building");
+}
+.flaticon-planing:before {
+    content: map-get($flaticon_mycollection-map, "planing");
+}
+.flaticon-town-plan:before {
+    content: map-get($flaticon_mycollection-map, "town-plan");
+}
+.flaticon-skyline:before {
+    content: map-get($flaticon_mycollection-map, "skyline");
+}
+.flaticon-house:before {
+    content: map-get($flaticon_mycollection-map, "house");
+}
+.flaticon-planning:before {
+    content: map-get($flaticon_mycollection-map, "planning");
+}
+.flaticon-drawing:before {
+    content: map-get($flaticon_mycollection-map, "drawing");
+}
+.flaticon-modern-house:before {
+    content: map-get($flaticon_mycollection-map, "modern-house");
+}
+.flaticon-modern-house-1:before {
+    content: map-get($flaticon_mycollection-map, "modern-house-1");
+}
+.flaticon-hospital:before {
+    content: map-get($flaticon_mycollection-map, "hospital");
+}
+.flaticon-public-health-center:before {
+    content: map-get($flaticon_mycollection-map, "public-health-center");
+}
+.flaticon-school:before {
+    content: map-get($flaticon_mycollection-map, "school");
+}
+.flaticon-school-1:before {
+    content: map-get($flaticon_mycollection-map, "school-1");
+}
+.flaticon-youtube:before {
+    content: map-get($flaticon_mycollection-map, "youtube");
+}

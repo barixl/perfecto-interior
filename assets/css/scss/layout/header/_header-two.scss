@@ -1,0 +1,136 @@
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+header.two {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+    &.sticky {
+        position: fixed;
+        background-color: rgba(17, 17, 17, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        animation: slideDown 0.4s ease;
+        z-index: 999;
+
+        .bottom-bar {
+            padding-top: 4px;
+            padding-bottom: 4px;
+        }
+    }
+
+    .header-bottom-bar {
+        background-color: #000000;
+        transition: all 0.3s ease;
+    }
+
+    .bottom-bar {
+        background-color: transparent;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        transition: all 0.3s ease;
+    }
+
+    &:has(.mobile-nav.open) {
+        height: 100vh;
+        width: 100vw;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        z-index: 999999;
+        background: transparent !important;
+        backdrop-filter: none !important;
+        box-shadow: none !important;
+        transform: none !important;
+        animation: none !important;
+
+        .header-bottom-bar, .bottom-bar {
+            display: none !important;
+        }
+    }
+
+    ul.social-media {
+        li {
+            a {
+                i {
+                    color: $white-colour;
+
+                    &:hover {
+                        color: $theme-colour;
+                    }
+                }
+            }
+        }
+
+    }
+
+    .navbar-links {
+        li {
+            >a {
+                color: $white-colour;
+                font-size: 17px;
+            }
+        }
+    }
+
+    li.menu-item-children {
+        >a {
+            &:before {
+                filter: invert(1);
+            }
+        }
+    }
+
+    .header-top-bar {
+        border: 0;
+    }
+
+    &::before {
+        display: none;
+    }
+
+    .content-header {
+        h4 {
+            color: $white-colour;
+        }
+
+        a {
+            color: $white-colour;
+
+            &:hover {
+                color: $theme-colour;
+            }
+        }
+
+        i {
+            color: $white-colour;
+            color: $white-colour;
+        }
+    }
+
+    i {
+        color: $white-colour;
+    }
+
+    .top-bar {
+        h4 {
+            display: flex;
+
+            i {
+                font-size: 24px;
+                margin: 0;
+                margin-top: -5px;
+                display: block;
+            }
+        }
+    }
+}

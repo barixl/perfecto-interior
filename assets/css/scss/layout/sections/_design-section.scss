@@ -1,0 +1,99 @@
+.design-section {
+    .heading {
+        width: 95%;
+    }
+
+    .design-style {
+        width: 87%;
+        text-align: center;
+        position: relative;
+        padding-top: 30px;
+        margin: auto;
+
+        @include respond-to("xxl") {
+            width: 92%;
+        }
+
+        @include respond-to("lg") {
+            margin-bottom: 40px;
+            width: 100%;
+        }
+
+        &::before {
+            @include content(1);
+            width: 137px;
+            height: 137px;
+            background-color: #dcdcdc;
+            border-radius: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            top: 24%;
+
+            @include respond-to("xl") {
+                width: 125px;
+                height: 125px;
+            }
+        }
+
+        &::after {
+            @include content(1);
+            width: 90px;
+            height: 90px;
+            background-color: $white-colour;
+            border-radius: 50%;
+            left: 50%;
+            transform: scale(1) translate(-50%, -50%);
+            top: 24%;
+            @include transition;
+        }
+
+
+        &:hover {
+            &::after {
+                width: 135px;
+                height: 135px;
+                background-color: $theme-colour;
+            }
+
+            i {
+                background-color: transparent;
+            }
+        }
+
+        i {
+            @include transition;
+            position: relative;
+            z-index: 11;
+            display: block;
+            font-size: 82px;
+            line-height: 60px;
+            margin-bottom: 40px;
+            display: inline-block;
+            border-radius: 50%;
+
+            @include respond-to("xl") {
+                font-size: 70px;
+                line-height: 50px;
+                margin-bottom: 19px;
+            }
+        }
+
+        a {
+            font-size: 26px;
+            font-weight: bold;
+            padding-bottom: 10px;
+            display: inline-block;
+            @include text-hover;
+
+            @include respond-to("xl") {
+                font-size: 22px;
+                padding-top: 20px;
+                display: inline-block;
+            }
+
+            &:hover {
+                background-position: 0%;
+            }
+        }
+    }
+}

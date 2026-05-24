@@ -1,0 +1,215 @@
+.hero-two-slider.swiper {
+    overflow: visible !important;
+
+    .swiper-pagination {
+        text-align: left;
+        bottom: 60px !important;
+
+        @include respond-to("lg") {
+            bottom: 24px !important;
+        }
+    }
+}
+
+.hero-two-section {
+    padding-top: 300px;
+    position: relative;
+    margin-bottom: 70px;
+
+    @include respond-to("xxl") {
+        padding-top: 265px;
+    }
+
+    @include respond-to("xl") {
+        padding-top: 170px;
+    }
+
+    @include respond-to("lg") {
+        padding-top: 120px;
+        margin-bottom: 0;
+    }
+
+    &::before {
+        @include content(.9);
+        background-color: $drak-color;
+    }
+
+    .hero-two-text {
+        position: relative;
+        z-index: 11;
+        padding-bottom: 170px;
+
+        @include respond-to("xl") {
+            padding-bottom: 130px;
+        }
+
+        @include respond-to("lg") {
+            padding-bottom: 40px;
+        }
+
+        .theme-btn.hvr-light {
+            &::before {
+                background-color: $white-colour;
+
+            }
+
+            &:hover {
+                color: $drak-color;
+
+
+
+                &::after {
+                    background-color: $drak-color;
+                }
+            }
+
+        }
+
+        img {
+            position: absolute;
+            right: -21%;
+            z-index: 11;
+            bottom: -70px;
+            width: 880px;
+            height: 670px;
+            object-fit: cover;
+            object-position: center center;
+            clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+            transform: scale(0.9);
+            clip-path: circle(0% at 50% 50%);
+            opacity: 0;
+            transition: 0.5s opacity 1s, transform 1s, clip-path 1s;
+
+            @include respond-to("xxl") {
+                width: 700px;
+                height: 530px;
+                object-fit: cover;
+            }
+
+            @include respond-to("xl") {
+                width: 580px;
+                height: 440px;
+                object-fit: cover;
+            }
+
+            @include respond-to("lg") {
+                position: relative;
+                width: 100%;
+                height: 280px;
+                object-fit: cover;
+                left: 0;
+                bottom: 0;
+                margin-top: 20px;
+                border-radius: 12px;
+                clip-path: none !important;
+            }
+
+            @include respond-to("md") {
+                height: 200px;
+            }
+        }
+
+        h2 {
+            color: $white-colour;
+            padding-bottom: 10px;
+            font-size: 60px;
+            width: 55%;
+            font-weight: 600;
+            opacity: 0;
+            visibility: hidden;
+            transition: all .5s ease;
+            transform: translateY(-20px);
+
+            @include respond-to("xxl") {
+                font-size: 45px;
+            }
+
+            @include respond-to("xl") {
+                font-size: 42px;
+            }
+
+            @include respond-to("lg") {
+                width: 100%;
+            }
+
+            @include respond-to("md") {
+                font-size: 38px;
+            }
+
+            @include respond-to("mdd") {
+                font-size: 30px;
+            }
+        }
+
+        .btn {
+            padding: 12px 38px;
+        }
+
+        a.bt2 {
+            color: $light-colour;
+            margin-left: 30px;
+            font-weight: 700;
+
+            @include respond-to("xl") {
+
+                display: block;
+                margin: 0;
+                margin-top: 20px;
+            }
+
+            i {
+                margin-left: 20px;
+                color: $theme-colour;
+            }
+        }
+
+        .btnn {
+            opacity: 0;
+            visibility: hidden;
+            transition: all .5s ease;
+            transform: translateY(-20px);
+        }
+
+        p {
+            color: #bcbcbc;
+            padding-bottom: 40px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all .5s ease;
+            transform: translateX(-50px);
+
+            @include respond-to("lg") {
+                padding-bottom: 20px;
+            }
+        }
+    }
+}
+
+.hero-two-text.swiper-slide-active img {
+    opacity: 1;
+    transform: scale(1);
+    clip-path: circle(100% at 50% 50%);
+}
+
+.hero-two-text.swiper-slide.swiper-slide-active {
+    h2 {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: .8s;
+        transform: translateY(0);
+    }
+
+    p {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: 1.3s;
+        transform: translateX(0);
+    }
+
+    .btnn {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: 1.7s;
+        transform: translateY(0);
+    }
+}

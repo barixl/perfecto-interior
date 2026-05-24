@@ -1,0 +1,94 @@
+.blog-one {
+    @include respond-to("lg") {
+        margin-bottom: 40px;
+    }
+
+    img {
+        @include transition;
+        width: 100%;
+
+    }
+
+    figure {
+        margin-bottom: 16px;
+    }
+
+    span.spacer {
+        padding: 0px 10px;
+    }
+
+    .blog-time {
+        padding-top: 20px;
+    }
+
+    span {
+        color: $medium-drak;
+        font-weight: 500;
+    }
+
+    h4 {
+        padding-bottom: 20px;
+        padding-top: 10px;
+
+        a {
+            @include text-hover;
+        }
+
+        a:hover {
+            background-position: 0;
+        }
+
+        a {
+            color: $drak-color;
+            font-size: 22px;
+            font-weight: bold;
+            line-height: 34px;
+            border: 0;
+            text-transform: capitalize;
+            width: 90%;
+            @include transition;
+
+            @include respond-to("xxl") {
+                font-size: 20px;
+                line-height: 32px;
+            }
+
+            @include respond-to("xl") {
+                font-size: 18px;
+                line-height: 28px;
+            }
+
+            &:hover {
+                color: $theme-colour;
+                background-position: 0;
+            }
+        }
+    }
+
+    a {
+        color: $medium-drak;
+        border-bottom: 1px solid $medium-drak;
+        text-transform: uppercase;
+
+        i {
+            opacity: 0;
+            @include transition;
+            margin-left: -19px;
+        }
+
+        &:hover {
+            i {
+                opacity: 1;
+                margin-left: 10px;
+            }
+        }
+    }
+}
+
+.heading.two.blogtwo p {
+    width: 78%;
+
+    @include respond-to("xxl") {
+        width: 100%;
+    }
+}

@@ -1,0 +1,104 @@
+.trending-topics {
+    position: relative;
+    background-size: cover;
+
+    &::before {
+        @include content(.8);
+        background-color: $drak-color;
+    }
+
+    .heading {
+        h2 {
+            color: $white-colour;
+        }
+
+        span {
+            color: #d1d1d1;
+        }
+    }
+}
+
+.topics {
+    padding: 40px;
+    position: relative;
+    border: 3px solid $medium-drak;
+    @include transition;
+
+    @include respond-to("xxl") {
+        padding: 30px;
+    }
+
+    @include respond-to("lg") {
+        margin-bottom: 23px;
+    }
+
+    &:before {
+        @include content(.5);
+        background-image: url(https://via.placeholder.com/300x370);
+        height: 100%;
+        @include transition;
+        background-size: cover;
+        clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+        transform: scale(0.9);
+        clip-path: circle(0% at 50% 50%);
+        transition: 0.5s sopacity 1s, transform 1s, clip-path 1s;
+    }
+
+    &:hover {
+        &:before {
+            transform: scale(1);
+            clip-path: circle(100% at 50% 50%);
+        }
+
+        border: 3px solid $theme-colour;
+    }
+
+    p {
+        color: $white-colour;
+        position: relative;
+    }
+
+    a {
+        position: relative;
+        color: $theme-colour;
+        padding-top: 22px;
+        display: block;
+        text-transform: capitalize;
+
+
+        i {
+            padding-left: 10px;
+        }
+    }
+
+    h4 {
+        color: $white-colour;
+        text-transform: capitalize;
+        padding-bottom: 120px;
+        font-size: 26px;
+        font-weight: bold;
+        position: relative;
+
+        @include respond-to("xxl") {
+            font-size: 20px;
+        }
+    }
+}
+
+.topics.two {
+    &:before {
+        background-image: url(https://via.placeholder.com/300x370);
+    }
+}
+
+.topics.three {
+    &:before {
+        background-image: url(https://via.placeholder.com/300x370);
+    }
+}
+
+.topics.for {
+    &:before {
+        background-image: url(https://via.placeholder.com/300x370);
+    }
+}

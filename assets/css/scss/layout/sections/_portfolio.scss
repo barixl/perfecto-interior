@@ -1,0 +1,64 @@
+.portfolio {
+    a {
+        @include text-hover;
+        @include transition;
+        font-size: 30px;
+        line-height: 40px;
+        font-weight: 600;
+        margin-top: 24px;
+
+        @include respond-to("xxl") {
+            font-size: 26px;
+            line-height: 36px;
+        }
+
+        @include respond-to("md") {
+            font-size: 22px;
+            line-height: 30px;
+        }
+
+        &:hover {
+            background-position: 0;
+        }
+    }
+
+    h2 {
+        font-weight: 500;
+        padding-top: 14px;
+
+        @include respond-to("smm") {
+            font-size: 20px;
+            padding-top: 30px;
+        }
+    }
+
+    .portfolio-tag {
+        display: flex;
+        justify-content: space-between;
+        width: min-content;
+        align-items: center;
+        padding-top: 10px;
+
+        hr {
+            margin: 10px 20px;
+            width: 60px;
+        }
+
+        span {
+            font-weight: bold;
+            color: $medium-drak;
+
+            @include respond-to("md") {
+                font-size: 14px;
+            }
+        }
+    }
+
+    margin-bottom: 40px;
+}
+
+@include respond-to("lg") {
+    .row>hr {
+        display: none;
+    }
+}

@@ -1,0 +1,170 @@
+.creating-future-section {
+    position: relative;
+    background-size: cover;
+
+    &::before {
+        @include content(.8);
+        background-color: $drak-color;
+    }
+
+    .heading {
+        padding-top: 30px;
+
+        h2 {
+            color: $white-colour;
+        }
+
+        span {
+            color: $light-colour;
+        }
+    }
+
+    .future-img {
+        position: relative;
+
+        @include respond-to("lg") {
+            display: none;
+        }
+
+        img {
+            position: absolute;
+            right: 0;
+            top: -20px;
+
+            @include respond-to("xxl") {
+                height: 450px;
+            }
+        }
+    }
+
+    .creating-text {
+        position: relative;
+        background-color: #202020;
+        padding: 45px 40px;
+        margin-right: 10px;
+        margin-bottom: 15px;
+
+        @include respond-to("xxl") {
+            padding: 35px;
+        }
+
+        @include respond-to("lg") {
+            margin-right: 0;
+            margin-bottom: 15px;
+        }
+
+        &::before {
+            @include content(1);
+            height: 100%;
+            border: $theme-colour 1px solid;
+            @include transition;
+        }
+
+        >i {
+            color: $theme-colour;
+            font-size: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        p {
+            color: #c1c1c1;
+            padding-bottom: 34px;
+            position: relative;
+            padding-top: 2px;
+
+            @include respond-to("xxl") {
+                font-size: 15px;
+            }
+        }
+
+        h4 {
+            a {
+                position: relative;
+                color: #fff;
+                padding-bottom: 10px;
+                display: block;
+                font-size: 20px;
+                @include transition;
+
+                @include respond-to("lg") {
+                    font-size: 24px;
+                }
+
+                &:hover {
+                    color: $theme-colour;
+                }
+            }
+        }
+
+        >a {
+            color: $light-colour;
+            font-weight: bold;
+            position: relative;
+
+            i {
+                opacity: 0;
+                @include transition;
+            }
+
+            &::before {
+                content: " ";
+                position: absolute;
+                width: 20px;
+                height: 1px;
+                bottom: 0;
+                background-color: #646464;
+                @include transition;
+            }
+
+            &:hover {
+                i {
+                    opacity: 1;
+                    padding-left: 10px;
+                }
+
+                &::before {
+                    width: 100%;
+                    background-color: $theme-colour;
+                }
+            }
+        }
+    }
+
+    @at-root {
+        .video-pop {
+            color: $white-colour;
+            margin-left: 20px;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            position: relative;
+            justify-content: right;
+
+            @include respond-to("xl") {
+                justify-content: start;
+                margin-top: 40px;
+            }
+
+            i {
+                margin-left: 14px;
+                border: 3px solid $theme-colour;
+                background-color: $theme-colour;
+                width: 80px;
+                height: 80px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                padding: 20px;
+                color: $drak-color;
+
+                @include respond-to("xl") {
+                    width: 50px;
+                    height: 50px;
+                    font-size: 10px;
+                }
+            }
+        }
+    }
+}

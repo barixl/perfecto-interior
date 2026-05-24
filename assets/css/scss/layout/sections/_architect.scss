@@ -1,0 +1,174 @@
+.architect-info {
+    position: relative;
+    margin-top: 40px;
+    width: 90%;
+    margin-left: auto;
+
+    @include respond-to("lg") {
+        width: 100%;
+    }
+
+    figure {
+        position: relative;
+
+        img {
+            width: 100%;
+            @include transition;
+        }
+
+        &::before {
+            @include content(.5);
+            background-color: $drak-color;
+            z-index: 111;
+        }
+    }
+
+    .architect-text {
+        position: absolute;
+        bottom: 30px;
+        left: 60px;
+        z-index: 111;
+
+        @include respond-to("lg") {
+            bottom: 20px;
+            left: 20px;
+        }
+
+        img {
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: $white-colour;
+            font-size: 24px;
+            font-weight: bold;
+            padding-bottom: 10px;
+        }
+
+        p {
+            color: $white-colour;
+        }
+    }
+
+    &:hover {
+        figure {
+            img {
+                transform: scale(1.1);
+            }
+        }
+    }
+}
+
+.architect {
+    @include respond-to("lg") {
+        margin-bottom: 40px;
+    }
+
+    img.architect-img-1 {
+        transform: translateX(-252px);
+
+        @include respond-to("xxl") {
+            width: 140%;
+        }
+
+        @include respond-to("lg") {
+            width: 100%;
+            transform: translatex(0px);
+        }
+    }
+
+    .heading.two {
+        width: 80%;
+        margin: 0;
+        margin-top: 50px;
+        padding-bottom: 40px;
+
+        @include respond-to("xl") {
+            width: 100%;
+        }
+    }
+}
+
+.progress-style {
+    width: 85%;
+    margin-bottom: 20px;
+
+    @include respond-to("xl") {
+        width: 100%;
+    }
+
+    .progress {
+        height: 15px;
+        overflow: hidden;
+        background-color: $theme-colour;
+        border-radius: 0;
+    }
+
+    .item_bar.cell {
+        background-color: #ffffff;
+        width: 86%;
+        border-radius: 0;
+    }
+
+    .progress_bar_item {
+        position: relative;
+        width: 90%;
+        padding-top: 10px;
+
+        @include respond-to("sm") {
+            width: 100%;
+        }
+
+        .item_value.cell.shrink {
+            position: absolute;
+            right: 90px;
+            top: 6px;
+            font-weight: 900;
+
+            @include respond-to("sm") {
+                right: 40px;
+            }
+        }
+    }
+
+    .progress_bar.two {
+        .progress_bar_item {
+            width: 100%;
+            margin-left: 15px;
+
+            @include respond-to("sm") {
+                margin-left: 0;
+            }
+
+            .item_value.cell.shrink {
+                right: 30px;
+
+                @include respond-to("xxl") {
+                    right: 10px;
+                }
+            }
+        }
+    }
+
+    .progress_bar {
+        width: 100%;
+        padding-bottom: 26px;
+        display: flex;
+
+        @include respond-to("sm") {
+            flex-wrap: wrap;
+        }
+
+        span {
+            color: $drak-color;
+            font-weight: 700;
+            padding-bottom: 10px;
+            width: 160px;
+
+            @include respond-to("sm") {
+                padding-bottom: 0;
+            }
+        }
+    }
+
+}

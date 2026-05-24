@@ -1,0 +1,164 @@
+.leadership {
+    display: flex;
+    align-items: center;
+    border-bottom: 15px solid $theme-colour;
+
+    @include respond-to("lg") {
+        flex-wrap: wrap;
+        border-bottom: 0;
+    }
+
+    img {
+        @include respond-to("xl") {
+            width: 44%;
+        }
+
+        @include respond-to("lg") {
+            display: none;
+        }
+    }
+
+    p {
+        @include respond-to("xl") {
+            font-size: 14px;
+            line-height: 24px;
+        }
+    }
+
+    h3 {
+        font-size: 34px;
+        font-weight: bold;
+
+        @include respond-to("xl") {
+            font-size: 28px;
+        }
+
+        @include respond-to("sm") {
+            font-size: 24px;
+        }
+    }
+
+    h5 {
+        padding-bottom: 34px;
+        padding-top: 12px;
+        font-size: 18px;
+        line-height: 27px;
+
+        @include respond-to("xl") {
+            font-size: 16px;
+        }
+    }
+
+    >div {
+        margin-left: 60px;
+
+        @include respond-to("lg") {
+            margin-bottom: 40px;
+            margin-left: 0;
+        }
+    }
+
+    h6 {
+        padding-bottom: 13px;
+        font-size: 18px;
+        color: #444444;
+
+        @include respond-to("xl") {
+            font-size: 14px;
+        }
+
+        a {
+            color: #444444;
+            @include transition;
+
+            &:hover {
+                color: $theme-colour;
+            }
+        }
+    }
+
+    ul.social-media {
+        margin-top: 10px;
+
+        li {
+            a {
+                i {
+                    color: $drak-color;
+                }
+            }
+        }
+    }
+}
+
+.nav-pills {
+    .nav-link {
+        color: $drak-color;
+        padding: 28px;
+        border-radius: 0;
+        font-size: 20px;
+        font-weight: bold;
+        width: 83%;
+        margin-left: auto;
+        margin-bottom: 10px;
+        text-align: left;
+        background-color: #f4f4f4;
+        border-radius: 0;
+
+        @include respond-to("xl") {
+            width: 90%;
+            padding: 24px 22px;
+        }
+
+        @include respond-to("lg") {
+            width: 50%;
+            width: 49%;
+            font-size: 15px;
+            padding: 14px;
+        }
+
+        @include respond-to("md") {
+            margin-bottom: 3px;
+        }
+
+        span {
+            display: block;
+            color: #6b6b6b;
+            font-size: 14px;
+
+            @include respond-to("xl") {
+                font-size: 12px;
+            }
+
+            @include respond-to("md") {
+                font-size: 10px;
+            }
+        }
+    }
+
+    .nav-link.active {
+        background-color: $theme-colour;
+        color: $drak-color;
+    }
+}
+
+.tab-pane {
+    .leadership {
+        clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+        transform: scale(0.9);
+        clip-path: circle(0% at 50% 50%);
+        transition: 0.5s sopacity 1s, transform 1s, clip-path 1s;
+    }
+}
+
+.tab-pane.active.show {
+    .leadership {
+        transform: scale(1);
+        clip-path: circle(100% at 50% 50%);
+    }
+}
+
+.nav-style-two {
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: row !important;
+}

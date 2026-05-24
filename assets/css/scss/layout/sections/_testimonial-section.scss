@@ -1,0 +1,84 @@
+.testimonial-section {
+    background-repeat: no-repeat;
+    background-position: right;
+
+    @include respond-to("xxl") {
+        padding-top: 72px;
+        padding-bottom: 70px;
+    }
+
+    .testimonial-slider {
+        background-size: cover;
+
+        .swiper-pagination {
+            bottom: 60px !important;
+        }
+    }
+
+    .testimonial {
+        padding: 207px;
+        text-align: center;
+        padding-top: 50px;
+        padding-bottom: 111px;
+
+        @include respond-to("xl") {
+            padding: 82px;
+            padding-top: 50px;
+            padding-bottom: 111px;
+        }
+
+        @include respond-to("mdd") {
+            padding: 30px;
+            padding-top: 50px;
+            padding-bottom: 111px;
+        }
+
+        i {
+            font-size: 80px;
+            color: $theme-colour;
+            line-height: 36px;
+            width: 40px;
+            height: 40px;
+            display: block;
+            margin: auto;
+            margin-bottom: 40px;
+        }
+
+        p {
+            color: #fff;
+            font-size: 28px;
+            line-height: 48px;
+
+            @include respond-to("lg") {
+                font-size: 22px;
+                line-height: 36px;
+            }
+
+            @include respond-to("mdd") {
+                font-size: 18px;
+                line-height: 30px;
+            }
+        }
+
+        h5 {
+            padding-top: 40px;
+            color: #fff;
+            font-size: 22px;
+            font-weight: bold;
+            text-transform: uppercase;
+
+            @include respond-to("lg") {
+                font-size: 18px;
+            }
+        }
+
+        h6 {
+            color: #fff;
+            padding-top: 12px;
+
+            @include respond-to("lg") {
+                font-size: 14px;
+            }
+        }
+    }
+}

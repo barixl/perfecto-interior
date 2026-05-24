@@ -1,0 +1,132 @@
+  .theme-btn {
+      position: relative;
+      @include flexcenter;
+      display: inline-flex;
+      white-space: nowrap;
+      z-index: 0;
+      justify-content: center;
+      text-align: center;
+      white-space: nowrap;
+      transition: all .3s ease;
+      font-size: 16px;
+      line-height: 24px;
+      padding: 15px 50px;
+      font-weight: 700;
+      overflow: hidden;
+      color: $drak-color;
+      background: $theme-colour;
+
+      @include respond-to("xxl") {
+          padding: 14px 36px;
+      }
+
+      &::after {
+          content: "";
+          position: absolute;
+          background-color: $white-colour;
+          bottom: -3px;
+          right: 3px;
+          width: 5px;
+          height: 24px;
+          @include transition;
+      }
+
+      &:before {
+          position: absolute;
+          left: 0;
+          top: 0%;
+          height: 105%;
+          width: 1050%;
+          content: "";
+          background-color: $white-colour;
+          -webkit-transform: scale(1, 0);
+          transform: scale(1, 0);
+          -webkit-transform-origin: bottom left;
+          transform-origin: bottom left;
+          transition: transform 500ms cubic-bezier(.86, 0, .07, 1);
+          transition: transform 500ms cubic-bezier(.86, 0, .07, 1);
+          transition-timing-function: cubic-bezier(.86, 0, .07, 1);
+          z-index: -1;
+      }
+
+      &:hover {
+          &:before {
+              transform-origin: top right;
+              transform: scale(1, 1);
+          }
+
+          &::after {
+              background-color: $white-colour;
+          }
+
+          box-shadow: 0 10px 30px rgba(0, 0, 0, .1);
+      }
+
+  }
+
+  .theme-btn.hvr-light {
+      &:hover {
+          color: $white-colour;
+      }
+
+      &:before {
+          background-color: $drak-color;
+      }
+
+      i {
+          padding-right: 10px;
+      }
+  }
+
+  .theme-btn.bg-light {
+      &:not(hover) {
+          background-color: $white-colour !important;
+          color: $drak-color;
+
+          &:hover {
+              &:before {
+                  color: $white-colour;
+                  top: -1px;
+                  height: calc(100% + 1px);
+              }
+          }
+      }
+  }
+
+  .theme-btnbg-dark {
+      color: $white-colour;
+  }
+
+  .theme-btn.bg-dark {
+      &:hover {
+          background-color: $white-colour;
+          color: $drak-color;
+      }
+
+      &:before {
+          background-color: $white-colour;
+          color: $drak-color;
+      }
+  }
+
+  a.theme-btn.hvr-light.two {
+      background-color: transparent;
+      border: 1px solid;
+
+      &:after {
+          background-color: $drak-color;
+      }
+
+      &:before {
+          background-color: $theme-colour;
+      }
+
+      &:hover {
+          border-color: $theme-colour;
+          color: $drak-color;
+      }
+  }
+
+  button.theme-btn.hvr-light {
+      border: 0 !important;
+  }

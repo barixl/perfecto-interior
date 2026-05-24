@@ -1,0 +1,109 @@
+ul.read-journey {
+    li {
+        display: flex;
+        align-items: center;
+        border-top: 1px solid #b9b5b5;
+        padding-top: 40px;
+        margin-top: 40px;
+
+        @include respond-to("lg") {
+            flex-wrap: wrap;
+        }
+
+        &:nth-child(1) {
+            margin-top: 0;
+        }
+
+        img {
+            @include respond-to("lg") {
+                width: 75%;
+                margin-bottom: 40px;
+            }
+
+            @include respond-to("md") {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+
+        span {
+            background-color: $theme-colour;
+            padding: 13px 25px;
+            display: block;
+            width: 180px;
+            margin-bottom: 7px;
+            color: $drak-color;
+            font-weight: bold;
+
+            @include respond-to("xxl") {
+                width: 168px;
+            }
+
+            @include respond-to("md") {
+                width: auto;
+                display: inline-block;
+                margin-bottom: 4px;
+                padding: 8px 20px;
+                font-size: 12px;
+            }
+        }
+
+        span.comments {
+            background: #e3e3e3;
+        }
+
+        a {
+            font-weight: bold;
+            font-size: 26px;
+            padding-left: 40px;
+            width: 31%;
+            @include text-hover;
+
+            @include respond-to("xxl") {
+                font-size: 22px;
+                padding-left: 30px;
+                width: 30%;
+            }
+
+            @include respond-to("xl") {
+                font-size: 18px;
+                padding-left: 24px;
+                width: 30%;
+            }
+
+            @include respond-to("lg") {
+                width: 50%;
+            }
+
+            @include respond-to("md") {
+                width: 100%;
+                padding-left: 0;
+                padding-bottom: 12px;
+            }
+
+            &:hover {
+                background-position: 0;
+            }
+        }
+
+        p {
+            width: 27%;
+
+            @include respond-to("xl") {
+                width: 26%;
+                font-size: 14px;
+                line-height: 24px;
+            }
+
+            @include respond-to("lg") {
+                width: 50%;
+                padding-left: 40px;
+            }
+
+            @include respond-to("md") {
+                width: 100%;
+                padding-left: 0;
+            }
+        }
+    }
+}

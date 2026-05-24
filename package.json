@@ -1,0 +1,9 @@
+{
+  "name": "interior-project",
+  "version": "1.0.0",
+  "description": "Archik | Architecture Studio and Interior HTML Template",
+  "scripts": {
+    "sass:build": "sass assets/css/main.scss assets/css/main.css",
+    "sass:watch": "sass --watch assets/css/main.scss:assets/css/main.css"
+  }
+}

@@ -1,0 +1,168 @@
+body,
+html {
+    font-family: "Epilogue";
+    overflow-x: hidden;
+}
+
+p {
+    font-size: 16px;
+    line-height: 30px;
+    color: $medium-drak;
+    margin: 0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+hr {
+    margin: 0;
+}
+
+.row hr {
+    margin-top: -65px;
+}
+
+figure {
+    margin-bottom: 0;
+}
+
+input,
+textarea {
+    width: 100%;
+    height: 60px;
+    border: 0;
+    outline: none;
+    padding-left: 30px;
+
+    @include respond-to("lg") {
+        padding-left: 20px;
+    }
+}
+
+input:focus,
+textarea:focus {
+    border-color: $theme-colour !important;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+textarea {
+    padding: 20px;
+}
+
+h1 {
+    font-size: 70px;
+    line-height: 80px;
+
+    @include respond-to("xxl") {
+        font-size: 60px;
+        line-height: 70px;
+    }
+
+    @include respond-to("xl") {
+        font-size: 50px;
+        line-height: 60px;
+    }
+
+    @include respond-to("lg") {
+        font-size: 40px;
+        line-height: 50px;
+    }
+
+    @include respond-to("md") {
+        font-size: 34px;
+        line-height: 44px;
+    }
+}
+
+h2 {
+    font-size: 50px;
+
+    @include respond-to("xxl") {
+        font-size: 42px;
+    }
+
+    @include respond-to("mdd") {
+        font-size: 36px;
+    }
+
+    @include respond-to("smm") {
+        font-size: 30px;
+    }
+}
+
+h3 {
+    font-size: 24px;
+}
+
+h4 {
+    font-size: 22px;
+
+    @include respond-to("mdd") {
+        font-size: 20px;
+    }
+
+    @include respond-to("smm") {
+        font-size: 18px;
+    }
+}
+
+a,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: $drak-color;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    display: block;
+
+}
+
+figure {
+    overflow: hidden;
+}
+
+.gap {
+    padding-top: 120px;
+    padding-bottom: 120px;
+
+    @include respond-to("xl") {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+    @include respond-to("lg") {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    @include respond-to("mdd") {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+
+.no-top {
+    padding-top: 0;
+}
+
+.no-bottom {
+    padding-bottom: 0;
+}

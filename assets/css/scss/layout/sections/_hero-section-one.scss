@@ -1,0 +1,140 @@
+.hero-section {
+    padding-top: 209px;
+    position: relative;
+    padding-bottom: 190px;
+
+    @include respond-to("xxl") {
+        padding-top: 170px;
+        padding-bottom: 120px;
+    }
+
+    @include respond-to("lg") {
+        padding-top: 120px;
+    }
+
+    @include respond-to("md") {
+        padding-top: 100px;
+    }
+
+    @include respond-to("mdd") {
+        padding-top: 70px;
+    }
+
+    h1 {
+        color: $white-colour;
+        font-weight: 700;
+        margin-bottom: 0;
+        letter-spacing: 1px;
+        font-weight: bold;
+    }
+
+    .hero-text {
+        width: 62%;
+
+        @include respond-to("md") {
+            width: 100%;
+        }
+
+        h1 {
+            opacity: 0;
+            visibility: hidden;
+            transition: all .5s ease;
+            transform: translateY(-20px);
+        }
+
+        .theme-btn.hvr-light {
+            opacity: 0;
+            visibility: hidden;
+            transition: all .5s ease;
+            transform: translateY(-20px);
+        }
+    }
+
+    p {
+        color: $white-colour;
+        opacity: 0;
+        visibility: hidden;
+        transition: all .5s ease;
+        transform: translateX(-50px);
+        margin-bottom: 0;
+
+    }
+
+}
+
+.hero-section.swiper-slide.swiper-slide-active {
+    .hero-text {
+        h1 {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: .8s;
+            transform: translateY(0);
+        }
+
+        .theme-btn.hvr-light {
+            opacity: 1;
+            visibility: visible;
+            transition-delay: 1.7s;
+            transform: translateY(0);
+
+            &::before {
+                background-color: $white-colour;
+            }
+        }
+    }
+}
+
+.hero-section.swiper-slide-active {
+    p {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: 1.3s;
+        transform: translateX(0);
+    }
+}
+
+.hero-text {
+    p {
+        color: $white-colour;
+        font-size: 22px;
+        padding-bottom: 56px;
+        padding-top: 26px;
+        width: 73%;
+        line-height: 30px;
+
+        @include respond-to("xxl") {
+            padding-bottom: 46px;
+        }
+
+        @include respond-to("xxl") {
+            width: 85%;
+            font-size: 18px;
+        }
+    }
+}
+
+.hero-one-slider {
+    .swiper-pagination {
+        text-align: left;
+        position: absolute;
+        left: 14% !important;
+        bottom: 10% !important;
+
+        @include respond-to("xxl") {
+            left: 9% !important;
+            bottom: 4% !important;
+        }
+
+        @include respond-to("xl") {
+            left: 9% !important;
+        }
+
+        @include respond-to("lg") {
+            left: 15% !important;
+        }
+
+        @include respond-to("mdd") {
+            left: 10px !important;
+        }
+    }
+}

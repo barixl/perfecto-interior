@@ -1,0 +1,148 @@
+.custom-marquee-section {
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid rgba(205, 164, 94, 0.2);
+    border-bottom: 1px solid rgba(205, 164, 94, 0.2);
+    padding: 40px 0;
+    background: radial-gradient(ellipse at center, rgba(205, 164, 94, 0.08), transparent 75%);
+   
+}
+
+.marquee-fade-left, .marquee-fade-right {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 150px;
+    z-index: 10;
+}
+
+.marquee-fade-left {
+    left: 0;
+    background: linear-gradient(to right, #ffffff, transparent);
+}
+
+.marquee-fade-right {
+    right: 0;
+    background: linear-gradient(to left, #ffffff, transparent);
+}
+
+.marquee-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.marquee-row {
+    display: flex;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.marquee-track {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+}
+
+.marquee-row-left .marquee-track {
+    animation: marquee-scroll-left 25s linear infinite;
+}
+
+.marquee-row-right .marquee-track {
+    animation: marquee-scroll-right 25s linear infinite;
+}
+
+@keyframes marquee-scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes marquee-scroll-right {
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.marquee-track span {
+    display: inline-flex;
+    align-items: center;
+    gap: 25px;
+    color: $drak-color;
+}
+
+.marquee-track .text-theme {
+    color: $theme-colour;
+}
+
+.marquee-track .text-stroke {
+    color: transparent;
+    -webkit-text-stroke: 1.5px $theme-colour;
+}
+
+.marquee-track .text-faded {
+    color: rgba(0, 0, 0, 0.15);
+}
+
+.marquee-track .text-theme-soft {
+    color: rgba(205, 164, 94, 0.7);
+}
+
+.marquee-track .symbol-star {
+    color: $theme-colour;
+    font-size: 0.8em;
+    line-height: 1;
+}
+
+.marquee-track .symbol-diamond {
+    color: $drak-color;
+    font-size: 0.6em;
+    transform: rotate(45deg);
+    display: inline-block;
+}
+
+.marquee-track .symbol-line {
+    display: inline-block;
+    width: 40px;
+    height: 4px;
+    border-radius: 99px;
+    background: linear-gradient(to right, $theme-colour, $drak-color, $theme-colour);
+}
+
+@media (max-width: 768px) {
+    .custom-marquee-section {
+        padding: 25px 0;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .marquee-fade-left, .marquee-fade-right {
+        width: 60px;
+    }
+    .marquee-wrapper {
+        gap: 12px;
+    }
+    .marquee-track {
+        gap: 25px;
+    }
+    .marquee-track span {
+        gap: 15px;
+    }
+    .marquee-track .symbol-line {
+        width: 25px;
+        height: 3px;
+    }
+}

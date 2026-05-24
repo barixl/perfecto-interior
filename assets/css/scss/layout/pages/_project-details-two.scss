@@ -1,0 +1,201 @@
+.portfolio.project-information {
+    position: relative;
+    width: 62%;
+
+    @include respond-to("xxl") {
+        width: 80%;
+    }
+
+    @include respond-to("xl") {
+        width: 100%;
+    }
+
+    h2 {
+        color: $white-colour;
+        padding-top: 13px;
+        padding-bottom: 20px;
+    }
+
+    p {
+        color: $white-colour;
+    }
+
+    .portfolio-tag {
+        span {
+            color: #cbcbcb;
+        }
+
+        span {
+            color: $white-colour !important;
+        }
+    }
+
+    hr {
+        color: $white-colour;
+    }
+}
+
+.project-value {
+    position: relative;
+    padding-right: 40px;
+
+    @include respond-to("md") {
+        padding-right: 20px;
+        margin-bottom: 20px;
+    }
+
+    p {
+        color: #c2c2c2;
+        text-transform: uppercase;
+
+        @include respond-to("md") {
+            font-size: 14px;
+        }
+    }
+
+    h3 {
+        font-size: 50px;
+        font-weight: 600;
+        color: $theme-colour;
+
+        @include respond-to("xxl") {
+            font-size: 40px;
+        }
+
+        @include respond-to("lg") {
+            font-size: 34px;
+        }
+
+        @include respond-to("mdd") {
+            font-size: 28px;
+        }
+
+        @include respond-to("sm") {
+            font-size: 24px;
+        }
+    }
+}
+
+.section-project-value {
+    padding-top: 250px;
+    padding-bottom: 70px;
+
+
+    @include respond-to("xxl") {
+        padding-top: 200px;
+        padding-bottom: 50px;
+    }
+
+    @include respond-to("xl") {
+        padding-top: 120px;
+    }
+
+    @include respond-to("xl") {
+        padding-top: 90px;
+    }
+
+    .portfolio.project-information {
+        h2 {
+            font-size: 40px;
+
+            @include respond-to("xxl") {
+                font-size: 36px;
+            }
+        }
+    }
+
+    .journal {
+        justify-content: end;
+
+        @include respond-to("xl") {
+            justify-content: start;
+            margin-bottom: 40px;
+        }
+
+        a {
+            color: $white-colour;
+            position: relative;
+            background-image: linear-gradient(to right, $theme-colour, $theme-colour 50%, $white-colour 50%);
+        }
+    }
+
+    &::before {
+        opacity: .4;
+    }
+
+    .share {
+        position: relative;
+        margin: 0;
+        justify-content: end;
+
+        h4 {
+            color: $white-colour;
+        }
+
+        ul.social-media {
+            a {
+                i {
+                    color: $white-colour;
+                    border-color: $white-colour;
+                }
+
+                &:hover {
+                    i {
+                        color: $drak-color;
+                        border-color: $theme-colour;
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+.blog-quotes.section-project-value {
+    padding-top: 80px;
+
+    @include respond-to("xl") {
+        padding: 30px;
+    }
+
+    &::before {
+        opacity: 1;
+    }
+
+    img {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+
+        @include respond-to("xl") {
+            width: 70%;
+        }
+    }
+
+    h3 {
+        width: 67%;
+        font-weight: bold;
+
+        @include respond-to("xl") {
+            width: 100%;
+            font-size: 30px;
+            line-height: 40px;
+        }
+
+        @include respond-to("md") {
+            font-size: 24px;
+            line-height: 34px;
+        }
+
+        @include respond-to("md") {
+            font-size: 20px;
+            line-height: 30px;
+        }
+    }
+}
+
+.portfolio-two-img {
+    .hover-img-two {
+        margin-bottom: 8px;
+    }
+}

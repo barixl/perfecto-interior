@@ -1,0 +1,92 @@
+.project-section {
+    padding-top: 140px;
+    padding-bottom: 140px;
+    background-position: center;
+    position: relative;
+
+    @include respond-to("lg") {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+    @include respond-to("md") {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    @include respond-to("mdd") {
+        background-position: bottom;
+    }
+
+    &::after {
+        @include content(1);
+        background-color: $theme-colour;
+        mix-blend-mode: multiply;
+    }
+
+    .project {
+        position: relative;
+        z-index: 11;
+        text-align: center;
+        width: 67%;
+        margin: auto;
+
+        @include respond-to("xl") {
+            width: 77%;
+        }
+
+        @include respond-to("lg") {
+            width: 100%;
+        }
+
+        p {
+            font-size: 22px;
+            padding-bottom: 36px;
+            color: $drak-color;
+
+            @include respond-to("lg") {
+                font-size: 18px;
+                line-height: 30px;
+            }
+
+            @include respond-to("mdd") {
+                font-size: 16px;
+                line-height: 28px;
+            }
+        }
+
+        .theme-btn {
+            background-color: $white-colour;
+
+            &::after {
+                background-color: $drak-color;
+            }
+
+            &::before {
+                background-color: $drak-color;
+            }
+
+            &:hover {
+                color: $white-colour;
+
+                &::after {
+                    background-color: $white-colour;
+                }
+            }
+        }
+
+        h2 {
+            font-weight: bold;
+            color: #000;
+            padding-bottom: 18px;
+
+            @include respond-to("lg") {
+                font-size: 32px;
+            }
+
+            @include respond-to("mdd") {
+                font-size: 28px;
+            }
+        }
+    }
+}

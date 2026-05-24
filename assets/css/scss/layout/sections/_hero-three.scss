@@ -1,0 +1,191 @@
+.hero-three {
+    position: relative;
+
+    &::before {
+        @include content(.5);
+        background-color: $drak-color;
+        z-index: 2;
+    }
+
+    .hero-text-three {
+        position: absolute;
+        padding-top: 290px;
+        z-index: 11;
+        width: 72%;
+
+        @include respond-to("xxl") {
+            padding-top: 240px;
+            width: 83%;
+        }
+
+        @include respond-to("xl") {
+            padding-top: 130px;
+            width: 100%;
+        }
+
+        @include respond-to("mdd") {
+            padding-top: 100px;
+            width: 96%;
+        }
+
+        h1 {
+            font-size: 80px;
+            width: 70%;
+            font-weight: bold;
+            line-height: 90px;
+            color: $theme-colour;
+
+            @include respond-to("xxl") {
+                font-size: 60px;
+                width: 73%;
+                line-height: 73px;
+            }
+
+            @include respond-to("xl") {
+                font-size: 50px;
+                width: 70%;
+                line-height: 60px;
+            }
+
+            @include respond-to("lg") {
+                font-size: 40px;
+                line-height: 50px;
+            }
+
+            @include respond-to("md") {
+                font-size: 35px;
+                line-height: 45px;
+            }
+
+            @include respond-to("mdd") {
+                font-size: 30px;
+                line-height: 40px;
+                width: 100%;
+            }
+        }
+
+        p {
+            color: $white-colour;
+            font-size: 22px;
+            padding-bottom: 114px;
+            padding-top: 10px;
+
+            @include respond-to("xxl") {
+                padding-bottom: 100px;
+            }
+
+            @include respond-to("xl") {
+                padding-bottom: 40px;
+                font-size: 18px;
+            }
+        }
+
+        h5 {
+            color: $white-colour;
+            position: relative;
+            font-size: 18px;
+
+            &:before {
+                content: "";
+                position: absolute;
+                width: 110px;
+                height: 1px;
+                background-color: $white-colour;
+                top: 11px;
+                left: 100px;
+            }
+        }
+
+        ul {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 26px;
+            padding-bottom: 80px;
+
+            @include respond-to("xl") {
+                display: block;
+            }
+
+            li {
+                background: rgb(255 255 255 / 10%);
+                padding: 9px 24px;
+                border-radius: 50px;
+                width: 24%;
+
+                @include respond-to("xl") {
+                    width: 50%;
+                    margin-bottom: 10px;
+                }
+
+                @include respond-to("sm") {
+                    width: 100%;
+                }
+
+                a {
+                    @include flexcenter;
+                    justify-content: space-between;
+                    color: $white-colour;
+
+                    @include respond-to("xxl") {
+                        font-size: 14px;
+                    }
+
+                    i {
+                        color: $theme-colour;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.hero-three-slider {
+    img {
+        clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+        transform: scale(0.9);
+        clip-path: circle(0% at 50% 50%);
+        transition: 0.5s sopacity 1s, transform 1s, clip-path 1s;
+
+        @include respond-to("xxl") {
+            height: 700px;
+            width: 100%;
+        }
+
+        @include respond-to("lg") {
+            height: 580px;
+        }
+
+        @include respond-to("mdd") {
+            height: 600px;
+        }
+    }
+
+    .swiper-slide-active {
+        img {
+            transform: scale(1);
+            clip-path: circle(100% at 50% 50%);
+        }
+
+    }
+
+}
+
+.hero-three-slider.two {
+    padding-bottom: 51px;
+
+    .swiper-pagination {
+
+        .swiper-pagination-bullet {
+            background-color: $medium-drak;
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: $theme-colour;
+        }
+    }
+
+    img {
+        width: 100% !important;
+        height: 100%;
+    }
+}

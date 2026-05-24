@@ -1,0 +1,83 @@
+.dream-home {
+    position: relative;
+    overflow: hidden; // Clean border containment
+    border-radius: 12px; // Elegant premium card curves
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    @include transition;
+
+    &::after {
+        @include content(0.35); // Slightly lighter overlay for cleaner default visuals
+        background-color: $drak-color;
+        @include transition;
+    }
+
+    a {
+        color: $white-colour;
+        font-size: 18px; // Smaller, high-end letter size
+        font-weight: 700;
+        letter-spacing: 2px; // Spacious tracking
+        text-transform: uppercase; // Clean luxury typography
+        position: absolute;
+        bottom: 30px;
+        left: 30px;
+        z-index: 11;
+        width: max-content;
+        display: inline-block;
+        @include transition;
+
+        // Faint gradient fill
+        background: linear-gradient(135deg, $white-colour 0%, rgba(255, 255, 255, 0.85) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+
+        @include respond-to("xxl") {
+            font-size: 16px;
+            bottom: 25px;
+            left: 25px;
+        }
+
+        &:hover {
+            color: $theme-colour;
+        }
+    }
+
+    &:hover {
+        box-shadow: 0 20px 45px rgba(205, 164, 94, 0.15); // soft gold glow around the card
+
+        &::after {
+            opacity: 0.65; // Darken on hover to make the gold outline text pop!
+        }
+
+        a {
+            left: 50%;
+            bottom: 50%;
+            transform: translate(-50%, -50%); // Perfect centering
+
+            // Golden luxury fill + stroke look on hover!
+            background: linear-gradient(135deg, $theme-colour 0%, lighten($theme-colour, 15%) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke: 1px rgba($theme-colour, 0.25);
+            text-shadow: 0 6px 20px rgba(205, 164, 94, 0.4);
+        }
+    }
+
+    img {
+        @include transition;
+        transform: scale(1);
+        width: 100%;
+
+        @include respond-to("md") {
+            height: 260px; // Sets equal height for stacked elements on mobile
+            object-fit: cover;
+        }
+    }
+
+    &:hover {
+        img {
+            filter: blur(1px) brightness(0.9); // Refined blur and shadow depth
+            transform: scale(1.06); // Smooth luxury scale-up depth effect!
+        }
+    }
+}

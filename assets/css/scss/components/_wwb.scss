@@ -1,0 +1,128 @@
+ul.wwb-ul {
+    li {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #44444442;
+        padding: 30px 20px;
+        position: relative;
+        @include transition;
+
+        @include respond-to("xxl") {
+            padding: 24px 20px;
+        }
+
+        @include respond-to("lg") {
+            padding: 0;
+            padding-left: 20px;
+            justify-content: space-between;
+        }
+
+        @include respond-to("md") {
+
+            display: block;
+            padding-left: 0;
+        }
+
+        span {
+            font-size: 20px;
+            font-weight: 700;
+
+            @include respond-to("md") {
+                padding-top: 20px;
+                padding-left: 30px;
+                display: block;
+            }
+        }
+
+        h3 {
+            font-size: 30px;
+            padding-left: 30px;
+
+            @include respond-to("xxl") {
+                font-size: 24px;
+            }
+
+            @include respond-to("lg") {
+                padding-left: 0;
+            }
+
+            @include respond-to("md") {
+                padding-top: 20px;
+                padding-left: 30px;
+                padding-bottom: 20px;
+            }
+        }
+
+        img {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            height: 310px;
+            z-index: 11;
+            width: 500px;
+            object-fit: cover;
+            border-radius: 0;
+            clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+            transform: scale(0.9);
+            clip-path: circle(0% at 50% 50%);
+            transition: 0.5s sopacity 1s, transform 1s, clip-path 1s;
+
+            @include respond-to("xxl") {
+                width: 420px;
+                height: 260px;
+            }
+
+            @include respond-to("xl") {
+                width: 370px;
+                height: 220px;
+            }
+
+            @include respond-to("lg") {
+                position: relative;
+                top: 0;
+                opacity: 1;
+                transform: scale(1);
+                clip-path: circle(100% at 50% 50%);
+                width: 300px;
+                height: 180px;
+            }
+
+            @include respond-to("lg") {
+                width: 100%;
+            }
+        }
+    }
+
+    li.active {
+        background-color: $theme-colour;
+        border-color: $theme-colour ;
+
+        img {
+            transform: scale(1);
+            clip-path: circle(100% at 50% 50%);
+        }
+
+        &:last-child {
+            img {
+                top: -120px;
+
+                @include respond-to("xl") {
+                    top: 0;
+                }
+            }
+        }
+    }
+}
+
+.digital-experience {
+    @include respond-to("lg") {
+        .heading.two {
+            padding-bottom: 0px;
+
+            p {
+                padding-bottom: 20px;
+            }
+        }
+    }
+}

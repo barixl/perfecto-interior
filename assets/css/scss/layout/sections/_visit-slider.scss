@@ -1,0 +1,149 @@
+.visit-slider {
+    .swiper-pagination .swiper-pagination-bullet {
+        background-color: $medium-drak;
+    }
+
+    .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+        background-color: $theme-colour;
+    }
+
+    .visit-sectors {
+        border: 1px solid #444;
+        padding: 40px;
+        display: flex;
+        position: relative;
+        margin-bottom: 60px;
+
+        @include respond-to("xxl") {
+            padding: 26px;
+        }
+
+        &::after {
+            @include content(1);
+            background-image: url(../img/visit-sectors-bg.jpg);
+            height: 0;
+            @include transition;
+        }
+
+        &:before {
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 87%;
+            background-color: #444;
+            top: 0;
+            left: 30%;
+            @include transition;
+            z-index: 11;
+
+            @include respond-to("xl") {
+                display: none;
+            }
+        }
+
+        >i {
+            font-size: 60px;
+            margin-right: 56px;
+            position: relative;
+            z-index: 11;
+            @include transition;
+
+            @include respond-to("xl") {
+                margin-right: 22px;
+            }
+        }
+
+        a {
+            @include transition;
+            text-transform: uppercase;
+            padding-top: 20px;
+            display: inline-block;
+            position: relative;
+            z-index: 11;
+            border-bottom: 1px solid $medium-drak;
+
+            i {
+                opacity: 0;
+                padding-left: 0;
+                transition: 0.5s ease-in-out;
+                margin-left: -11px;
+            }
+
+            &:hover {
+                i {
+                    opacity: 1;
+                    margin-left: 10px;
+                }
+            }
+        }
+
+        h4 {
+            @include transition;
+            position: relative;
+            z-index: 11;
+            font-size: 24px;
+            font-weight: bold;
+            padding-bottom: 14px;
+
+            @include respond-to("xl") {
+                font-size: 20px;
+            }
+        }
+
+        ul {
+            position: relative;
+            z-index: 11;
+
+            li {
+                @include transition;
+                position: relative;
+                padding-left: 22px;
+                padding-bottom: 7px;
+
+                &:before {
+                    @include transition;
+                    content: "";
+                    position: absolute;
+                    width: 10px;
+                    height: 10px;
+                    background-color: #e3e3e3;
+                    top: 4px;
+                    left: 0;
+                }
+            }
+        }
+    }
+}
+
+.swiper-slide-active {
+    .visit-sectors {
+        &::after {
+            height: 100%;
+        }
+
+        &:before {
+            background-color: $theme-colour;
+        }
+
+        >i {
+            color: $theme-colour;
+        }
+
+        a {
+            color: $theme-colour;
+            border-color: $theme-colour;
+        }
+
+        h4 {
+            color: $white-colour;
+        }
+
+        li {
+            color: $light-colour;
+
+            &:before {
+                background-color: #323235;
+            }
+        }
+    }
+}

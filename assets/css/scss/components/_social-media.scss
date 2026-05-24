@@ -1,0 +1,48 @@
+ul.social-media {
+    display: flex;
+    margin-top: 30px;
+
+    li {
+        position: relative;
+        margin-left: 0px;
+
+        a {
+            i {
+                color: $white-colour;
+                font-size: 15px;
+                width: 45px;
+                border: 1px solid #444;
+                height: 45px;
+                @include flexcenter;
+                border-radius: 50%;
+                margin-right: 14px;
+                padding: 0;
+                @include transition;
+
+                @include respond-to("lg") {
+                    font-size: 15px;
+                    width: 40px;
+                    height: 40px;
+                    margin-right: 5px;
+                }
+
+                &:hover {
+                    color: $drak-color;
+                    background-color: $theme-colour;
+                    border-color: $theme-colour;
+                }
+            }
+
+            i.flaticon-twitter {
+                font-size: 14px;
+            }
+
+            text-transform: capitalize;
+            display: flex;
+            align-items: center;
+            color: $white-colour;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    }
+}

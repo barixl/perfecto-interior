@@ -1,0 +1,75 @@
+.meet-experts {
+    position: relative;
+    background-color: $theme-colour;
+    padding: 60px;
+    margin-bottom: -80px;
+    width: 92%;
+    margin-left: auto;
+    z-index: 11;
+
+    @include respond-to("xxl") {
+        padding: 40px;
+        width: 94%;
+    }
+
+    @include respond-to("lg") {
+        width: 100%;
+        margin-top: 40px;
+    }
+
+    @include respond-to("md") {
+        padding: 30px;
+        width: 100%;
+    }
+
+    input {
+        margin-bottom: 18px;
+
+        @include respond-to("mdd") {
+            margin-bottom: 10px;
+        }
+    }
+
+    h2 {
+        font-size: 40px;
+        font-weight: bold;
+
+        @include respond-to("xxl") {
+            font-size: 32px;
+        }
+
+        @include respond-to("md") {
+            font-size: 28px;
+        }
+    }
+
+    p {
+        padding-bottom: 20px;
+        color: $drak-color;
+    }
+
+    textarea {
+        height: 130px;
+        padding-left: 30px;
+        margin-bottom: 14px;
+    }
+
+    .theme-btn.hvr-light {
+        width: 100%;
+        padding: 17px;
+        background-color: $drak-color;
+        color: $white-colour;
+
+        &::before {
+            background-color: $white-colour;
+        }
+
+        &::after {
+            background-color: $theme-colour;
+        }
+
+        &:hover {
+            color: #000;
+        }
+    }
+}

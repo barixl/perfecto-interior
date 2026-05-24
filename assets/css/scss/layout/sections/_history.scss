@@ -1,0 +1,41 @@
+.accordion.history {
+    position: relative;
+
+    .accordion-item {
+        .icon {
+            top: 50%;
+
+            &:before {
+                width: 20px;
+            }
+
+            &::after {
+                width: 20px;
+            }
+        }
+    }
+
+    .accordion-item.active {
+        background-color: $theme-colour;
+
+        .icon {
+            &::after {
+                width: 0px;
+            }
+        }
+    }
+
+    .accordion-item {
+        padding-left: 30px;
+        padding-right: 30px;
+        margin-bottom: 10px;
+
+        &:first-of-type {
+            border: 0;
+        }
+    }
+
+    .title {
+        border: 0 !important;
+    }
+}

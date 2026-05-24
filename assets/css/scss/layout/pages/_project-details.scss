@@ -1,0 +1,103 @@
+ul.client-list {
+    li {
+        border-bottom: 1px solid #bababa;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+
+        &:last-child {
+            border: 0;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        h4 {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding-bottom: 9px;
+        }
+
+        h5 {
+            font-size: 16px;
+            font-weight: bold;
+        }
+    }
+}
+
+.project-details {
+    padding-top: 40px;
+
+    @include respond-to("lg") {
+        padding-left: 0 !important;
+    }
+
+    h4 {
+        font-size: 30px;
+        font-weight: bold;
+        padding-bottom: 16px;
+
+        @include respond-to("lg") {
+            padding-top: 30px;
+            font-size: 26px;
+        }
+
+        @include respond-to("md") {
+            padding-top: 18px;
+            font-size: 26px;
+        }
+    }
+}
+
+.quote.project {
+    h3 {
+        font-size: 36px;
+        line-height: 48px;
+        padding-bottom: 18px;
+        font-weight: bold;
+
+        @include respond-to("xl") {
+            font-size: 28px;
+            line-height: 40px;
+        }
+
+        @include respond-to("lg") {
+            padding-top: 30px;
+        }
+
+        @include respond-to("mdd") {
+            font-size: 22px;
+            line-height: 34px;
+        }
+    }
+
+    h5 {
+        font-size: 18px;
+        color: #000;
+    }
+}
+
+.project-sketch {
+    background-color: #f1f1f1;
+    padding: 40px;
+    margin-top: 120px;
+
+    @include respond-to("lg") {
+        padding: 20px;
+        margin-top: 120px;
+        padding-bottom: 0;
+    }
+
+    h4 {
+        font-size: 26px;
+        padding-bottom: 20px;
+        font-weight: 700;
+        text-align: center;
+        text-transform: capitalize;
+    }
+
+    .hover-img-two {
+        @include respond-to("lg") {
+            margin-bottom: 20px;
+        }
+    }
+}

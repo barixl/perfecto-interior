@@ -1,0 +1,122 @@
+.client-section {
+    .client-one {
+        background-color: $theme-colour;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        width: 81%;
+        position: relative;
+
+        @include respond-to("xxl") {
+            width: 100%;
+        }
+
+        img {
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        h5 {
+            font-weight: 600;
+            padding-bottom: 10px;
+            font-size: 24px;
+        }
+
+        i {
+            font-size: 70px;
+            position: absolute;
+            right: 0;
+            top: -8px;
+        }
+
+        h6 {
+            line-height: 26px;
+        }
+    }
+
+    .heading.two {
+        h5 {
+            padding-top: 40px;
+            font-size: 30px;
+            line-height: 48px;
+            width: 65%;
+
+            @include respond-to("xxl") {
+                font-size: 26px;
+                list-style: 40px;
+            }
+
+            @include respond-to("xl") {
+                font-size: 26px;
+                width: 100%;
+                padding-top: 10px;
+            }
+        }
+    }
+
+    .nav-link.active {
+        position: relative;
+
+        &:before {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: rgba($theme-colour, 0.6);
+            border-radius: 50%;
+
+            @include respond-to("md") {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    }
+
+    .nav-link {
+        padding: 0;
+        background-color: transparent !important;
+        margin: 0;
+        width: max-content;
+        margin-right: 4px;
+    }
+
+    img {
+        border-radius: 50%;
+        border: 3px solid #fff;
+        width: 100px;
+        height: 100px;
+        margin-right: 10px;
+
+        @include respond-to("xxl") {
+            margin-right: 0px;
+        }
+
+        @include respond-to("md") {
+            width: 80px;
+            height: 80px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+    }
+}
+
+.tab-pane {
+    .client-one {
+        clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+        transform: scale(0.9);
+        clip-path: circle(0% at 50% 50%);
+        transition: 0.5s sopacity 1s, transform 1s, clip-path 1s;
+
+        @include respond-to("lg") {
+            margin-bottom: 30px;
+        }
+    }
+}
+
+.tab-pane.active.show {
+    .client-one {
+        transform: scale(1);
+        clip-path: circle(100% at 50% 50%);
+    }
+}

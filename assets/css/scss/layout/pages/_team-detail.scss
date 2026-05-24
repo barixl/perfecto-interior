@@ -1,0 +1,130 @@
+.team-detail {
+    .get-in-touch {
+        span {
+            font-weight: 600;
+            color: $drak-color;
+            width: 100%;
+        }
+
+        h6 {
+            a {
+                background-image: linear-gradient(to right, $theme-colour, $theme-colour 50%, #000 50%);
+            }
+        }
+
+        >div {
+            display: flex;
+            align-items: center;
+            width: max-content;
+
+            @include respond-to("xxl") {
+                width: 60%;
+                flex-wrap: wrap;
+            }
+        }
+
+        h6,
+        a {
+            width: 100%;
+        }
+
+        h6 {
+            padding-left: 20px;
+
+            @include respond-to("xxl") {
+                padding-left: 0;
+            }
+        }
+    }
+}
+
+.widget-title {
+    h3 {
+        color: $drak-color;
+        margin-bottom: 30px;
+    }
+}
+
+.team-detail-heading {
+    p {
+        font-size: 22px;
+        padding-bottom: 40px;
+
+        @include respond-to("md") {
+            font-size: 18px;
+        }
+
+        @include respond-to("sm") {
+            font-size: 16px;
+            line-height: 26px;
+        }
+    }
+
+    h2 {
+        font-weight: bold;
+    }
+}
+
+.team-detail {
+    padding: 40px;
+    border: 1px solid #d4d4d4;
+    position: relative;
+
+    @include respond-to("lg") {
+        margin-bottom: 20px;
+        padding: 30px;
+    }
+
+    ul.social-media {
+        li {
+            a {
+                i {
+                    color: #000;
+                }
+            }
+        }
+    }
+
+    img.meet-experts-img {
+        position: absolute;
+        bottom: 0;
+        width: 33%;
+        right: 0;
+
+        @include respond-to("sm") {
+            display: none;
+        }
+    }
+}
+
+.specialize {
+    padding-top: 40px;
+
+    h3 {
+        font-size: 40px;
+        font-weight: 700;
+        padding-bottom: 20px;
+
+        @include respond-to("md") {
+            font-size: 34px;
+        }
+
+        @include respond-to("sm") {
+            font-size: 28px;
+        }
+    }
+
+    .what-we {
+        li {
+            width: 33.333%;
+
+            @include respond-to("md") {
+                width: 50%;
+            }
+
+            @include respond-to("sm") {
+                width: 100%;
+            }
+        }
+    }
+}

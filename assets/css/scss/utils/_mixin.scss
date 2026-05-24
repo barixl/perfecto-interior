@@ -1,0 +1,61 @@
+@mixin flexcenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin transition {
+    transition: .5s ease-in-out;
+}
+
+@mixin content($opacity) {
+    content: "";
+    position: absolute;
+    width: 100%;
+    top: 0;
+    opacity: $opacity;
+    left: 0;
+    height: 100%;
+}
+
+@mixin box-hover {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    @include transition;
+}
+
+@mixin text-hover {
+    background-image: linear-gradient(to right,
+            $theme-colour,
+            $theme-colour 50%,
+            #000 50%);
+    background-size: 200% 100%;
+    background-position: -100%;
+    display: inline-block;
+    position: relative;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+$breakpoints: (
+    "xxs": 380px,
+    "xs": 410px,
+    "smm": 450px,
+    "sm": 480px,
+    "mdd": 556px,
+    "md": 768px,
+    "lg": 992px,
+    "xl": 1200px,
+    "xxl": 1400px,
+);
+
+@mixin respond-to($breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint)) {
+        @content;
+    }
+}

@@ -1,0 +1,166 @@
+.project-mind-section {
+    background: linear-gradient(135deg, $theme-colour 0%, darken($theme-colour, 8%) 100%);
+    position: relative;
+    padding-top: 140px;
+    padding-bottom: 140px;
+    overflow: hidden;
+    margin-top: 60px;
+    box-shadow: inset 0 20px 80px rgba(0, 0, 0, 0.05);
+
+    @include respond-to("xxl") {
+        padding-top: 120px;
+        padding-bottom: 120px;
+    }
+
+    @include respond-to("lg") {
+        padding-top: 90px;
+        padding-bottom: 70px;
+        margin-top: 40px;
+    }
+
+    @include respond-to("md") {
+        padding-top: 80px;
+        padding-bottom: 60px;
+    }
+
+    @include respond-to("sm") {
+        padding-top: 60px;
+        padding-bottom: 40px;
+        margin-top: 30px;
+    }
+
+    .project-mind {
+        position: relative;
+        z-index: 12;
+        
+        @include respond-to("lg") {
+            text-align: center; // Center text layout on tablet/mobile for professional alignment
+        }
+    }
+
+    // Responsive positioning of the Design graphic
+    img {
+        position: absolute;
+        right: 0px;
+        bottom: -60px;
+        z-index: 1;
+        pointer-events: none;
+        @include transition;
+
+        @include respond-to("xxl") {
+            width: 77%;
+            bottom: 0;
+        }
+
+        @include respond-to("lg") {
+            position: relative;
+            right: 0;
+            bottom: 0;
+            width: 85%;
+            max-width: 600px;
+            margin: 40px auto 0 auto;
+            display: block;
+            opacity: 0.9;
+        }
+
+        @include respond-to("md") {
+            width: 100%;
+            margin-top: 30px;
+        }
+    }
+
+    // Cloud animation container
+    img.cloud {
+        position: absolute;
+        width: 30%;
+        top: 11%;
+        right: 25%;
+        opacity: 0;
+        z-index: 2;
+        @include transition;
+        transition-duration: 0.8s;
+        transform: scale(.8);
+
+        @include respond-to("lg") {
+            display: none; // Hiding decorative absolute cloud on tablet/mobile
+        }
+    }
+
+    &:hover {
+        img.cloud {
+            opacity: 0.65;
+            transform: scale(1.0);
+        }
+    }
+
+    .theme-btn.hvr-light {
+        background-color: $white-colour;
+        padding: 14px 38px;
+        color: $drak-color;
+        border-radius: 30px;
+        font-weight: 700;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        @include transition;
+
+        &:after {
+            background-color: $theme-colour;
+        }
+
+        &:before {
+            background-color: $drak-color;
+        }
+
+        &:hover {
+            color: $white-colour;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+    }
+
+    h2 {
+        font-size: 85px;
+        font-weight: 800;
+        color: $drak-color;
+        position: relative;
+        z-index: 11;
+        width: 71%;
+        line-height: 1.15;
+        padding-bottom: 30px;
+        padding-top: 12px;
+        text-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+        @include respond-to("xxl") {
+            font-size: 70px;
+        }
+
+        @include respond-to("lg") {
+            font-size: 50px;
+            width: 100%;
+            padding-bottom: 25px;
+        }
+
+        @include respond-to("md") {
+            font-size: 38px;
+        }
+
+        @include respond-to("sm") {
+            font-size: 32px;
+        }
+    }
+
+    span {
+        font-size: 22px;
+        font-weight: 700;
+        color: $drak-color;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+
+        @include respond-to("xxl") {
+            font-size: 18px;
+        }
+
+        @include respond-to("sm") {
+            font-size: 15px;
+        }
+    }
+}
