@@ -1,0 +1,136 @@
+.services-one {
+    padding: 30px;
+    padding-top: 40px;
+    position: relative;
+    border: 1px solid #7b7b7b;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+
+    &::before {
+        @include box-hover;
+        background-color: $white-colour;
+        width: 800px;
+        height: 800px;
+        transform: translate(-50%, -50%) scale(2);
+        @include transition;
+    }
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.75);
+        background-blend-mode: multiply;
+        border-color: $theme-colour;
+
+        &:before {
+            transform: translate(-50%, -50%) scale(0);
+        }
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        width: 70px;
+        height: 70px;
+        background-color: $theme-colour;
+        border-radius: 50%;
+        left: 10%;
+        top: 22px;
+        @include transition;
+
+        @include respond-to("xxl") {
+            width: 60px;
+            height: 60px;
+        }
+    }
+
+    &:hover {
+        &::after {
+            background-color: #40482f;
+        }
+    }
+
+    a {
+        color: $theme-colour;
+        font-size: 16px;
+        font-size: 16px;
+        margin-bottom: -28px;
+        display: block;
+        opacity: 0;
+        @include transition;
+
+        i {
+            padding-left: 10px;
+        }
+    }
+
+    &:hover {
+        a {
+            opacity: 1;
+            margin-bottom: 0;
+        }
+    }
+
+    >i {
+        font-size: 70px;
+        color: $drak-color;
+        position: relative;
+        z-index: 111;
+        @include transition;
+
+        @include respond-to("xxl") {
+            font-size: 60px;
+        }
+    }
+
+    &:hover {
+        >i {
+            color: $white-colour;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+        }
+    }
+
+    h4 {
+        font-size: 24px;
+        color: $drak-color;
+        padding-bottom: 16px;
+        font-weight: bold;
+        position: relative;
+        z-index: 11;
+        @include transition;
+
+        @include respond-to("xxl") {
+            font-size: 20px;
+        }
+    }
+
+    &:hover {
+        h4 {
+            color: $white-colour;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+        }
+    }
+
+    span {
+        color: $medium-drak;
+        display: block;
+        font-size: 26px;
+        font-weight: bold;
+        border-top: 1px solid #cbcbcb;
+        padding-top: 18px;
+        margin-top: 24px;
+        line-height: 26px;
+        position: relative;
+        z-index: 11;
+        @include transition;
+    }
+
+    &:hover {
+        span {
+            border-top: 1px solid $white-colour;
+            color: $white-colour;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+        }
+    }
+}

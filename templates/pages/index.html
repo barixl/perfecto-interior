@@ -1,0 +1,877 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section
+      class="hero-two-section"
+      style="background-image: url(&quot;{{ url_for('static', filename='img/bg/bg_02.jpg') }}&quot;)"
+    >
+      <div class="container">
+        <div class="hero-two-slider swiper">
+          <div class="swiper-wrapper">
+            <div class="hero-two-text swiper-slide">
+              <h2>Need an Innovative interior design?</h2>
+              <p>Make Your dream home a reality, with house architets</p>
+              <div class="btnn">
+                <a href="#" class="theme-btn hvr-light"
+                  >Book Free Consulation</a
+                >
+                <a href="#" class="bt2"
+                  >View Our Work<i class="fa-solid fa-arrow-right"></i
+                ></a>
+              </div>
+              <img src="{{ url_for('static', filename='img/slider/slider_01.jpg') }}" alt="img" />
+            </div>
+            <div class="hero-two-text swiper-slide">
+              <h2>Your Dream Home Starts With the Right Design</h2>
+              <p>
+                Modular kitchens to false ceilings — stylish, quality interiors
+                within your budget.
+              </p>
+              <div class="btnn">
+                <a href="#" class="theme-btn hvr-light"
+                  >Get Free Consultation</a
+                >
+                <a href="#" class="bt2"
+                  >View Our Work<i class="fa-solid fa-arrow-right"></i
+                ></a>
+              </div>
+              <img src="{{ url_for('static', filename='img/slider/slider_02.jpg') }}" alt="img" />
+            </div>
+            <div class="hero-two-text swiper-slide">
+              <h2>Where Every Corner Tells a Story of Elegance</h2>
+              <p>
+                Perfecto Interior delivers flawless interiors across Kolkata,
+                Medinipur & Ghatal.
+              </p>
+              <div class="btnn">
+                <a href="#" class="theme-btn hvr-light"
+                  >Get Free Consultation</a
+                >
+                <a href="#" class="bt2"
+                  >How it works<i class="fa-solid fa-arrow-right"></i
+                ></a>
+              </div>
+              <img src="{{ url_for('static', filename='img/slider/slider_03.jpg') }}" alt="img" />
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gap">
+      <div class="container">
+        <div class="heading sec-title-animation animation-style2">
+          <img src="{{ url_for('static', filename='img/heading-img.png') }}" alt="img" />
+          <span class="title-animation">Work Process</span>
+          <h2 class="title-animation">
+            Your Space Deserves The Most Beautiful Life
+          </h2>
+        </div>
+        <div class="row process-flow-row">
+          <div class="col-lg-4 col-md-6">
+            <div class="concept-design-card">
+              <img
+                src="{{ url_for('static', filename='img/work_process/1.png') }}"
+                alt="bg"
+                class="card-bg-img"
+              />
+              <div class="step-num">01</div>
+              <div class="icon-badge">
+                <img
+                  src="{{ url_for('static', filename='img/work_process/1.png') }}"
+                  alt="Concept & Design"
+                />
+              </div>
+              <div class="card-content">
+                <h4>Concept & Design</h4>
+                <p>
+                  We understand your vision, budget, and lifestyle to create a
+                  personalized interior concept just for you.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="concept-design-card">
+              <img
+                src="{{ url_for('static', filename='img/work_process/2.png') }}"
+                alt="bg"
+                class="card-bg-img"
+              />
+              <div class="step-num">02</div>
+              <div class="icon-badge">
+                <img
+                  src="{{ url_for('static', filename='img/work_process/2.png') }}"
+                  alt="Material & Development"
+                />
+              </div>
+              <div class="card-content">
+                <h4>Material & Development</h4>
+                <p>
+                  We source high-quality materials and develop the design with
+                  expert craftsmanship at every stage.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="concept-design-card">
+              <img
+                src="{{ url_for('static', filename='img/work_process/3.png') }}"
+                alt="bg"
+                class="card-bg-img"
+              />
+              <div class="step-num">03</div>
+              <div class="icon-badge">
+                <img
+                  src="{{ url_for('static', filename='img/work_process/3.png') }}"
+                  alt="Handover & Approval"
+                />
+              </div>
+              <div class="card-content">
+                <h4>Handover & Approval</h4>
+                <p>
+                  Final inspection, finishing touches, and complete handover —
+                  your perfect home, delivered on time.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gap no-top digital-experience">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5">
+            <div class="heading two sec-title-animation animation-style2">
+              <span class="title-animation">Our Expertise</span>
+              <h2 class="title-animation">We Specialize in These Fields</h2>
+            </div>
+          </div>
+          <div class="offset-lg-2 col-lg-5">
+            <div class="heading two">
+              <p>
+                Your bedroom is your sanctuary. We craft beautiful, functional
+                bedroom interiors with premium materials, smart storage, and
+                elegant lighting that reflect your personal style — all within
+                your budget.
+              </p>
+            </div>
+          </div>
+        </div>
+        <ul class="wwb-ul">
+          <li class="active">
+            <span>01.</span>
+            <h3>
+              <a href="#">Bedroom Decor & Design</a>
+            </h3>
+            <figure>
+              <img src="{{ url_for('static', filename='img/specialize/1.png') }}" alt="img" />
+            </figure>
+          </li>
+          <li>
+            <span>02.</span>
+            <h3>
+              <a href="#">Modular Kitchen</a>
+            </h3>
+            <figure>
+              <img src="{{ url_for('static', filename='img/specialize/2.png') }}" alt="img" />
+            </figure>
+          </li>
+          <li>
+            <span>03.</span>
+            <h3>
+              <a href="#">TV Cabinet & Wall Panel</a>
+            </h3>
+            <figure>
+              <img src="{{ url_for('static', filename='img/specialize/3.png') }}" alt="img" />
+            </figure>
+          </li>
+          <li>
+            <span>04.</span>
+            <h3>
+              <a href="#">Sofa & Furniture</a>
+            </h3>
+            <figure>
+              <img src="{{ url_for('static', filename='img/specialize/4.png') }}" alt="img" />
+            </figure>
+          </li>
+          <li>
+            <span>05.</span>
+            <h3>
+              <a href="#">Window & Door Paneling</a>
+            </h3>
+            <figure>
+              <img src="{{ url_for('static', filename='img/specialize/5.png') }}" alt="img" />
+            </figure>
+          </li>
+          <li>
+            <span>06.</span>
+            <h3>
+              <a href="#">UPVC / WPVC Doors</a>
+            </h3>
+            <figure>
+              <img src="{{ url_for('static', filename='img/specialize/6.png') }}" alt="img" />
+            </figure>
+          </li>
+          <li>
+            <span>07.</span>
+            <h3>
+              <a href="#">False Ceiling & Painting</a>
+            </h3>
+            <figure>
+              <img src="{{ url_for('static', filename='img/specialize/7.png') }}" alt="img" />
+            </figure>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section-innovative gap" style="background-color: #efefef">
+      <div class="container">
+        <div class="heading sec-title-animation animation-style2">
+          <img src="{{ url_for('static', filename='img/heading-img.png') }}" alt="img" />
+          <span class="title-animation">Our Projects </span>
+          <h2 class="title-animation">We Can Help You Build Your Dream Home</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-3 col-md-6">
+            <div class="dream-home hover-img">
+              <figure>
+                <img
+                  src="{{ url_for('static', filename='img/Dream_Home/1.png') }}"
+                  class="w-100"
+                  alt="img"
+                />
+              </figure>
+              <a href="#">Bedroom</a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="dream-home hover-img">
+              <figure>
+                <img
+                  src="{{ url_for('static', filename='img/Dream_Home/2.png') }}"
+                  class="w-100"
+                  alt="img"
+                />
+              </figure>
+              <a href="#">Living room</a>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-12">
+            <div class="dream-home hover-img">
+              <figure>
+                <img
+                  src="{{ url_for('static', filename='img/Dream_Home/5.png') }}"
+                  class="w-100"
+                  alt="img"
+                />
+              </figure>
+              <a href="#">Bathroom</a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-12">
+            <div class="dream-home hover-img">
+              <figure>
+                <img
+                  src="{{ url_for('static', filename='img/Dream_Home/3.png') }}"
+                  class="w-100"
+                  alt="img"
+                />
+              </figure>
+              <a href="#">Kitchen</a>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-12">
+            <div class="dream-home hover-img">
+              <figure>
+                <img
+                  src="{{ url_for('static', filename='img/Dream_Home/6.png') }}"
+                  class="w-100"
+                  alt="img"
+                />
+              </figure>
+              <a href="#">Room Decoration</a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-12">
+            <div class="dream-home hover-img">
+              <figure>
+                <img
+                  src="{{ url_for('static', filename='img/Dream_Home/4.png') }}"
+                  class="w-100"
+                  alt="img"
+                />
+              </figure>
+              <a href="#">Garden</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="custom-marquee-section">
+      <!-- Left & Right Edge Gradients for fading effect -->
+      <div class="marquee-fade-left"></div>
+      <div class="marquee-fade-right"></div>
+
+      <div class="marquee-wrapper">
+        <!-- Row 1: Left to Right -->
+        <div class="marquee-row marquee-row-left">
+          <div class="marquee-track">
+            <span>CREATIVITY <span class="symbol-star">✦</span></span>
+            <span class="text-theme"
+              >MODULAR KITCHEN <span class="symbol-diamond">◆</span></span
+            >
+            <span class="text-stroke"
+              >LUXURY <span class="symbol-line"></span
+            ></span>
+            <span class="text-faded"
+              >PLANNING <span class="symbol-star">✦</span></span
+            >
+            <span class="text-theme-soft"
+              >CRAFTSMANSHIP <span class="symbol-diamond">◆</span></span
+            >
+            <span class="text-stroke"
+              >PERFECTION <span class="symbol-line"></span
+            ></span>
+
+            <!-- Duplicate for Infinite Seamless Scroll -->
+            <span>CREATIVITY <span class="symbol-star">✦</span></span>
+            <span class="text-theme"
+              >MODULAR KITCHEN <span class="symbol-diamond">◆</span></span
+            >
+            <span class="text-stroke"
+              >LUXURY <span class="symbol-line"></span
+            ></span>
+            <span class="text-faded"
+              >PLANNING <span class="symbol-star">✦</span></span
+            >
+            <span class="text-theme-soft"
+              >CRAFTSMANSHIP <span class="symbol-diamond">◆</span></span
+            >
+            <span class="text-stroke"
+              >PERFECTION <span class="symbol-line"></span
+            ></span>
+          </div>
+        </div>
+
+        <!-- Row 2: Right to Left -->
+        <div class="marquee-row marquee-row-right">
+          <div class="marquee-track">
+            <span class="text-theme"
+              >ELEGANCE <span class="symbol-star">✦</span></span
+            >
+            <span>INTERIOR DESIGN <span class="symbol-diamond">◆</span></span>
+            <span class="text-stroke"
+              >INNOVATION <span class="symbol-line"></span
+            ></span>
+            <span class="text-faded"
+              >HANDOVER <span class="symbol-star">✦</span></span
+            >
+            <span class="text-theme-soft"
+              >CUSTOM FURNITURE <span class="symbol-diamond">◆</span></span
+            >
+            <span class="text-stroke"
+              >QUALITY <span class="symbol-line"></span
+            ></span>
+
+            <!-- Duplicate for Infinite Seamless Scroll -->
+            <span class="text-theme"
+              >ELEGANCE <span class="symbol-star">✦</span></span
+            >
+            <span>INTERIOR DESIGN <span class="symbol-diamond">◆</span></span>
+            <span class="text-stroke"
+              >INNOVATION <span class="symbol-line"></span
+            ></span>
+            <span class="text-faded"
+              >HANDOVER <span class="symbol-star">✦</span></span
+            >
+            <span class="text-theme-soft"
+              >CUSTOM FURNITURE <span class="symbol-diamond">◆</span></span
+            >
+            <span class="text-stroke"
+              >QUALITY <span class="symbol-line"></span
+            ></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section
+      class="gap creating-future-section"
+      style="background-color: rgba(0, 0, 0, 0.9)"
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5">
+            <div class="heading two sec-title-animation animation-style2">
+              <span class="title-animation">Our Approach </span>
+              <h2 class="title-animation">
+                Creating Spaces That Reflect Your Personality
+              </h2>
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="future-img">
+              <img src="{{ url_for('static', filename='img/Dream_Home/7.png') }}" alt="img" />
+            </div>
+          </div>
+        </div>
+        <div class="row align-items-end g-0">
+          <div class="col-lg-3">
+            <div class="creating-text">
+              <i class="flaticon-architectural"></i>
+              <h4><a href="#">Architectural Design</a></h4>
+              <p>
+                We blend aesthetics with functionality to design interiors that
+                are both visually stunning and practically perfect for daily
+                living.
+              </p>
+              <a href="#">Read More<i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="creating-text">
+              <i class="flaticon-architecture-1"></i>
+              <h4><a href="#">Modify & Refine </a></h4>
+              <p>
+                Every design goes through careful refinement. We listen, adjust,
+                and perfect every detail until you are completely satisfied.
+              </p>
+              <a href="#">Read More<i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <div class="creating-text">
+              <i class="flaticon-blueprint-2"></i>
+              <h4><a href="#">Interior Design </a></h4>
+              <p>
+                From concept to completion, our expert team delivers flawless
+                interior design solutions tailored to your unique taste and
+                budget.
+              </p>
+              <a href="#">Read More<i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gap">
+      <div class="container">
+        <div class="heading sec-title-animation animation-style2">
+          <img src="{{ url_for('static', filename='img/heading-img.png') }}" alt="img" />
+          <span class="title-animation">Design and innovation</span>
+          <h2 class="title-animation">
+            Perfecto Interior — Crafting Dream Homes Since 2024
+          </h2>
+        </div>
+        <div class="swiper flip-img">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="{{ url_for('static', filename='img/Dream_Home/8.png') }}" alt="img" />
+            </div>
+            <div class="swiper-slide">
+              <img src="{{ url_for('static', filename='img/Dream_Home/9.png') }}" alt="img" />
+            </div>
+            <div class="swiper-slide">
+              <img src="{{ url_for('static', filename='img/Dream_Home/10.png') }}" alt="img" />
+            </div>
+            <div class="swiper-slide">
+              <img src="{{ url_for('static', filename='img/Dream_Home/11.png') }}" alt="img" />
+            </div>
+            <div class="swiper-slide">
+              <img src="{{ url_for('static', filename='img/Dream_Home/12.png') }}" alt="img" />
+            </div>
+            <div class="swiper-slide">
+              <img src="{{ url_for('static', filename='img/Dream_Home/13.png') }}" alt="img" />
+            </div>
+            <div class="swiper-slide">
+              <img src="{{ url_for('static', filename='img/Dream_Home/14.png') }}" alt="img" />
+            </div>
+            <div class="swiper-slide">
+              <img src="{{ url_for('static', filename='img/Dream_Home/15.png') }}" alt="img" />
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button">
+            <div class="swiper-button-next">
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+            <div class="swiper-button-prev">
+              <i class="fa-solid fa-arrow-left"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="counts" style="background-image: url('{{ url_for('static', filename='img/visit-sectors-bg.jpg') }}'); background-size: cover; background-position: center; background-attachment: fixed; position: relative; padding: 60px 0;">
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8);"></div>
+      <div class="container" style="position: relative; z-index: 2;">
+        <div class="heading text-center sec-title-animation animation-style2 mb-4">
+          <img src="{{ url_for('static', filename='img/heading-img.png') }}" alt="img" style="margin: 0 auto 10px; display: block;">
+          <span class="title-animation" style="color: #cda45e; display: block; margin-bottom: 5px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;">Our Achievements</span>
+          <h2 class="title-animation" style="color: #fff; font-size: 32px;">Numbers That Speak for Themselves</h2>
+        </div>
+        <div class="row g-4 justify-content-center text-center">
+          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+            <div class="count-style" style="background: rgba(255, 255, 255, 0.03); padding: 25px 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); transition: all 0.4s ease;">
+              <i class="fa-solid fa-house" style="font-size: 32px; color: #cda45e; margin-bottom: 12px; display: block;"></i>
+              <h2 data-max="150" style="color: #fff; font-size: 38px; font-weight: 700; margin-bottom: 5px;">150<sup>+</sup></h2>
+              <p style="color: #a0a0a0; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; font-size: 12px; margin: 0;">house interior design</p>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+            <div class="count-style" style="background: rgba(255, 255, 255, 0.03); padding: 25px 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); transition: all 0.4s ease;">
+              <i class="fa-solid fa-list-check" style="font-size: 32px; color: #cda45e; margin-bottom: 12px; display: block;"></i>
+              <h2 data-max="50" style="color: #fff; font-size: 38px; font-weight: 700; margin-bottom: 5px;">50<sup>+</sup></h2>
+              <p style="color: #a0a0a0; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; font-size: 12px; margin: 0;">finishing projects</p>
+            </div>
+          </div>
+          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+            <div class="count-style" style="background: rgba(255, 255, 255, 0.03); padding: 25px 15px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); transition: all 0.4s ease;">
+              <i class="fa-solid fa-user-tie" style="font-size: 32px; color: #cda45e; margin-bottom: 12px; display: block;"></i>
+              <h2 data-max="94" style="color: #fff; font-size: 38px; font-weight: 700; margin-bottom: 5px;">94<sup>+</sup></h2>
+              <p style="color: #a0a0a0; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; font-size: 12px; margin: 0;">expert designer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="design-your gap no-bottom"
+      style="background-image: url(https://placehold.co/1920x732)"
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7">
+            <div class="heading two sec-title-animation animation-style2">
+              <span class="title-animation">We Designed Your Space</span>
+              <h2 class="title-animation">
+                Design Your Home Interior With Innovative Ideas
+              </h2>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <form class="meet-experts">
+              <h2>Meet Experts!</h2>
+              <p>contact with designer for interior design</p>
+              <input
+                type="text"
+                name="full_name"
+                placeholder="Full Name"
+              />
+              <input
+                type="email"
+                name="email address"
+                placeholder="email address"
+              />
+              <input type="number" name="phone no" placeholder="phone no" />
+              <textarea placeholder="message"></textarea>
+              <button class="theme-btn hvr-light">
+                Book Free Consultation
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <img
+        src="https://placehold.co/332x491"
+        alt="img"
+        class="meet-experts-img"
+      />
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="heading two sec-title-animation animation-style2">
+          <span class="title-animation">Our Team</span>
+          <h2 class="title-animation">Meet Our Expert Team</h2>
+        </div>
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="tab-content" id="v-pills-tabContent">
+              <div
+                class="tab-pane fade show active"
+                id="v-pills-home"
+                role="tabpanel"
+                aria-labelledby="v-pills-home-tab"
+              >
+                <div class="leadership">
+                  <img src="https://placehold.co/351x520" alt="img" />
+                  <div>
+                    <h3>Team 1</h3>
+                    <p>Lead Interior Designer</p>
+                    <h5>
+                      “ We don't just design spaces — we craft experiences that
+                      feel like home.”
+                    </h5>
+                    <h6>
+                      P.<a href="callto:+44-1123-2234-21">+44 1123-2234-21</a>
+                    </h6>
+                    <h6>
+                      E.<a href="mailto:usernamei@domain.com"
+                        >usernamei@domain.com</a
+                      >
+                    </h6>
+                    <ul class="social-media">
+                      <li>
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="flaticon-twitter"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="flaticon-instagram"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="tab-pane fade"
+                id="v-pills-profile"
+                role="tabpanel"
+                aria-labelledby="v-pills-profile-tab"
+              >
+                <div class="leadership">
+                  <img src="https://placehold.co/351x520" alt="img" />
+                  <div>
+                    <h3>Team 2</h3>
+                    <p>Modular Kitchen Specialist</p>
+                    <h5>
+                      “Smart kitchens are where beauty meets functionality.”
+                    </h5>
+                    <h6>
+                      P.<a href="callto:+44-1123-2234-21">+44 1123-2234-21</a>
+                    </h6>
+                    <h6>
+                      E.<a href="mailto:usernamei@domain.com"
+                        >usernamei@domain.com</a
+                      >
+                    </h6>
+                    <ul class="social-media">
+                      <li>
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="flaticon-twitter"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="flaticon-instagram"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="tab-pane fade"
+                id="v-pills-messages"
+                role="tabpanel"
+                aria-labelledby="v-pills-messages-tab"
+              >
+                <div class="leadership">
+                  <img src="https://placehold.co/351x520" alt="img" />
+                  <div>
+                    <h3>Team 3</h3>
+                    <p>Furniture & Decor Expert</p>
+                    <h5>“Every detail adds beauty to a space.”</h5>
+                    <h6>
+                      P.<a href="callto:+44-1123-2234-21">+44 1123-2234-21</a>
+                    </h6>
+                    <h6>
+                      E.<a href="mailto:usernamei@domain.com"
+                        >usernamei@domain.com</a
+                      >
+                    </h6>
+                    <ul class="social-media">
+                      <li>
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="flaticon-twitter"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="flaticon-instagram"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="tab-pane fade"
+                id="v-pills-settings"
+                role="tabpanel"
+                aria-labelledby="v-pills-settings-tab"
+              >
+                <div class="leadership">
+                  <img src="https://placehold.co/351x520" alt="img" />
+                  <div>
+                    <h3>Team 4</h3>
+                    <p>Site Supervisor & Quality Head</p>
+                    <h5>“Quality and precision build lasting spaces.”</h5>
+                    <h6>
+                      P.<a href="callto:+44-1123-2234-21">+44 1123-2234-21</a>
+                    </h6>
+                    <h6>
+                      E.<a href="mailto:usernamei@domain.com"
+                        >usernamei@domain.com</a
+                      >
+                    </h6>
+                    <ul class="social-media">
+                      <li>
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="flaticon-twitter"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"><i class="flaticon-instagram"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div
+              class="nav nav-style-two flex-column nav-pills me-3"
+              id="v-pills-tab"
+              role="tablist"
+              aria-orientation="vertical"
+            >
+              <button
+                class="nav-link active"
+                id="v-pills-home-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#v-pills-home"
+                type="button"
+                role="tab"
+                aria-controls="v-pills-home"
+                aria-selected="true"
+              >
+                Team 1 <span>Lead Interior Designer</span>
+              </button>
+              <button
+                class="nav-link"
+                id="v-pills-profile-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#v-pills-profile"
+                type="button"
+                role="tab"
+                aria-controls="v-pills-profile"
+                aria-selected="false"
+              >
+                Team 2<span> Modular Kitchen Specialist</span>
+              </button>
+              <button
+                class="nav-link"
+                id="v-pills-messages-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#v-pills-messages"
+                type="button"
+                role="tab"
+                aria-controls="v-pills-messages"
+                aria-selected="false"
+              >
+                Team 3<span> Furniture & Decor Expert</span>
+              </button>
+              <button
+                class="nav-link"
+                id="v-pills-settings-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#v-pills-settings"
+                type="button"
+                role="tab"
+                aria-controls="v-pills-settings"
+                aria-selected="false"
+              >
+                Team 4<span>Site Supervisor & Quality Head</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gap" style="display: none">
+      <div class="container">
+        <div class="heading sec-title-animation animation-style2">
+          <img src="{{ url_for('static', filename='img/heading-img.png') }}" alt="img" />
+          <span class="title-animation"
+            >Find inspiration. Find professional</span
+          >
+          <h2 class="title-animation">Read Our Journey</h2>
+        </div>
+        <ul class="read-journey">
+          <li class="hoverimg">
+            <div>
+              <span>31.10.24</span>
+              <span class="comments">02 Comments</span>
+            </div>
+            <figure>
+              <img src="https://placehold.co/320x160" alt="img" />
+            </figure>
+            <a href="our-news.html"
+              >Winthrop Center Will Be One of the World’s</a
+            >
+            <p>
+              Lorem ipsum dolor sit amet, aectetur adip iscing Mauris elitum
+              dolor sit Lorem ipsum dolor sit amet, aectetur.
+            </p>
+          </li>
+          <li class="hoverimg">
+            <div>
+              <span>31.10.24</span>
+              <span class="comments">02 Comments</span>
+            </div>
+            <figure>
+              <img src="https://placehold.co/320x160" alt="img" />
+            </figure>
+            <a href="our-news.html"
+              >Winthrop Center Will Be One of the World’s</a
+            >
+            <p>
+              Lorem ipsum dolor sit amet, aectetur adip iscing Mauris elitum
+              dolor sit Lorem ipsum dolor sit amet, aectetur.
+            </p>
+          </li>
+          <li class="hoverimg">
+            <div>
+              <span>31.10.24</span>
+              <span class="comments">02 Comments</span>
+            </div>
+            <figure>
+              <img src="https://placehold.co/320x160" alt="img" />
+            </figure>
+            <a href="our-news.html"
+              >Winthrop Center Will Be One of the World’s</a
+            >
+            <p>
+              Lorem ipsum dolor sit amet, aectetur adip iscing Mauris elitum
+              dolor sit Lorem ipsum dolor sit amet, aectetur.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="project-mind-section">
+      <div class="container">
+        <div class="project-mind sec-title-animation animation-style2">
+          <span class="title-animation">Perfecto Interior</span>
+          <h2 class="title-animation">Architecture and Town Planning</h2>
+          <a href="#" class="theme-btn hvr-light">Get Free Consultation</a>
+        </div>
+      </div>
+      <img src="{{ url_for('static', filename='img/bg/Design.png') }}" alt="img" />
+    </section>
+{% endblock %}

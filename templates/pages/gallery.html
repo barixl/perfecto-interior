@@ -1,0 +1,754 @@
+{% extends "base.html" %}
+
+{% block title %}Gallery - Perfecto Interior{% endblock %}
+
+{% block extra_head %}
+<style>
+  /* Custom Luxury Gallery Styles */
+  .gallery-filter-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 50px;
+  }
+
+  .filter-btn {
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 10px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #333;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .filter-btn:hover,
+  .filter-btn.active {
+    background-color: #cda45e;
+    border-color: #cda45e;
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(205, 164, 94, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+  }
+
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    aspect-ratio: 4/3;
+  }
+
+  .gallery-item.hidden {
+    display: none;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.1) rotate(1deg);
+  }
+
+  .gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 60%, rgba(0, 0, 0, 0) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 30px;
+    z-index: 2;
+  }
+
+  .gallery-item:hover .gallery-overlay {
+    opacity: 1;
+  }
+
+  .gallery-category {
+    color: #cda45e;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+  }
+
+  .gallery-title {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    transform: translateY(20px);
+    transition: transform 0.4s ease 0.1s;
+  }
+
+  .gallery-zoom-btn {
+    align-self: flex-start;
+    width: 45px;
+    height: 45px;
+    background-color: #cda45e;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transform: translateY(20px);
+    transition: all 0.4s ease 0.2s;
+    box-shadow: 0 4px 10px rgba(205, 164, 94, 0.4);
+  }
+
+  .gallery-zoom-btn:hover {
+    background-color: #fff;
+    color: #cda45e;
+  }
+
+  .gallery-item:hover .gallery-category,
+  .gallery-item:hover .gallery-title,
+  .gallery-item:hover .gallery-zoom-btn {
+    transform: translateY(0);
+  }
+
+  /* Grid Masonry-like Heights */
+  .gallery-item.tall {
+    grid-row: span 2;
+    aspect-ratio: auto;
+    height: 100%;
+  }
+
+  .gallery-item.wide {
+    grid-column: span 2;
+  }
+
+  @media (max-width: 768px) {
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 15px !important;
+    }
+    .gallery-item {
+      aspect-ratio: 1/1 !important;
+    }
+    .gallery-item.wide {
+      grid-column: span 1;
+    }
+    .gallery-overlay {
+      opacity: 1 !important;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.3) 75%, rgba(0, 0, 0, 0) 100%) !important;
+      padding: 15px !important;
+    }
+    .gallery-category {
+      font-size: 10px !important;
+      transform: translateY(0) !important;
+    }
+    .gallery-title {
+      font-size: 14px !important;
+      margin-bottom: 8px !important;
+      transform: translateY(0) !important;
+    }
+    .gallery-zoom-btn {
+      width: 32px !important;
+      height: 32px !important;
+      font-size: 11px !important;
+      transform: translateY(0) !important;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Banner -->
+  <section class="bannr" style="background: url('{{ url_for('static', filename='img/about/about_01.png') }}') no-repeat center/cover; position: relative;">
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5);"></div>
+    <div class="container" style="position: relative; z-index: 2;">
+      <div class="hero-text-three">
+        <h1>Our Gallery</h1>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"> <a href="{{ url_for('index') }}">Home</a> </li>
+          <li class="breadcrumb-item active" aria-current="page">Gallery</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="gap">
+    <div class="container">
+      <div class="heading text-center sec-title-animation animation-style2">
+        <img src="{{ url_for('static', filename='img/heading-img.png') }}" alt="img" style="margin: 0 auto 10px; display: block;">
+        <span class="title-animation" style="color: #cda45e; display: block; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;">Visual Journey</span>
+        <h2 class="title-animation">Explore Our Interior Creations</h2>
+      </div>
+
+      <!-- Filters -->
+      <div class="gallery-filter-buttons">
+        <button class="filter-btn active" data-filter="all">All Designs</button>
+        <button class="filter-btn" data-filter="kitchen">Modular Kitchen</button>
+        <button class="filter-btn" data-filter="bedroom">Bedroom</button>
+        <button class="filter-btn" data-filter="living">Living & Decor</button>
+        <button class="filter-btn" data-filter="commercial">Commercial / False Ceiling</button>
+      </div>
+
+      <!-- Grid -->
+      <div class="gallery-grid" id="gallery-grid">
+        <!-- Image 1 -->
+        
+        <!-- Image 2 -->
+        <div class="gallery-item" data-category="kitchen">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-2.jpeg') }}" data-fancybox="gallery" data-caption="Modern Modular Kitchen with Smart Cabinets">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-2.jpeg') }}" alt="Smart Kitchen">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Modular Kitchen</span>
+              <h4 class="gallery-title">Smart Modular Kitchen</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 3 -->
+        <div class="gallery-item" data-category="living">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-3.jpeg') }}" data-fancybox="gallery" data-caption="Elegant Living Room with custom wall paneling">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-3.jpeg') }}" alt="Elegant Living Room">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Living & Decor</span>
+              <h4 class="gallery-title">Elegant Living Space</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 4 -->
+        <div class="gallery-item" data-category="commercial">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-4.jpeg') }}" data-fancybox="gallery" data-caption="Beautiful false ceiling with ambient LED lighting">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-4.jpeg') }}" alt="False Ceiling">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Commercial & Ceiling</span>
+              <h4 class="gallery-title">False Ceiling Concept</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 5 -->
+        <div class="gallery-item" data-category="bedroom">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-5.jpeg') }}" data-fancybox="gallery" data-caption="Comfortable Cozy Kid's Bedroom">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-5.jpeg') }}" alt="Kids Bedroom">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Bedroom</span>
+              <h4 class="gallery-title">Cozy Kid's Bedroom</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 6 -->
+        <div class="gallery-item" data-category="kitchen">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-6.jpeg') }}" data-fancybox="gallery" data-caption="Contemporary parallel kitchen design">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-6.jpeg') }}" alt="Parallel Kitchen">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Modular Kitchen</span>
+              <h4 class="gallery-title">Parallel Kitchen Layout</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 7 -->
+        <div class="gallery-item" data-category="living">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-7.jpeg') }}" data-fancybox="gallery" data-caption="Luxury Sofa Set and Center Table Decor">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-7.jpeg') }}" alt="Luxury Sofa Decor">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Living & Decor</span>
+              <h4 class="gallery-title">Luxury Sofa Decor</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 8 -->
+        <div class="gallery-item" data-category="commercial">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-8.jpeg') }}" data-fancybox="gallery" data-caption="Modern Office Interior with glass partition">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-8.jpeg') }}" alt="Office Space">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Commercial & Ceiling</span>
+              <h4 class="gallery-title">Modern Office Cabin</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 9 -->
+        <div class="gallery-item" data-category="bedroom">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-9.jpeg') }}" data-fancybox="gallery" data-caption="Spacious guest room with premium wardrobe">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-9.jpeg') }}" alt="Guest Room">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Bedroom</span>
+              <h4 class="gallery-title">Spacious Guest Room</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 10 -->
+        <div class="gallery-item" data-category="kitchen">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-10.jpeg') }}" data-fancybox="gallery" data-caption="Wooden finish modular kitchen cabinets">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-10.jpeg') }}" alt="Wooden Kitchen">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Modular Kitchen</span>
+              <h4 class="gallery-title">Wooden Kitchen Style</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 11 -->
+        <div class="gallery-item" data-category="living">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-11.jpeg') }}" data-fancybox="gallery" data-caption="Custom TV Unit cabinet with marble background">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-11.jpeg') }}" alt="TV Unit">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Living & Decor</span>
+              <h4 class="gallery-title">Custom TV Cabinet</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 12 -->
+        <div class="gallery-item" data-category="commercial">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-12.jpeg') }}" data-fancybox="gallery" data-caption="Showroom Interior with premium spotlighting">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-12.jpeg') }}" alt="Showroom">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Commercial & Ceiling</span>
+              <h4 class="gallery-title">Showroom Interior</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Add Remaining Images (13 to 44) to ensure ALL 44 gallery images are beautifully showcased -->
+        <!-- Image 13 -->
+        <div class="gallery-item" data-category="bedroom">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-13.jpeg') }}" data-fancybox="gallery" data-caption="Minimalist Bedroom Design">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-13.jpeg') }}" alt="Minimalist Bedroom">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Bedroom</span>
+              <h4 class="gallery-title">Minimalist Bedroom</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 14 -->
+        <div class="gallery-item" data-category="kitchen">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-14.jpeg') }}" data-fancybox="gallery" data-caption="L-Shaped Modular Kitchen">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-14.jpeg') }}" alt="L-Shaped Kitchen">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Modular Kitchen</span>
+              <h4 class="gallery-title">L-Shaped Kitchen</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 15 -->
+        <div class="gallery-item" data-category="living">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-15.jpeg') }}" data-fancybox="gallery" data-caption="Dining Area Decor">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-15.jpeg') }}" alt="Dining Area">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Living & Decor</span>
+              <h4 class="gallery-title">Premium Dining Space</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 16 -->
+        <div class="gallery-item" data-category="commercial">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-16.jpeg') }}" data-fancybox="gallery" data-caption="Corporate Meeting Room Design">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-16.jpeg') }}" alt="Meeting Room">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Commercial & Ceiling</span>
+              <h4 class="gallery-title">Corporate Meeting Room</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Dynamic generation or loading of the rest of the 44 images in a loop-like grid fashion -->
+        <!-- Image 17 -->
+        <div class="gallery-item" data-category="bedroom">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-17.jpeg') }}" data-fancybox="gallery" data-caption="Luxury Wardrobe design with sliding doors">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-17.jpeg') }}" alt="Wardrobe">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Bedroom</span>
+              <h4 class="gallery-title">Premium Wardrobe Design</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 18 -->
+        <div class="gallery-item" data-category="kitchen">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-18.jpeg') }}" data-fancybox="gallery" data-caption="High Gloss Acrylic Kitchen Cabinets">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-18.jpeg') }}" alt="Acrylic Kitchen">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Modular Kitchen</span>
+              <h4 class="gallery-title">Glossy Acrylic Kitchen</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 19 -->
+        <div class="gallery-item" data-category="living">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-19.jpeg') }}" data-fancybox="gallery" data-caption="Wall painting and texture work details">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-19.jpeg') }}" alt="Wall Texture">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Living & Decor</span>
+              <h4 class="gallery-title">Wall Texture Art</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 20 -->
+        <div class="gallery-item" data-category="commercial">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-20.jpeg') }}" data-fancybox="gallery" data-caption="Modern restaurant lounge interior design">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-20.jpeg') }}" alt="Restaurant Lounge">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Commercial & Ceiling</span>
+              <h4 class="gallery-title">Restaurant Lounge Decor</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Let's list images 21 to 44 with appropriate categories -->
+        <!-- Image 21 -->
+        <div class="gallery-item" data-category="bedroom">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-21.jpeg') }}" data-fancybox="gallery" data-caption="Bedroom Dressing Table and Vanity Unit">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-21.jpeg') }}" alt="Dressing Table">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Bedroom</span>
+              <h4 class="gallery-title">Dressing & Vanity Unit</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 22 -->
+        <div class="gallery-item" data-category="kitchen">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-22.jpeg') }}" data-fancybox="gallery" data-caption="Compact Kitchen modular cabinet space layout">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-22.jpeg') }}" alt="Compact Kitchen">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Modular Kitchen</span>
+              <h4 class="gallery-title">Compact Kitchen Concept</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 23 -->
+        <div class="gallery-item" data-category="living">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-23.jpeg') }}" data-fancybox="gallery" data-caption="Luxury Foyer and Entrance Wall Panel">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-23.jpeg') }}" alt="Foyer Design">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Living & Decor</span>
+              <h4 class="gallery-title">Entrance Foyer Design</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 24 -->
+        <div class="gallery-item" data-category="commercial">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-24.jpeg') }}" data-fancybox="gallery" data-caption="Office reception desk design concept">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-24.jpeg') }}" alt="Office Reception">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Commercial & Ceiling</span>
+              <h4 class="gallery-title">Office Reception Area</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 25 -->
+        <div class="gallery-item" data-category="bedroom">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-25.jpeg') }}" data-fancybox="gallery" data-caption="Guest Bedroom Study Corner Design">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-25.jpeg') }}" alt="Study Corner">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Bedroom</span>
+              <h4 class="gallery-title">Study & Work Corner</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 26 -->
+        <div class="gallery-item" data-category="kitchen">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-26.jpeg') }}" data-fancybox="gallery" data-caption="Premium Matt Finish Modular Kitchen">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-26.jpeg') }}" alt="Matt Kitchen">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Modular Kitchen</span>
+              <h4 class="gallery-title">Matt Finish Modular Kitchen</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 27 -->
+        <div class="gallery-item" data-category="living">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-27.jpeg') }}" data-fancybox="gallery" data-caption="Living Room Wall Shelving Unit">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-27.jpeg') }}" alt="Shelving Unit">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Living & Decor</span>
+              <h4 class="gallery-title">Wall Shelving Decor</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 28 -->
+        <div class="gallery-item" data-category="commercial">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-28.jpeg') }}" data-fancybox="gallery" data-caption="PVC and Gypsum False Ceiling Work">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-28.jpeg') }}" alt="Gypsum Ceiling">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Commercial & Ceiling</span>
+              <h4 class="gallery-title">Gypsum False Ceiling</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 29 -->
+        <div class="gallery-item" data-category="bedroom">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-29.jpeg') }}" data-fancybox="gallery" data-caption="Luxury Headboard and Back Wall Paneling">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-29.jpeg') }}" alt="Headboard Panel">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Bedroom</span>
+              <h4 class="gallery-title">Luxury Headboard Panel</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 30 -->
+        <div class="gallery-item" data-category="kitchen">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-30.jpeg') }}" data-fancybox="gallery" data-caption="U-Shaped Kitchen with Breakfast Counter">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-30.jpeg') }}" alt="U-Shaped Kitchen">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Modular Kitchen</span>
+              <h4 class="gallery-title">U-Shaped Modular Kitchen</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 31 -->
+        <div class="gallery-item" data-category="living">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-31.jpeg') }}" data-fancybox="gallery" data-caption="Modern Pooja Room Design inside Living Area">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-31.jpeg') }}" alt="Pooja Room">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Living & Decor</span>
+              <h4 class="gallery-title">Modern Pooja Room</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 32 -->
+        <div class="gallery-item" data-category="commercial">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-32.jpeg') }}" data-fancybox="gallery" data-caption="Premium Glass & UPVC Partition Wall">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-32.jpeg') }}" alt="UPVC Partition">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Commercial & Ceiling</span>
+              <h4 class="gallery-title">UPVC Partition Wall</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 33 -->
+        <div class="gallery-item" data-category="bedroom">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-33.jpeg') }}" data-fancybox="gallery" data-caption="Comfortable Wardrobe and dressing storage cabinet">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-33.jpeg') }}" alt="Dressing Storage">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Bedroom</span>
+              <h4 class="gallery-title">Dressing Storage Unit</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 34 -->
+        <div class="gallery-item" data-category="kitchen">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-34.jpeg') }}" data-fancybox="gallery" data-caption="Premium Chimney and Hob Area in modular kitchen">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-34.jpeg') }}" alt="Kitchen Chimney">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Modular Kitchen</span>
+              <h4 class="gallery-title">Kitchen Chimney Setup</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 35 -->
+        <div class="gallery-item" data-category="living">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-35.jpeg') }}" data-fancybox="gallery" data-caption="Living Room Balcony Decor and Seating">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-35.jpeg') }}" alt="Balcony Seating">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Living & Decor</span>
+              <h4 class="gallery-title">Balcony Seating Decor</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 36 -->
+        <div class="gallery-item" data-category="commercial">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-36.jpeg') }}" data-fancybox="gallery" data-caption="Custom Grid False Ceiling for office">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-36.jpeg') }}" alt="Grid Ceiling">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Commercial & Ceiling</span>
+              <h4 class="gallery-title">Grid False Ceiling</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 37 -->
+        <div class="gallery-item" data-category="bedroom">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-37.jpeg') }}" data-fancybox="gallery" data-caption="Compact bedroom custom storage cupboard">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-37.jpeg') }}" alt="Storage Cupboard">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Bedroom</span>
+              <h4 class="gallery-title">Bedroom Storage Cupboard</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 38 -->
+        <div class="gallery-item" data-category="kitchen">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-38.jpeg') }}" data-fancybox="gallery" data-caption="Elegant storage organizers inside drawers">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-38.jpeg') }}" alt="Kitchen Drawers">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Modular Kitchen</span>
+              <h4 class="gallery-title">Smart Drawer Organizers</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 39 -->
+        <div class="gallery-item" data-category="living">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-39.jpeg') }}" data-fancybox="gallery" data-caption="Luxury dining table setting with custom chairs">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-39.jpeg') }}" alt="Dining Decor">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Living & Decor</span>
+              <h4 class="gallery-title">Dining Table Setting</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 40 -->
+        <div class="gallery-item" data-category="commercial">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-40.jpeg') }}" data-fancybox="gallery" data-caption="Elegant showroom false ceiling lighting layout">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-40.jpeg') }}" alt="Ceiling Lights">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Commercial & Ceiling</span>
+              <h4 class="gallery-title">Showroom Ceiling Lights</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 41 -->
+        <div class="gallery-item" data-category="bedroom">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-41.jpeg') }}" data-fancybox="gallery" data-caption="Cozy Bedroom bed back cushioning details">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-41.jpeg') }}" alt="Bed Back Cushion">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Bedroom</span>
+              <h4 class="gallery-title">Bed Back Cushioning</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 42 -->
+        <div class="gallery-item" data-category="kitchen">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-42.jpeg') }}" data-fancybox="gallery" data-caption="Premium countertop granite modular setup">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-42.jpeg') }}" alt="Kitchen Counter">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Modular Kitchen</span>
+              <h4 class="gallery-title">Granite Countertop Setup</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 43 -->
+        <div class="gallery-item" data-category="living">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-43.jpeg') }}" data-fancybox="gallery" data-caption="Unique living room partition partition screen">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-43.jpeg') }}" alt="Living Partition">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Living & Decor</span>
+              <h4 class="gallery-title">Designer Partition Screen</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        <!-- Image 44 -->
+        <div class="gallery-item" data-category="commercial">
+          <a href="{{ url_for('static', filename='img/gallery/interiorimages-44.jpeg') }}" data-fancybox="gallery" data-caption="Modern commercial office workstation design">
+            <img src="{{ url_for('static', filename='img/gallery/interiorimages-44.jpeg') }}" alt="Office Workstation">
+            <div class="gallery-overlay">
+              <span class="gallery-category">Commercial & Ceiling</span>
+              <h4 class="gallery-title">Office Workstation Layout</h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA section -->
+  <section class="gap project-section" style="background-color: #000;">
+    <div class="container">
+      <div class="project sec-title-animation animation-style2">
+        <h2 class="title-animation" style="color: #fff;">Ready to Build Your Dream Home</h2>
+        <p style="color: #fff;">Building your dream home is about desire, fantasy — but it is achievable. Anyone can do it with the right team by their side.</p>
+        <a href="{{ url_for('contact') }}" class="theme-btn hvr-light">Request a Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Add active class to clicked button
+        button.classList.add('active');
+
+        const filterValue = button.getAttribute('data-filter');
+
+        galleryItems.forEach(item => {
+          const category = item.getAttribute('data-category');
+          
+          // Adding a simple fade animation effect
+          item.style.opacity = '0';
+          item.style.transform = 'scale(0.9)';
+          
+          setTimeout(() => {
+            if (filterValue === 'all' || category === filterValue) {
+              item.classList.remove('hidden');
+              setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'scale(1)';
+              }, 50);
+            } else {
+              item.classList.add('hidden');
+            }
+          }, 300);
+        });
+      });
+    });
+  });
+</script>
+{% endblock %}

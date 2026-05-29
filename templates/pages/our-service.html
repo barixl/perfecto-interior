@@ -1,0 +1,473 @@
+{% extends "base.html" %}
+
+{% block title %}Our Service - Perfecto Interior{% endblock %}
+
+{% block content %}
+<section class="bannr" style="background-image: url('{{ url_for('static', filename='img/services/services_01.png') }}');background-size: cover;background-position: center;background-repeat: no-repeat;">
+    <div class="container">
+      <div class="hero-text-three">
+        <h1>Our Service</h1>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"> <a href="index.html">Home</a> </li>
+          <li class="breadcrumb-item active" aria-current="page">Our Service</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="gap design-section">
+    <div class="container">
+      <div class="heading sec-title-animation animation-style2">
+        <img src="{{ url_for('static', filename='img/heading-img.png') }}" alt="img">
+        <span class="title-animation">Our Commitment to You</span>
+        <h4 class="title-animation">We Combine the Beauty of Interior Design With In-Depth Planning, Quality Materials, and Hands-On Execution to Help You Build Perfect Spaces</h4>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-6">
+          <div class="design-style">
+            <i class="flaticon-house-design"></i>
+            <h4><a href="#">Bedroom & Living Design</a></h4>
+            <p>We create stunning bedroom and living room interiors with premium decor, smart layouts, and elegant finishing that transforms your personal space completely.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="design-style">
+            <i class="flaticon-infrastructure"></i>
+            <h4><a href="#">Modular Kitchen Design</a></h4>
+            <p>Our modular kitchens are built for modern living — space-saving, stylish, and crafted with high-quality materials that last a lifetime.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="design-style">
+            <i class="flaticon-buildings"></i>
+            <h4><a href="#">Interior Design & Decoration</a></h4>
+            <p>From false ceilings to wall paneling, furniture to painting — we handle every aspect of your interior with precision, creativity, and a perfect touch.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gap no-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="heading two sec-title-animation animation-style2">
+            <span class="title-animation">We Create Perfect Experiences</span>
+            <h2 class="title-animation">We Specialize in These Fields</h2>
+          </div>
+        </div>
+        <div class="offset-lg-2 col-lg-5">
+          <div class="heading two">
+            <p>We care deeply about every project we take on. Our team of skilled designers, craftsmen, site engineers, and project managers work together — combining creativity, quality, and client relationships to deliver spaces that feel truly perfect.</p>
+          </div>
+        </div>
+      </div>
+     <ul class="wwb-ul">
+          <li class="active">
+            <span>01.</span>
+            <h3>
+              <a href="#">Bedroom Decor & Design</a>
+            </h3>
+            <figure>
+              <img src="{{ url_for('static', filename='img/specialize/1.png') }}" alt="img" />
+            </figure>
+          </li>
+          <li>
+            <span>02.</span>
+            <h3>
+              <a href="#">Modular Kitchen</a>
+            </h3>
+            <figure>
+              <img src="{{ url_for('static', filename='img/specialize/2.png') }}" alt="img" />
+            </figure>
+          </li>
+          <li>
+            <span>03.</span>
+            <h3>
+              <a href="#">TV Cabinet & Wall Panel</a>
+            </h3>
+            <figure>
+              <img src="{{ url_for('static', filename='img/specialize/3.png') }}" alt="img" />
+            </figure>
+          </li>
+          <li>
+            <span>04.</span>
+            <h3>
+              <a href="#">Sofa & Furniture</a>
+            </h3>
+            <figure>
+              <img src="{{ url_for('static', filename='img/specialize/4.png') }}" alt="img" />
+            </figure>
+          </li>
+          <li>
+            <span>05.</span>
+            <h3>
+              <a href="#">Window & Door Paneling</a>
+            </h3>
+            <figure>
+              <img src="{{ url_for('static', filename='img/specialize/5.png') }}" alt="img" />
+            </figure>
+          </li>
+          <li>
+            <span>06.</span>
+            <h3>
+              <a href="#">UPVC / WPVC Doors</a>
+            </h3>
+            <figure>
+              <img src="{{ url_for('static', filename='img/specialize/6.png') }}" alt="img" />
+            </figure>
+          </li>
+          <li>
+            <span>07.</span>
+            <h3>
+              <a href="#">False Ceiling & Painting</a>
+            </h3>
+            <figure>
+              <img src="{{ url_for('static', filename='img/specialize/7.png') }}" alt="img" />
+            </figure>
+          </li>
+        </ul>
+    </div>
+  </section>
+
+  <section class="gap trending-topics" style="background:#000;">
+    <div class="container">
+      <div class="heading sec-title-animation animation-style2">
+        <img src="{{ url_for('static', filename='img/heading-img.png') }}" alt="img">
+        <span class="title-animation">Our commitment to you</span>
+        <h2 class="title-animation">Trending Interior Topics</h2>
+      </div>
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="topics">
+            <h4>Bedroom Spaces
+</h4>
+            <p>Elegant bedroom interiors with smart storage and modern comfort.</p>
+            <a href="#">Explore<i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="topics two">
+            <h4>Modular Kitchen</h4>
+            <p>Stylish, functional kitchens designed for modern living.</p>
+            <a href="#">Explore<i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="topics three">
+            <h4>False Ceiling & Decor</h4>
+            <p>Beautiful ceiling designs that add style and elegance.</p>
+            <a href="#">Explore<i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="topics for mb-0">
+            <h4>UPVC / WPVC Doors</h4>
+            <p>Durable, stylish doors and windows for a modern home.</p>
+            <a href="#">Explore<i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gap">
+    <div class="container">
+      <div class="heading two sec-title-animation animation-style2">
+        <span class="title-animation">Our Team</span>
+        <h2 class="title-animation">Meet Our Expert Team</h2>
+      </div>
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="tab-content" id="v-pills-tabContent">
+            <div
+              class="tab-pane fade show active"
+              id="v-pills-home"
+              role="tabpanel"
+              aria-labelledby="v-pills-home-tab"
+            >
+              <div class="leadership">
+                <img src="https://placehold.co/351x520" alt="img" />
+                <div>
+                  <h3>Team 1</h3>
+                  <p>Lead Interior Designer</p>
+                  <h5>
+                    “ We don't just design spaces — we craft experiences that
+                    feel like home.”
+                  </h5>
+                  <h6>
+                    P.<a href="callto:+44-1123-2234-21">+44 1123-2234-21</a>
+                  </h6>
+                  <h6>
+                    E.<a href="mailto:usernamei@domain.com"
+                      >usernamei@domain.com</a
+                    >
+                  </h6>
+                  <ul class="social-media">
+                    <li>
+                      <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="flaticon-twitter"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="flaticon-instagram"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="v-pills-profile"
+              role="tabpanel"
+              aria-labelledby="v-pills-profile-tab"
+            >
+              <div class="leadership">
+                <img src="https://placehold.co/351x520" alt="img" />
+                <div>
+                  <h3>Team 2</h3>
+                  <p>Modular Kitchen Specialist</p>
+                  <h5>
+                    “Smart kitchens are where beauty meets functionality.”
+                  </h5>
+                  <h6>
+                    P.<a href="callto:+44-1123-2234-21">+44 1123-2234-21</a>
+                  </h6>
+                  <h6>
+                    E.<a href="mailto:usernamei@domain.com"
+                      >usernamei@domain.com</a
+                    >
+                  </h6>
+                  <ul class="social-media">
+                    <li>
+                      <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="flaticon-twitter"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="flaticon-instagram"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="v-pills-messages"
+              role="tabpanel"
+              aria-labelledby="v-pills-messages-tab"
+            >
+              <div class="leadership">
+                <img src="https://placehold.co/351x520" alt="img" />
+                <div>
+                  <h3>Team 3</h3>
+                  <p>Furniture & Decor Expert</p>
+                  <h5>
+                   “Every detail adds beauty to a space.”
+                  </h5>
+                  <h6>
+                    P.<a href="callto:+44-1123-2234-21">+44 1123-2234-21</a>
+                  </h6>
+                  <h6>
+                    E.<a href="mailto:usernamei@domain.com"
+                      >usernamei@domain.com</a
+                    >
+                  </h6>
+                  <ul class="social-media">
+                    <li>
+                      <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="flaticon-twitter"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="flaticon-instagram"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="v-pills-settings"
+              role="tabpanel"
+              aria-labelledby="v-pills-settings-tab"
+            >
+              <div class="leadership">
+                <img src="https://placehold.co/351x520" alt="img" />
+                <div>
+                  <h3>Team 4</h3>
+                  <p>Site Supervisor & Quality Head</p>
+                  <h5>
+                    “Quality and precision build lasting spaces.”
+                  </h5>
+                  <h6>
+                    P.<a href="callto:+44-1123-2234-21">+44 1123-2234-21</a>
+                  </h6>
+                  <h6>
+                    E.<a href="mailto:usernamei@domain.com"
+                      >usernamei@domain.com</a
+                    >
+                  </h6>
+                  <ul class="social-media">
+                    <li>
+                      <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="flaticon-twitter"></i></a>
+                    </li>
+                    <li>
+                      <a href="#"><i class="flaticon-instagram"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div
+            class="nav nav-style-two flex-column nav-pills me-3"
+            id="v-pills-tab"
+            role="tablist"
+            aria-orientation="vertical"
+          >
+            <button
+              class="nav-link active"
+              id="v-pills-home-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#v-pills-home"
+              type="button"
+              role="tab"
+              aria-controls="v-pills-home"
+              aria-selected="true"
+            >
+              Team 1 <span>Lead Interior Designer</span>
+            </button>
+            <button
+              class="nav-link"
+              id="v-pills-profile-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#v-pills-profile"
+              type="button"
+              role="tab"
+              aria-controls="v-pills-profile"
+              aria-selected="false"
+            >
+              Team 2<span> Modular Kitchen Specialist</span>
+            </button>
+            <button
+              class="nav-link"
+              id="v-pills-messages-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#v-pills-messages"
+              type="button"
+              role="tab"
+              aria-controls="v-pills-messages"
+              aria-selected="false"
+            >
+              Team 3<span> Furniture & Decor Expert</span>
+            </button>
+            <button
+              class="nav-link"
+              id="v-pills-settings-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#v-pills-settings"
+              type="button"
+              role="tab"
+              aria-controls="v-pills-settings"
+              aria-selected="false"
+            >
+              Team 4<span>Site Supervisor & Quality Head</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> 
+
+  <section class="gap no-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="accordion-img">
+            <div class="d-flex align-items-center hoverimg">
+              <figure class="accordion-img-1">
+                <img src="{{ url_for('static', filename='img/services/3.png') }}" alt="img">
+              </figure>
+              <figure class="accordion-img-2">
+                <img src="{{ url_for('static', filename='img/services/1.png') }}" alt="img">
+              </figure>
+            </div>
+            <div class="hoverimg"> 
+            <figure>
+              <img src="{{ url_for('static', filename='img/services/2.png') }}" alt="img">
+            </figure>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="heading two sec-title-animation animation-style2">
+            <span class="title-animation">Inspiration From Client Guide</span>
+            <h3 class="title-animation">From the Heart of Our Design Community — We Explore, Design, and Craft Beautiful Buildings.</h3>
+          </div>
+          <div class="accordion">
+            <div class="accordion-item">
+              <a href="#" class="heading">
+                <div class="icon"></div>
+                <div class="title">What Interior Services Does Perfecto Interior Offer?</div>
+              </a>
+
+              <div class="content">
+                <p>We offer a complete range of interior services including bedroom decor, modular kitchen, TV cabinet, sofa and furniture, window paneling, door paneling, UPVC/WPVC doors, false ceiling, and painting — all under one roof.</p>
+              </div>
+            </div>
+            <div class="accordion-item active">
+              <a href="#" class="heading">
+                <div class="icon"></div>
+                <div class="title">Do You Specialise in Residential Interior Design?</div>
+              </a>
+
+              <div class="content" style="display: block;">
+                <p>Yes! Residential interior design is our core strength. We work closely with homeowners across Kolkata, Medinipur, Ghatal, and nearby areas to create personalized, budget-friendly interiors.p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <a href="#" class="heading">
+                <div class="icon"></div>
+                <div class="title">What Do Your Interior Design Services Include?</div>
+              </a>
+
+              <div class="content">
+                <p>Our services include initial consultation, concept design, material selection, project execution, quality inspection, and final handover — complete end-to-end interior solutions.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <a href="#" class="heading">
+                <div class="icon"></div>
+                <div class="title">What Type of Projects Do You Deliver?
+</div>
+              </a>
+              <div class="content">
+                <p>We deliver all types of residential interior projects — from single room makeovers to complete home interiors. We also handle small commercial and office interior projects on request.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gap project-section">
+    <div class="container">
+      <div class="project sec-title-animation animation-style2">
+        <h2 class="title-animation">Ready to Unlock the Potential of Your Dream Home?</h2>
+        <p>Tailored guidance — from choosing the right design concept to complete home renovation and handover.</p>
+        <a href="#" class="theme-btn hvr-light">Request a Quote</a>
+      </div>
+    </div>
+  </section>
+{% endblock %}

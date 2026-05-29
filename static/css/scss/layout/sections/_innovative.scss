@@ -1,0 +1,235 @@
+.section-innovative {
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    &::before {
+        @include content(.75);
+        background-color: #f5f5f5;
+    }
+
+    .innovative {
+        position: relative;
+
+        &::before {
+            @include content(.4);
+            background-color: $drak-color;
+            z-index: 11;
+
+            @include respond-to("lg") {
+                opacity: .2;
+            }
+        }
+
+        img {
+            width: 100%;
+        }
+    }
+}
+
+.contruction {
+    position: absolute;
+    z-index: 111;
+    bottom: 0;
+    padding-left: 40px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .5s ease;
+    transform: translatex(-20px);
+
+    @include respond-to("lg") {
+        bottom: auto;
+        top: 20px;
+    }
+
+    @include respond-to("lg") {
+        padding-left: 20px;
+    }
+
+    h3 {
+        font-size: 34px;
+        color: $white-colour;
+        padding-bottom: 40px;
+
+        @include respond-to("lg") {
+            font-size: 24px;
+        }
+
+        @include respond-to("mdd") {
+            font-size: 20px;
+        }
+
+        @include respond-to("mdd") {
+            font-size: 18px;
+        }
+    }
+
+    span {
+        color: $white-colour;
+        padding-bottom: 12px;
+        font-size: 16px;
+        display: block;
+    }
+}
+
+.client-company {
+    position: absolute;
+    bottom: 0;
+    z-index: 11;
+    background-color: $white-colour;
+    width: 38%;
+    padding: 40px;
+    padding-bottom: 30px;
+    @include transition;
+
+    @include respond-to("lg") {
+        position: relative;
+        width: 100%;
+        padding: 30px;
+        opacity: 1;
+    }
+
+    p {
+        padding-bottom: 20px;
+    }
+
+    li {
+        color: $medium-drak;
+        display: flex;
+        position: relative;
+        font-weight: bold;
+        padding-bottom: 10px;
+    }
+
+    span {
+        color: $medium-drak;
+        position: absolute;
+        left: 16%;
+        font-weight: 400;
+
+        @include respond-to("md") {
+            left: 20%;
+        }
+
+        @include respond-to("mdd") {
+            left: 26%;
+        }
+    }
+
+    a {
+        i {
+            @include flexcenter;
+            width: 40px;
+            height: 40px;
+            margin-top: 10px;
+            background-color: $theme-colour;
+            border-radius: 50%;
+        }
+    }
+}
+
+.client-company {
+    opacity: 0;
+    visibility: hidden;
+    transition: all .5s ease;
+    transform: translateY(-20px);
+    right: -1px;
+    bottom: -1px;
+
+    @include respond-to("lg") {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0px);
+    }
+}
+
+.innovative-slider {
+    .swiper-pagination {
+        position: relative;
+        margin-top: 40px;
+
+        .swiper-pagination-bullet {
+            background-color: $drak-color;
+        }
+
+        .swiper-pagination-bullet.swiper-pagination-bullet-active {
+            background-color: $theme-colour;
+        }
+    }
+}
+
+.swiper-slide-active {
+    .client-company {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: .8s;
+        transform: translateY(0);
+
+        @include respond-to("lg") {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0px);
+        }
+    }
+
+    .contruction {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: 1.3s;
+        transform: translatex(0);
+    }
+}
+
+.section-innovative.bg-black-section {
+    &::before {
+        display: none !important;
+    }
+
+    .heading {
+        h2 {
+            color: $white-colour !important;
+        }
+        h6 {
+            color: rgba($white-colour, 0.75) !important;
+        }
+    }
+
+    .accordion {
+        .accordion-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+
+            .heading {
+                color: $white-colour !important;
+            }
+
+            .icon {
+                &:before, &:after {
+                    background: $white-colour !important;
+                }
+            }
+
+            .content p {
+                color: rgba(255, 255, 255, 0.75) !important;
+            }
+
+            &.active {
+                background-color: $theme-colour !important;
+                border-bottom: 3px solid $theme-colour !important;
+
+                .heading {
+                    color: $drak-color !important;
+                }
+
+                .icon {
+                    &:before, &:after {
+                        background: $drak-color !important;
+                    }
+                }
+
+                .content p {
+                    color: rgba($drak-color, 0.85) !important;
+                }
+            }
+        }
+    }
+}

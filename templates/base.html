@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zxx">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Perfecto Interior{% endblock %}</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/heading-img.png') }}" />
+    <!-- CSS only -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
+    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/swiper.css') }}" />
+    <!-- fancybox -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.fancybox.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='font/flaticon_mycollection.css') }}" />
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome.min.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nice-select.css') }}" />
+    <!-- style -->
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+    <!-- responsive -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}" />
+    <script src="{{ url_for('static', filename='js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/preloader.js') }}"></script>
+    {% block extra_head %}{% endblock %}
+  </head>
+
+  <body>
+    <!-- preloader -->
+    <div class="preloader">
+      <div class="loader"></div>
+    </div>
+    <!-- preloader end -->
+    {% block header %}
+    {% include 'partials/header.html' %}
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% block footer %}
+    {% include 'partials/footer.html' %}
+    {% endblock %}
+    <!-- Bootstrap Js -->
+
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/swiper.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/splitText.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/gsap.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/scrolltrigger.js') }}"></script>
+    <!-- fancybox -->
+    <script src="{{ url_for('static', filename='js/jquery.fancybox.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+    {% block extra_scripts %}{% endblock %}
+  </body>
+</html>

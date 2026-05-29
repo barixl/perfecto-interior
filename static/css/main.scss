@@ -1,0 +1,174 @@
+/*-----------------------------------------------------------------------------------
+
+    Template Name: Archik | Architecture Studio and Interior HTML Template
+    Author: winsfolio
+    Support: winsfolio@gmail.com 
+    Version: 1.0
+
+-----------------------------------------------------------------------------------
+
+/************ TABLE OF CONTENTS ***************
+
+	-----------------
+    01. utils CSS
+	-----------------
+		1.1 Root
+		1.2 Mixins 
+
+	-----------------
+    02. COMPONENTS CSS
+	-----------------
+		2.1 mobile-nav
+		2.2 search-popup
+		2.3 loader
+		2.4 btn
+		2.5 pagination
+		2.6 accordion 
+		2.7 social-media
+		2.8 wwb
+		2.9 marquee
+		2.10 flip-img
+		2.11 hover-img-two
+		2.12 breadcrumb
+		2.13 theme-pagination
+		2.14 topics
+		2.15 scroll-top 
+
+
+	-----------------
+    03. HEADER CSS
+	-----------------
+		3.1 Header 1
+		3.2 Header 2 
+
+    ---------------------------------
+	04. FOOTER CSS
+	---------------------------------
+		4.1 footer
+		4.2 footer-two
+		4.3 footer-three
+
+	---------------------------------
+	05. SECTIONS CSS
+	---------------------------------
+		5.1 custom-text
+		5.2 hero-section-one
+		5.3 heading
+		5.4 introduction
+		5.5 what-we-do 
+		5.6 innovative
+		5.7 design-your
+		5.8 meet-experts
+		5.9 services-one
+		5.10 swiper-button
+		5.11 partner
+		5.12 blog-one
+		5.13 subscribe
+		5.14 hero-section-two
+		5.15 concept-design
+		5.16 dream-home
+		5.17 creating-future
+		5.19 leadership
+		5.10 read-journey
+		5.21 project-mind
+		5.22 hero-three
+		5.23 design-section
+		5.24 portfolio
+		5.25 team-style-one
+		5.26 architect
+		5.27 Visit-slider
+		5.28 testimonial-section
+		5.29 project-section
+		5.30 client-section
+		5.31 architect-2
+		5.32 history
+
+
+	---------------------------------
+	06. PAGES CSS
+	---------------------------------
+		6.1 bannr
+		6.2 our-blog
+		6.3 our-team
+		6.4 studio
+		6.5 news-details
+		6.6 project-details
+		6.7 project-details-two
+		6.8 team-detail
+		6.9 content-page 
+
+--------------------------------------------------------------------------------------------------- */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap');
+
+@import "scss/utils/root";
+@import "scss/utils/mixin";
+@import "scss/components/mobile-nav";
+@import "scss/components/search-popup";
+@import "scss/components/loader";
+@import "scss/components/btn";
+@import "scss/components/pagination";
+@import "scss/components/accordion";
+@import "scss/components/social-media";
+@import "scss/components/wwb";
+@import "scss/components/marquee";
+@import "scss/components/flip-img";
+@import "scss/components/hover-img-two";
+@import "scss/components/breadcrumb";
+@import "scss/components/theme-pagination";
+@import "scss/components/topics";
+@import "scss/components/scroll-top";
+@import "scss/layout/header/header";
+@import "scss/layout/header/header-two";
+@import "scss/layout/footer/footer";
+@import "scss/layout/footer/footer-two";
+@import "scss/layout/footer/footer-three";
+@import "scss/layout/sections/custom-text";
+@import "scss/layout/sections/hero-section-one";
+@import "scss/layout/sections/heading";
+@import "scss/layout/sections/introduction";
+@import "scss/layout/sections/what-we-do";
+@import "scss/layout/sections/innovative";
+@import "scss/layout/sections/design-your";
+@import "scss/layout/sections/meet-experts";
+@import "scss/layout/sections/services-one";
+@import "scss/layout/sections/swiper-button";
+@import "scss/layout/sections/partner";
+@import "scss/layout/sections/blog-one";
+@import "scss/layout/sections/subscribe";
+@import "scss/layout/sections/hero-section-two";
+@import "scss/layout/sections/concept-design";
+@import "scss/layout/sections/dream-home";
+@import "scss/layout/sections/creating-future";
+@import "scss/layout/sections/leadership";
+@import "scss/layout/sections/read-journey";
+@import "scss/layout/sections/project-mind";
+@import "scss/layout/sections/hero-three";
+@import "scss/layout/sections/design-section";
+@import "scss/layout/sections/portfolio";
+@import "scss/layout/sections/team-style-one";
+@import "scss/layout/sections/architect";
+@import "scss/layout/sections/visit-slider";
+@import "scss/layout/sections/testimonial-section";
+@import "scss/layout/sections/project-section";
+@import "scss/layout/sections/client-section";
+@import "scss/layout/sections/architect-2";
+@import "scss/layout/sections/history";
+@import "scss/layout/page-banner/bannr";
+@import "scss/layout/pages/our-blog";
+@import "scss/layout/pages/our-team";
+@import "scss/layout/sections/studio";
+@import "scss/layout/pages/news-details";
+@import "scss/layout/pages/project-details";
+@import "scss/layout/pages/project-details-two";
+@import "scss/layout/pages/services-details";
+@import "scss/layout/pages/team-detail";
+@import "scss/layout/pages/content-page";
+
+@media (min-width: 1400px) {
+  header .container,
+  footer .container {
+    max-width: 1400px !important;
+  }
+}

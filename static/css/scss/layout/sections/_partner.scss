@@ -1,0 +1,32 @@
+.partner {
+    text-align: center;
+}
+
+.partner.hover-img-two {
+    .imgg {
+        img {
+            width: auto;
+            margin: auto;
+        }
+    }
+}
+
+.partner-img {
+    width: 250px;
+    max-width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    filter: grayscale(100%);
+    opacity: 0.65;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+    display: inline-block;
+
+    &:hover {
+        filter: grayscale(0%);
+        opacity: 1;
+        -webkit-transform: scale(1.05);
+        transform: scale(1.05);
+    }
+}

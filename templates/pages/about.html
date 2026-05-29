@@ -1,0 +1,385 @@
+{% extends "base.html" %}
+
+{% block title %}About - Perfecto Interior{% endblock %}
+
+{% block content %}
+<section class="bannr" style="background: url('{{ url_for('static', filename='img/about/about_01.png') }}') no-repeat center/cover;">
+    <div class="container">
+      <div class="hero-text-three">
+        <h1>About Us</h1>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"> <a href="index.html">Home</a> </li>
+          <li class="breadcrumb-item active" aria-current="page">About Us</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  
+  <section class="gap">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="heading two sec-title-animation animation-style2">
+            <span class="title-animation">We are Interior Design Studio</span>
+            <h2 class="title-animation">Introduction to Perfecto Interior</h2>
+            <h6>We are interior design specialists with deep expertise in residential and commercial spaces, bringing your dream home to life with a perfect touch.</h6>
+          </div>
+        </div>
+        <div class="col-lg-6"> 
+          <div class="heading two">
+            <p>We care about the communities we serve because it is designers, together with our craftsmen — our architects, designers, site engineers, and project managers — working together at the core of the creative process. We believe that every home deserves a thoughtful, beautiful, and functional design.</p>
+            <p>At Perfecto Interior, our team of passionate designers and project managers work together to deliver flawless interiors — bringing style, comfort, and elegance into every space we touch.</p>
+            <div class="architect-text two">
+              <img src="{{ url_for('static', filename='img/heading-img.png') }}" alt="img">
+              <h3>Perfecto Interior Studio</h3>
+              <p>Team <br> Perfecto Interior, Est. 2024
+Creative Director & Lead Interior Designer</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="hover-img-two about-page mb-xl-0 mb-3">
+            <figure class="imgg">
+              <img src="{{ url_for('static', filename='img/about/about_02.png') }}" alt="img">
+              <img src="{{ url_for('static', filename='img/about/about_02.png') }}" alt="img">
+            </figure>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="hover-img-two mb-xl-0">
+            <figure class="imgg">
+              <img src="{{ url_for('static', filename='img/about/about_03.png') }}" alt="img">
+              <img src="{{ url_for('static', filename='img/about/about_03.png') }}" alt="img">
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gap no-top">
+    <div class="container">
+      <div class="heading sec-title-animation animation-style2">
+        <img src="{{ url_for('static', filename='img/heading-img.png') }}" alt="img">
+        <span class="title-animation">Interior Services</span>
+        <h2 class="title-animation">We Follow the Trends of World Interior Design.</h2>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="services-one" style="background-image: url('{{ url_for('static', filename='img/Interior_Services/1.png') }}');">
+            <i class="flaticon-buildings"></i>
+            <h4>Bedroom Interiors</h4>
+            <span>1.</span>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="services-one" style="background-image: url('{{ url_for('static', filename='img/Interior_Services/2.png') }}');">
+            <i class="flaticon-blueprint"></i>
+            <h4>Modular Kitchen</h4>
+            <span>2.</span>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="services-one" style="background-image: url('{{ url_for('static', filename='img/Interior_Services/3.png') }}');">
+            <i class="flaticon-engineering"></i>
+            <h4>Beautiful false ceiling</h4>
+            <span>3.</span>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="services-one" style="background-image: url('{{ url_for('static', filename='img/Interior_Services/4.png') }}');">
+            <i class="flaticon-lightbulb"></i>
+            <h4>TV Cabinet & Wall Panel</h4>
+            <span>4.</span>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="services-one" style="background-image: url('{{ url_for('static', filename='img/Interior_Services/5.png') }}');">
+            <i class="flaticon-interior-design"></i>
+            <h4>Interior Design</h4>
+            <span>5.</span>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="services-one" style="background-image: url('{{ url_for('static', filename='img/Interior_Services/6.png') }}');">
+            <i class="flaticon-paintwork"></i>
+            <h4>UPVC / WPVC Doors</h4>
+            <span>6.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-innovative gap bg-black-section" style="background-color: rgb(0, 0, 0);">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="heading two sec-title-animation animation-style2">
+            <span class="title-animation">Perfecto Interior Studio</span>
+            <h2 class="title-animation">Our History</h2>
+            <h6 class="w-100">Over the years we have received appreciation and recognition across West Bengal — from Kolkata to Medinipur — by recognizing our thoughtful and client-first approach to interior design.</h6>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="accordion history">
+            <div class="accordion-item">
+              <a href="#" class="heading">
+                <div class="icon"></div>
+                <div class="title">2024</div>
+              </a>
+
+              <div class="content">
+                <p>Founded (expanded)
+Perfecto Interior was established with a single mission — to deliver perfect interior design solutions within every client's budget. Starting from Purba Medinipur, we quickly expanded our reach to Kolkata, Ghatal, and beyond.</p>
+              </div>
+            </div>
+            <div class="accordion-item active">
+              <a href="#" class="heading">
+                <div class="icon"></div>
+                <div class="title">2024</div>
+              </a>
+
+              <div class="content" style="display: block;">
+                <p>First Projects
+Completed our first residential projects in Kolaghat and Medinipur, earning 100% client satisfaction and strong word-of-mouth referrals.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <a href="#" class="heading">
+                <div class="icon"></div>
+                <div class="title">2025</div>
+              </a>
+
+              <div class="content">
+                <p>Expansion
+Opened our second office at Ripon Street, Kolkata — 700016, bringing our services closer to Kolkata's growing residential and commercial market.</p>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <a href="#" class="heading">
+                <div class="icon"></div>
+                <div class="title">2025</div>
+              </a>
+              <div class="content">
+                <p>Growing Strong
+Now serving clients across Purba Medinipur, Paschim Medinipur, Kolkata, and nearby districts with a full team of expert designers and craftsmen.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="design-your gap no-bottom" style="background-image: url('{{ url_for('static', filename='img/about/about_04.png') }}');">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7">
+          <div class="heading two sec-title-animation animation-style2">
+            <span class="title-animation">We Designed Your Space</span>
+            <h2 class="title-animation">Design Your Home Interior With Innovative Ideas</h2>
+          </div>
+          <!-- counts moved to the counts section below -->
+        </div>
+        <div class="col-lg-5">
+          <form class="meet-experts">
+            <h2>Meet Experts!</h2>
+            <p>contact with designer for interior design</p>
+            <input type="text" name="full_name" placeholder="Full Name">
+            <input type="email" name="email address" placeholder="email address">
+            <input type="number" name="phone no" placeholder="phone no">
+            <textarea placeholder="message"></textarea>
+            <button class="theme-btn hvr-light">Book Free Consultation</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <img src="{{ url_for('static', filename='img/about/meet-experts-img.png') }}" alt="img" class="meet-experts-img">
+  </section>
+
+  <section class="counts gap" style="background-image: url('{{ url_for('static', filename='img/visit-sectors-bg.jpg') }}'); background-size: cover; background-position: center; background-attachment: fixed; position: relative;">
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75);"></div>
+    <div class="container" style="position: relative; z-index: 2;">
+      <div class="heading text-center sec-title-animation animation-style2 mb-5">
+        <img src="{{ url_for('static', filename='img/heading-img.png') }}" alt="img" style="margin: 0 auto 10px; display: block;">
+        <span class="title-animation" style="color: #cda45e; display: block; margin-bottom: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;">Our Achievements</span>
+        <h2 class="title-animation" style="color: #fff;">Numbers That Speak for Themselves</h2>
+      </div>
+      <div class="row g-4 justify-content-center">
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+          <div class="count-style">
+            <h2 data-max="14"><sup>k</sup></h2>
+            <p>house interior design</p>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+          <div class="count-style">
+            <h2 data-max="10"><sup>m</sup></h2>
+            <p>finishing projects</p>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+          <div class="count-style">
+            <h2 data-max="94"><sup>+</sup></h2>
+            <p>expert designer</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gap">
+    <div class="container">
+      <div class="heading w-100 sec-title-animation animation-style2">
+        <img src="{{ url_for('static', filename='img/heading-img.png') }}" alt="img">
+        <span class="title-animation">Meet Experts Team Members</span>
+        <h2 class="title-animation">Get help from our dedicated team</h2>
+      </div>
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="team-style-one">
+            <div class="team-style-img">
+              <figure>
+                <img src="https://placehold.co/306x439" alt="img">
+              </figure>
+              <div class="expert-icon">
+                <a href="JavaScript:void(0)"><i class="flaticon-share"></i></a>
+                <ul class="icon-share">
+                  <li><a href="JavaScript:void(0)"><i class="flaticon-facebook"></i></a></li>
+                  <li><a href="JavaScript:void(0)"><i class="flaticon-instagram"></i></a></li>
+                  <li><a class="twitter" href="JavaScript:void(0)"><i class="flaticon-twitter"></i></a></li>
+                </ul>
+              </div>
+            </div>
+            <a href="#">Richard Coutts</a>
+            <p>BA(Hons), DiP, MARCH, FRIBA, ARB, UDG DIRECTOR</p>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="team-style-one">
+            <div class="team-style-img">
+              <figure>
+                <img src="https://placehold.co/306x439" alt="img">
+              </figure>
+              <div class="expert-icon">
+                <a href="JavaScript:void(0)"><i class="flaticon-share"></i></a>
+                <ul class="icon-share">
+                  <li><a href="JavaScript:void(0)"><i class="flaticon-facebook"></i></a></li>
+                  <li><a href="JavaScript:void(0)"><i class="flaticon-instagram"></i></a></li>
+                  <li><a class="twitter" href="JavaScript:void(0)"><i class="flaticon-twitter"></i></a></li>
+                </ul>
+              </div>
+            </div>
+            <a href="#">Thomas Walkar</a>
+            <p>BA(Hons), DiP, MARCH, FRIBA, ARB, UDG DIRECTOR</p>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="team-style-one">
+            <div class="team-style-img">
+              <figure>
+                <img src="https://placehold.co/306x439" alt="img">
+              </figure>
+              <div class="expert-icon">
+                <a href="JavaScript:void(0)"><i class="flaticon-share"></i></a>
+                <ul class="icon-share">
+                  <li><a href="JavaScript:void(0)"><i class="flaticon-facebook"></i></a></li>
+                  <li><a href="JavaScript:void(0)"><i class="flaticon-instagram"></i></a></li>
+                  <li><a class="twitter" href="JavaScript:void(0)"><i class="flaticon-twitter"></i></a></li>
+                </ul>
+              </div>
+            </div>
+            <a href="#">Nomina Jessic</a>
+            <p>BA(Hons), DiP, MARCH, FRIBA, ARB, UDG DIRECTOR</p>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="team-style-one">
+            <div class="team-style-img">
+              <figure>
+                <img src="https://placehold.co/306x439" alt="img">
+              </figure>
+              <div class="expert-icon">
+                <a href="JavaScript:void(0)"><i class="flaticon-share"></i></a>
+                <ul class="icon-share">
+                  <li><a href="JavaScript:void(0)"><i class="flaticon-facebook"></i></a></li>
+                  <li><a href="JavaScript:void(0)"><i class="flaticon-instagram"></i></a></li>
+                  <li><a class="twitter" href="JavaScript:void(0)"><i class="flaticon-twitter"></i></a></li>
+                </ul>
+              </div>
+            </div>
+            <a href="#">Oliva Silver</a>
+            <p>BA(Hons), DiP, MARCH, FRIBA, ARB, UDG DIRECTOR</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gap testimonial-section" style="background-image: url('{{ url_for('static', filename='img/bg/bg_02.jpg') }}');">
+    <div class="container">
+      <div class="testimonial-slider swiper" style="background-image: url({{ url_for('static', filename='img/visit-sectors-bg.jpg') }});">
+        <div class="swiper-wrapper">
+          <div class="testimonial swiper-slide">
+            <i class="flaticon-quotation-mark"></i>
+            <p>Perfecto Interior completely transformed our bare house into a stunning home. Their attention to detail in our modular kitchen and living room false ceiling was truly exceptional. Highly recommended!</p>
+            <h5>Arijit Mukherjee</h5>
+            <h6>Homeowner, Kolkata</h6>
+          </div>
+          <div class="testimonial swiper-slide">
+            <i class="flaticon-quotation-mark"></i>
+            <p>The team at Perfecto Interior was amazing to work with. They listened to our specific needs and delivered a beautiful bedroom design with premium UPVC doors that changed the entire vibe of our home.</p>
+            <h5>Sneha Das</h5>
+            <h6>Resident, Medinipur</h6>
+          </div>
+          <div class="testimonial swiper-slide">
+            <i class="flaticon-quotation-mark"></i>
+            <p>I am extremely pleased with the custom TV cabinets and wall paneling they did for my office space. Their creative approach and flawless, timely execution genuinely set them apart from the rest.</p>
+            <h5>Rohan Chatterjee</h5>
+            <h6>Business Owner, Kolkata</h6>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="gap">
+    <div class="container">
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="partner swiper-slide">
+            <img alt="clients-logo" src="{{ url_for('static', filename='img/gallery/interiorimages-5.jpeg') }}" class="partner-img">
+          </div>
+          <div class="partner swiper-slide">
+            <img alt="clients-logo" src="{{ url_for('static', filename='img/gallery/interiorimages-6.jpeg') }}" class="partner-img">
+          </div>
+          <div class="partner swiper-slide">
+            <img alt="clients-logo" src="{{ url_for('static', filename='img/gallery/interiorimages-7.jpeg') }}" class="partner-img">
+          </div>
+          <div class="partner swiper-slide">
+            <img alt="clients-logo" src="{{ url_for('static', filename='img/gallery/interiorimages-8.jpeg') }}" class="partner-img">
+          </div>
+          <div class="partner swiper-slide">
+            <img alt="clients-logo" src="{{ url_for('static', filename='img/gallery/interiorimages-9.jpeg') }}" class="partner-img">
+          </div>
+        </div>
+        <div class="swiper-button">
+          <div class="swiper-button-next"><i class="fa-solid fa-arrow-right"></i></div>
+          <div class="swiper-button-prev"><i class="fa-solid fa-arrow-left"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="gap project-section" style="background-color: #000;">
+    <div class="container">
+      <div class="project sec-title-animation animation-style2">
+        <h2 class="title-animation" style="color: #fff;">Ready to Build Your Dream Home</h2>
+        <p style="color: #fff;">Building your dream home is about desire, fantasy — but it is achievable. Anyone can do it with the right team by their side.</p>
+        <a href="#" class="theme-btn hvr-light">Request a Quote</a>
+      </div>
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,79 @@
+    <!-- header -->
+    <header class="two">
+      <div class="header-bottom-bar">
+        <div class="container">
+          <div class="bottom-bar">
+            <div class="two-bar">
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="logo">
+                  <a href="{{ url_for('index') }}">
+                    <img alt="logo" src="{{ url_for('static', filename='img/logo.png') }}" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <a href="javascript:void(0)" id="mobile-menu" class="menu-start">
+              <i class="fa-solid fa-bars"></i>
+            </a>
+            <nav class="navbar">
+              <ul class="navbar-links">
+                <li class="navbar-dropdown">
+                  <a href="{{ url_for('index') }}">Home</a>
+                </li>
+                <li class="navbar-dropdown">
+                  <a href="{{ url_for('about') }}">about</a>
+                </li>
+                <li class="navbar-dropdown">
+                  <a href="{{ url_for('services') }}">Services</a>
+                </li>
+                <li class="navbar-dropdown">
+                  <a href="{{ url_for('projects') }}">Projects</a>
+                </li>
+                <li class="navbar-dropdown">
+                  <a href="{{ url_for('gallery') }}">Gallery</a>
+                </li>
+                <li class="navbar-dropdown">
+                  <a href="{{ url_for('contact') }}">Contact</a>
+                </li>
+              </ul>
+            </nav>
+            <div class="header-search">
+              <div class="header-search-button search-box-outer">
+                <a href="javascript:void(0)" class="search-btn">
+                  <i class="flaticon-search"></i>
+                </a>
+              </div>
+              <a href="#" class="theme-btn hvr-light"> Request a Quote</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mobile-nav" id="mobile-nav">
+        <div class="res-log">
+          <a href="{{ url_for('index') }}">
+            <img alt="logo" src="{{ url_for('static', filename='img/logo.png') }}" />
+          </a>
+        </div>
+        <ul>
+          <li>
+            <a href="{{ url_for('index') }}">Home</a>
+          </li>
+          <li>
+            <a href="{{ url_for('about') }}">about</a>
+          </li>
+          <li>
+            <a href="{{ url_for('services') }}">Services</a>
+          </li>
+          <li>
+            <a href="{{ url_for('projects') }}">Projects</a>
+          </li>
+          <li>
+            <a href="{{ url_for('gallery') }}">Gallery</a>
+          </li>
+          <li>
+            <a href="{{ url_for('contact') }}">Contact</a>
+          </li>
+        </ul>
+        <a href="JavaScript:void(0)" id="res-cross"></a>
+      </div>
+    </header>

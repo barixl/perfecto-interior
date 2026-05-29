@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}404 Not Found - Perfecto Interior{% endblock %}
+
+{% block header %}{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block content %}
+<section class="error-section" style="padding: 180px 0 120px; background-color: #0b0b0b; position: relative; overflow: hidden; font-family: 'Epilogue', sans-serif; text-align: center; min-height: 100vh; display: flex; align-items: center;">
+    <div class="container" style="position: relative; z-index: 2;">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="error-code" style="font-size: clamp(120px, 18vw, 220px); font-weight: 900; color: transparent; -webkit-text-stroke: 2px rgba(205, 164, 94, 0.5); margin: 0; line-height: 1; position: relative; text-shadow: 0 10px 50px rgba(205, 164, 94, 0.15);">
+                    404
+                    <span style="position: absolute; top: 0; left: 0; right: 0; color: #cda45e; clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%); animation: glitch 3.5s infinite linear alternate-reverse;">404</span>
+                </h1>
+                <h2 style="color: #ffffff; font-size: 2.8rem; font-weight: 700; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 2px;">Oops! Page Not Found</h2>
+                <p style="color: rgba(255, 255, 255, 0.7); font-size: 18px; margin: 0 auto 40px; line-height: 1.8; max-width: 600px;">
+                    The page you are looking for might have been removed, had its name changed, or is temporarily unavailable. 
+                    Let's get you back on track to exploring our beautiful interior designs.
+                </p>
+                <a href="{{ url_for('index') }}" class="theme-btn" style="display: inline-flex; align-items: center; justify-content: center; padding: 16px 45px; background-color: #cda45e; border: 2px solid #cda45e; color: #000; font-size: 16px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); text-decoration: none; border-radius: 4px; box-shadow: 0 10px 25px rgba(205, 164, 94, 0.25);" onmouseover="this.style.backgroundColor='transparent'; this.style.color='#cda45e'; this.style.transform='translateY(-5px)';" onmouseout="this.style.backgroundColor='#cda45e'; this.style.color='#000'; this.style.transform='translateY(0)';">
+                    <i class="fas fa-home" style="margin-right: 10px; font-size: 18px;"></i> Return to Home
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Decorative glowing orbs -->
+    <div style="position: absolute; top: 5%; left: -5%; width: 450px; height: 450px; background: radial-gradient(circle, rgba(205, 164, 94, 0.08) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; z-index: 1;"></div>
+    <div style="position: absolute; bottom: -5%; right: -5%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(205, 164, 94, 0.06) 0%, rgba(0,0,0,0) 70%); border-radius: 50%; z-index: 1;"></div>
+</section>
+
+<style>
+@keyframes glitch {
+    0% { clip-path: polygon(0 0, 100% 0, 100% 15%, 0 15%); transform: translate(3px, -3px); }
+    15% { clip-path: polygon(0 20%, 100% 20%, 100% 30%, 0 30%); transform: translate(-3px, 3px); }
+    30% { clip-path: polygon(0 45%, 100% 45%, 100% 55%, 0 55%); transform: translate(3px, 3px); }
+    45% { clip-path: polygon(0 65%, 100% 65%, 100% 75%, 0 75%); transform: translate(-3px, -3px); }
+    60% { clip-path: polygon(0 85%, 100% 85%, 100% 95%, 0 95%); transform: translate(3px, -3px); }
+    75%, 100% { clip-path: polygon(0 0, 0 0, 0 0, 0 0); transform: translate(0, 0); }
+}
+</style>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (typeof gsap !== 'undefined') {
+            gsap.from(".error-code", { y: -40, opacity: 0, duration: 1.2, ease: "power3.out" });
+            gsap.from(".error-section h2", { y: 30, opacity: 0, duration: 1, delay: 0.3, ease: "power3.out" });
+            gsap.from(".error-section p", { y: 30, opacity: 0, duration: 1, delay: 0.5, ease: "power3.out" });
+            gsap.from(".error-section a", { y: 30, opacity: 0, duration: 1, delay: 0.7, ease: "power3.out" });
+        }
+    });
+</script>
+{% endblock %}

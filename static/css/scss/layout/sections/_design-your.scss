@@ -1,0 +1,127 @@
+.design-your {
+    position: relative;
+    margin-bottom: 80px;
+    padding-top: 140px;
+
+    @include respond-to("xxl") {
+        .heading.two {
+            padding-top: 60px;
+        }
+    }
+
+    @include respond-to("lg") {
+        .heading.two {
+            padding-top: 00px;
+        }
+    }
+
+
+    @include respond-to("xxl") {
+        padding-top: 120px;
+        background-size: cover;
+    }
+
+    @include respond-to("lg") {
+        padding-top: 80px;
+    }
+
+    @include respond-to("md") {
+        padding-top: 60px;
+    }
+
+    img.meet-experts-img {
+        position: absolute;
+        z-index: 1;
+        bottom: 0;
+        left: 45%;
+
+        @include respond-to("xl") {
+            display: none;
+        }
+    }
+
+    &::before {
+        @include content(.5);
+        background-color: $drak-color;
+    }
+
+    .heading {
+        width: 70%;
+        margin: 0;
+
+        @include respond-to("xl") {
+            width: 100%;
+        }
+
+        h2 {
+            color: $white-colour;
+        }
+
+        span {
+            color: $white-colour;
+        }
+    }
+}
+
+.count-style {
+    position: relative;
+    padding: 35px 25px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    margin-bottom: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+    &:hover {
+        transform: translateY(-8px);
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba($theme-colour, 0.35);
+        box-shadow: 0 15px 35px rgba($theme-colour, 0.1), 0 0 15px rgba($theme-colour, 0.05);
+
+        h2 {
+            text-shadow: 0 0 15px rgba($theme-colour, 0.35);
+        }
+    }
+
+    h2 {
+        font-size: 70px;
+        color: $theme-colour;
+        font-weight: bold;
+        line-height: 1.1;
+        margin-bottom: 10px;
+        transition: all 0.4s ease;
+
+        @include respond-to("xxl") {
+            font-size: 56px;
+        }
+
+        @include respond-to("md") {
+            font-size: 48px;
+        }
+    }
+
+    sup {
+        font-size: 32px;
+        top: -0.3em;
+        margin-left: 2px;
+    }
+
+    p {
+        color: rgba(255, 255, 255, 0.85);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 0;
+        transition: all 0.4s ease;
+
+        @include respond-to("xxl") {
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+    }
+}
