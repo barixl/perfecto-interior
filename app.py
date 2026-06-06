@@ -4,6 +4,10 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'default_dev_key_perfecto_interior')
@@ -17,8 +21,15 @@ app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD', 'your_app_password
 app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_USERNAME', 'your_email@gmail.com')
 
 # SQLAlchemy configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///contacts.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres.uddbcvgslfjeylfandle:Perfecto%4003021@aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# Cloudinary configuration
+cloudinary.config(
+  cloud_name = "dmeqqzshc",
+  api_key = "845426421424695",
+  api_secret = "o0zyWcU8hLbnWuz1KSB1nPWPdJk"
+)
 
 mail = Mail(app)
 db = SQLAlchemy(app)
@@ -39,6 +50,42 @@ class Admin(db.Model, UserMixin):
     username = db.Column(db.String(50), unique=True, nullable=False)
     password_hash = db.Column(db.String(200), nullable=False)
 
+class HeroImage(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    image_url = db.Column(db.String(500), nullable=False)
+    public_id = db.Column(db.String(200), nullable=False)
+    title = db.Column(db.String(200))
+    subtitle = db.Column(db.String(500))
+
+class NewsItem(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.String(500), nullable=False)
+    link = db.Column(db.String(500), nullable=True)
+    is_active = db.Column(db.Boolean, default=True, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+class Project(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200), nullable=False)
+    description = db.Column(db.Text)
+    image_url = db.Column(db.String(500), nullable=False)
+    public_id = db.Column(db.String(200), nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+class GalleryImage(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    image_url = db.Column(db.String(500), nullable=False)
+    public_id = db.Column(db.String(200), nullable=False)
+    category = db.Column(db.String(100))
+    caption = db.Column(db.String(500))
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+class SiteImage(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), unique=True, nullable=False)
+    image_url = db.Column(db.String(500), nullable=False)
+    public_id = db.Column(db.String(200), nullable=False)
+
 @login_manager.user_loader
 def load_user(user_id):
     return db.session.get(Admin, int(user_id))
@@ -55,7 +102,9 @@ with app.app_context():
 
 @app.route('/')
 def index():
-    return render_template('pages/index.html')
+    images = HeroImage.query.order_by(HeroImage.id.asc()).all()
+    news_items = NewsItem.query.filter_by(is_active=True).order_by(NewsItem.id.desc()).all()
+    return render_template('pages/index.html', images=images, news_items=news_items)
 
 @app.route('/about')
 def about():
@@ -63,7 +112,8 @@ def about():
 
 @app.route('/gallery')
 def gallery():
-    return render_template('pages/gallery.html')
+    images = GalleryImage.query.order_by(GalleryImage.created_at.desc()).all()
+    return render_template('pages/gallery.html', images=images)
 
 @app.route('/services')
 def services():
@@ -182,6 +232,227 @@ def edit_contact(id):
     else:
         flash('Contact not found.', 'error')
     return redirect(url_for('admin_dashboard'))
+
+@app.route('/admin/hero', methods=['GET', 'POST'])
+@login_required
+def admin_hero():
+    if request.method == 'POST':
+        action = request.form.get('action')
+        if action == 'add_news':
+            text = request.form.get('text')
+            link = request.form.get('link')
+            if not text:
+                flash('Announcement text is required.', 'error')
+            else:
+                try:
+                    new_news = NewsItem(text=text, link=link)
+                    db.session.add(new_news)
+                    db.session.commit()
+                    flash('Announcement added successfully!', 'success')
+                except Exception as e:
+                    flash(f'Failed to add announcement: {str(e)}', 'error')
+            return redirect(url_for('admin_hero'))
+        
+        else:
+            # Handle Hero Image Upload (Default)
+            if 'image' not in request.files:
+                flash('No image file selected', 'error')
+                return redirect(request.url)
+            file = request.files['image']
+            if file.filename == '':
+                flash('No image file selected', 'error')
+                return redirect(request.url)
+            if file:
+                title = request.form.get('title')
+                subtitle = request.form.get('subtitle')
+                try:
+                    upload_result = cloudinary.uploader.upload(file, folder="perfecto_interior/hero")
+                    new_image = HeroImage(
+                        image_url=upload_result['secure_url'],
+                        public_id=upload_result['public_id'],
+                        title=title,
+                        subtitle=subtitle
+                    )
+                    db.session.add(new_image)
+                    db.session.commit()
+                    flash('Hero image uploaded successfully!', 'success')
+                except Exception as e:
+                    flash(f'Upload failed: {str(e)}', 'error')
+            return redirect(url_for('admin_hero'))
+            
+    images = HeroImage.query.order_by(HeroImage.id.desc()).all()
+    news_items = NewsItem.query.order_by(NewsItem.id.desc()).all()
+    return render_template('admin/hero.html', images=images, news_items=news_items)
+
+@app.route('/admin/news/toggle/<int:id>', methods=['POST'])
+@login_required
+def toggle_news(id):
+    item = db.session.get(NewsItem, id)
+    if item:
+        item.is_active = not item.is_active
+        db.session.commit()
+        flash('Announcement status updated successfully.', 'success')
+    else:
+        flash('Announcement not found.', 'error')
+    return redirect(url_for('admin_hero'))
+
+@app.route('/admin/news/edit/<int:id>', methods=['POST'])
+@login_required
+def edit_news(id):
+    item = db.session.get(NewsItem, id)
+    if item:
+        text = request.form.get('text')
+        link = request.form.get('link')
+        if not text:
+            flash('Announcement text is required.', 'error')
+        else:
+            item.text = text
+            item.link = link
+            db.session.commit()
+            flash('Announcement updated successfully.', 'success')
+    else:
+        flash('Announcement not found.', 'error')
+    return redirect(url_for('admin_hero'))
+
+@app.route('/admin/news/delete/<int:id>', methods=['POST'])
+@login_required
+def delete_news(id):
+    item = db.session.get(NewsItem, id)
+    if item:
+        db.session.delete(item)
+        db.session.commit()
+        flash('Announcement deleted successfully.', 'success')
+    else:
+        flash('Announcement not found.', 'error')
+    return redirect(url_for('admin_hero'))
+
+@app.route('/admin/hero/delete/<int:id>', methods=['POST'])
+@login_required
+def delete_hero_image(id):
+    image = db.session.get(HeroImage, id)
+    if image:
+        try:
+            cloudinary.uploader.destroy(image.public_id)
+            db.session.delete(image)
+            db.session.commit()
+            flash('Image deleted successfully.', 'success')
+        except Exception as e:
+            flash(f'Deletion failed: {str(e)}', 'error')
+    else:
+        flash('Image not found.', 'error')
+    return redirect(url_for('admin_hero'))
+
+@app.route('/admin/hero/edit/<int:id>', methods=['POST'])
+@login_required
+def edit_hero_image(id):
+    image = db.session.get(HeroImage, id)
+    if image:
+        title = request.form.get('title')
+        subtitle = request.form.get('subtitle')
+        image.title = title
+        image.subtitle = subtitle
+        
+        if 'image' in request.files:
+            file = request.files['image']
+            if file and file.filename != '':
+                try:
+                    if image.public_id:
+                        cloudinary.uploader.destroy(image.public_id)
+                    upload_result = cloudinary.uploader.upload(file, folder="perfecto_interior/hero")
+                    image.image_url = upload_result['secure_url']
+                    image.public_id = upload_result['public_id']
+                except Exception as e:
+                    flash(f'New image upload failed: {str(e)}', 'error')
+                    return redirect(url_for('admin_hero'))
+        
+        try:
+            db.session.commit()
+            flash('Hero slide updated successfully.', 'success')
+        except Exception as e:
+            flash(f'Failed to update hero slide: {str(e)}', 'error')
+    else:
+        flash('Hero image not found.', 'error')
+    return redirect(url_for('admin_hero'))
+
+
+@app.route('/admin/gallery', methods=['GET', 'POST'])
+@login_required
+def admin_gallery():
+    if request.method == 'POST':
+        if 'image' not in request.files:
+            flash('No image file selected', 'error')
+            return redirect(request.url)
+        file = request.files['image']
+        if file.filename == '':
+            flash('No image file selected', 'error')
+            return redirect(request.url)
+        if file:
+            category = request.form.get('category')
+            caption = request.form.get('caption')
+            try:
+                upload_result = cloudinary.uploader.upload(file, folder="perfecto_interior/gallery")
+                new_image = GalleryImage(
+                    image_url=upload_result['secure_url'],
+                    public_id=upload_result['public_id'],
+                    category=category,
+                    caption=caption
+                )
+                db.session.add(new_image)
+                db.session.commit()
+                flash('Gallery image uploaded successfully!', 'success')
+            except Exception as e:
+                flash(f'Upload failed: {str(e)}', 'error')
+        return redirect(url_for('admin_gallery'))
+    images = GalleryImage.query.order_by(GalleryImage.created_at.desc()).all()
+    return render_template('admin/gallery.html', images=images)
+
+@app.route('/admin/gallery/delete/<int:id>', methods=['POST'])
+@login_required
+def delete_gallery_image(id):
+    image = db.session.get(GalleryImage, id)
+    if image:
+        try:
+            cloudinary.uploader.destroy(image.public_id)
+            db.session.delete(image)
+            db.session.commit()
+            flash('Image deleted successfully.', 'success')
+        except Exception as e:
+            flash(f'Deletion failed: {str(e)}', 'error')
+    else:
+        flash('Image not found.', 'error')
+    return redirect(url_for('admin_gallery'))
+
+@app.route('/admin/gallery/edit/<int:id>', methods=['POST'])
+@login_required
+def edit_gallery_image(id):
+    image = db.session.get(GalleryImage, id)
+    if image:
+        category = request.form.get('category')
+        caption = request.form.get('caption')
+        image.category = category
+        image.caption = caption
+        
+        if 'image' in request.files:
+            file = request.files['image']
+            if file and file.filename != '':
+                try:
+                    if image.public_id:
+                        cloudinary.uploader.destroy(image.public_id)
+                    upload_result = cloudinary.uploader.upload(file, folder="perfecto_interior/gallery")
+                    image.image_url = upload_result['secure_url']
+                    image.public_id = upload_result['public_id']
+                except Exception as e:
+                    flash(f'New image upload failed: {str(e)}', 'error')
+                    return redirect(url_for('admin_gallery'))
+        
+        try:
+            db.session.commit()
+            flash('Gallery image updated successfully.', 'success')
+        except Exception as e:
+            flash(f'Failed to update gallery image: {str(e)}', 'error')
+    else:
+        flash('Image not found.', 'error')
+    return redirect(url_for('admin_gallery'))
 
 @app.errorhandler(404)
 def page_not_found(e):

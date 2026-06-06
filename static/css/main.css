@@ -1,103 +1,5 @@
-/*-----------------------------------------------------------------------------------
-
-    Template Name: Archik | Architecture Studio and Interior HTML Template
-    Author: winsfolio
-    Support: winsfolio@gmail.com 
-    Version: 1.0
-
------------------------------------------------------------------------------------
-
-/************ TABLE OF CONTENTS ***************
-
-	-----------------
-    01. utils CSS
-	-----------------
-		1.1 Root
-		1.2 Mixins 
-
-	-----------------
-    02. COMPONENTS CSS
-	-----------------
-		2.1 mobile-nav
-		2.2 search-popup
-		2.3 loader
-		2.4 btn
-		2.5 pagination
-		2.6 accordion 
-		2.7 social-media
-		2.8 wwb
-		2.9 marquee
-		2.10 flip-img
-		2.11 hover-img-two
-		2.12 breadcrumb
-		2.13 theme-pagination
-		2.14 topics
-		2.15 scroll-top 
 
 
-	-----------------
-    03. HEADER CSS
-	-----------------
-		3.1 Header 1
-		3.2 Header 2 
-
-    ---------------------------------
-	04. FOOTER CSS
-	---------------------------------
-		4.1 footer
-		4.2 footer-two
-		4.3 footer-three
-
-	---------------------------------
-	05. SECTIONS CSS
-	---------------------------------
-		5.1 custom-text
-		5.2 hero-section-one
-		5.3 heading
-		5.4 introduction
-		5.5 what-we-do 
-		5.6 innovative
-		5.7 design-your
-		5.8 meet-experts
-		5.9 services-one
-		5.10 swiper-button
-		5.11 partner
-		5.12 blog-one
-		5.13 subscribe
-		5.14 hero-section-two
-		5.15 concept-design
-		5.16 dream-home
-		5.17 creating-future
-		5.19 leadership
-		5.10 read-journey
-		5.21 project-mind
-		5.22 hero-three
-		5.23 design-section
-		5.24 portfolio
-		5.25 team-style-one
-		5.26 architect
-		5.27 Visit-slider
-		5.28 testimonial-section
-		5.29 project-section
-		5.30 client-section
-		5.31 architect-2
-		5.32 history
-
-
-	---------------------------------
-	06. PAGES CSS
-	---------------------------------
-		6.1 bannr
-		6.2 our-blog
-		6.3 our-team
-		6.4 studio
-		6.5 news-details
-		6.6 project-details
-		6.7 project-details-two
-		6.8 team-detail
-		6.9 content-page 
-
---------------------------------------------------------------------------------------------------- */
 @import url("https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap");
 .mobile-nav {
   position: fixed;
@@ -264,7 +166,9 @@
 .for #nav-icon4 {
   color: #000;
 }
-
+.btn-close{
+  padding : 0.6rem 1.5rem !important;
+}
 #nav-icon4 span {
   transform-origin: left center;
 }
@@ -8222,4 +8126,165 @@ ul.client-list li h5 {
 
 .floating-whatsapp {
   background-color: #25d366;
+}
+
+/*================================================================================*
+ * News Slider Ticker Styling (Gold Luxury Theme)
+ *================================================================================*/
+.news-ticker-container {
+  position: absolute;
+  bottom: -32px;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+  padding: 0;
+}
+
+.news-ticker-inner {
+  display: flex;
+  align-items: center;
+  background: rgba(10, 10, 10, 0.75);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(205, 164, 94, 0.3);
+  border-radius: 50px;
+  padding: 10px 24px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.news-ticker-inner:hover {
+  border-color: rgba(205, 164, 94, 0.5);
+  box-shadow: 0 15px 40px rgba(205, 164, 94, 0.15), 0 0 15px rgba(205, 164, 94, 0.05);
+}
+
+.news-ticker-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-right: 20px;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+  flex-shrink: 0;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #cda45e;
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+
+@keyframes pulse-glow {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.6;
+    box-shadow: 0 0 0 0 rgba(205, 164, 94, 0.7);
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+    box-shadow: 0 0 0 8px rgba(205, 164, 94, 0);
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0.6;
+    box-shadow: 0 0 0 0 rgba(205, 164, 94, 0);
+  }
+}
+
+.label-text {
+  color: #cda45e;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: "Epilogue", sans-serif;
+}
+
+.news-content-slider {
+  flex-grow: 1;
+  margin-left: 20px;
+  height: 24px;
+  overflow: hidden;
+}
+
+.news-content-slider .swiper-slide {
+  display: flex;
+  align-items: center;
+  height: 24px;
+}
+
+.news-ticker-text, .news-ticker-link {
+  color: #f1f5f9;
+  font-size: 13.5px;
+  font-weight: 500;
+  text-decoration: none !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  transition: color 0.3s ease;
+  font-family: "Epilogue", sans-serif;
+}
+
+.news-ticker-link {
+  cursor: pointer;
+}
+
+.news-ticker-link:hover {
+  color: #cda45e !important;
+}
+
+.news-ticker-link i {
+  font-size: 11px;
+  transition: transform 0.3s ease;
+  color: #cda45e;
+}
+
+.news-ticker-link:hover i {
+  transform: translateX(5px);
+}
+
+@media (max-width: 991px) {
+  .hero-two-section {
+    margin-bottom: 0px !important;
+  }
+  .news-ticker-container {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding: 0 15px;
+  }
+  .news-ticker-inner {
+    border-radius: 16px;
+    padding: 12px 20px;
+  }
+}
+
+@media (max-width: 575px) {
+  .news-ticker-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 12px;
+    padding: 15px;
+  }
+  .news-ticker-label {
+    border-right: none;
+    padding-right: 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+  }
+  .news-content-slider {
+    margin-left: 0;
+    width: 100%;
+  }
 }

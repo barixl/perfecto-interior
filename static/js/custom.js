@@ -493,7 +493,7 @@ if (typeof Swiper !== 'undefined') {
       clickable: true,
     },
   });
-  var swiper = new Swiper(".hero-two-slider", {
+  var heroTwoSwiper = new Swiper(".hero-two-slider", {
     slidesPerView: 1,
     loop: true,
     speed: 1000,
@@ -503,12 +503,15 @@ if (typeof Swiper !== 'undefined') {
     },
     autoplay: {
       delay: 3000,
+      disableOnInteraction: false,
+      pauseOnMouseEnter: true,
     },
     pagination: {
       el: ".swiper-pagination",
       clickable: true,
     },
   });
+  window.heroTwoSwiper = heroTwoSwiper;
 
   var swiper = new Swiper(".hero-three-slider", {
     slidesPerView: 1,

@@ -16,11 +16,11 @@
         }
         
         body {
-            background-color: #0f172a;
+            background-color: #0a0a0a;
             background-image: 
-                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-                radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
-                radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+                radial-gradient(at 0% 0%, hsla(39, 45%, 15%, 1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(39, 20%, 10%, 1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(39, 45%, 15%, 1) 0, transparent 50%);
             background-size: cover;
             background-attachment: fixed;
             height: 100vh;
@@ -43,7 +43,7 @@
         .shape-1 {
             width: 400px;
             height: 400px;
-            background: #3b82f6;
+            background: #cda45e;
             top: -100px;
             left: -100px;
             border-radius: 50%;
@@ -52,7 +52,7 @@
         .shape-2 {
             width: 500px;
             height: 500px;
-            background: #ec4899;
+            background: #b58b45;
             bottom: -150px;
             right: -100px;
             border-radius: 50%;
@@ -75,10 +75,10 @@
         }
 
         .login-card {
-            background: rgba(15, 23, 42, 0.4);
+            background: rgba(20, 20, 20, 0.6);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(205, 164, 94, 0.2);
             border-radius: 24px;
             padding: 48px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
@@ -117,10 +117,10 @@
 
         .brand-logo i {
             font-size: 40px;
-            background: linear-gradient(135deg, #60a5fa, #c084fc);
+            background: linear-gradient(135deg, #cda45e, #f5d698);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.4));
+            filter: drop-shadow(0 0 10px rgba(205, 164, 94, 0.4));
         }
 
         .login-card h2 {
@@ -129,7 +129,7 @@
             font-weight: 700;
             font-size: 28px;
             letter-spacing: -0.5px;
-            background: linear-gradient(to right, #fff, #cbd5e1);
+            background: linear-gradient(to right, #fff, #cda45e);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             transform: translateZ(20px);
@@ -168,13 +168,13 @@
         .form-control:focus {
             background: rgba(255, 255, 255, 0.1);
             color: #fff;
-            box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.15);
-            border-color: #60a5fa;
+            box-shadow: 0 0 0 4px rgba(205, 164, 94, 0.15);
+            border-color: #cda45e;
             outline: none;
         }
 
         .input-group:focus-within i {
-            color: #60a5fa;
+            color: #cda45e;
         }
 
         .form-control::placeholder {
@@ -182,7 +182,7 @@
         }
 
         .btn-login {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            background: linear-gradient(135deg, #cda45e, #b58b45);
             color: white;
             border: none;
             border-radius: 12px;
@@ -193,7 +193,7 @@
             letter-spacing: 0.5px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(96, 165, 250, 0.4);
+            box-shadow: 0 4px 15px rgba(205, 164, 94, 0.4);
             position: relative;
             overflow: hidden;
             display: flex;
@@ -205,7 +205,7 @@
 
         .btn-login:hover {
             transform: translateZ(30px) translateY(-2px);
-            box-shadow: 0 8px 25px rgba(96, 165, 250, 0.6);
+            box-shadow: 0 8px 25px rgba(205, 164, 94, 0.6);
         }
 
         .btn-login:active {
@@ -280,6 +280,11 @@
             font-size: 1.2rem;
             line-height: 1;
             cursor: pointer;
+            position: static !important;
+            padding: 0 !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>

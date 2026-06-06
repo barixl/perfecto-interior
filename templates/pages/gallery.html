@@ -1,10 +1,10 @@
-{% extends "base.html" %}
-
-{% block title %}Gallery - Perfecto Interior{% endblock %}
-
-{% block extra_head %}
+{% extends "base.html" %} {% block title %}Gallery - Perfecto Interior{%
+endblock %} {% block extra_head %}
 <style>
   /* Custom Luxury Gallery Styles */
+  .fancybox-caption, .fancybox-caption__body {
+    display: none !important;
+  }
   .gallery-filter-buttons {
     display: flex;
     justify-content: center;
@@ -72,7 +72,12 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.2) 60%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.2) 60%,
+      rgba(0, 0, 0, 0) 100%
+    );
     opacity: 0;
     transition: opacity 0.4s ease;
     display: flex;
@@ -87,6 +92,7 @@
   }
 
   .gallery-category {
+    display: none;
     color: #cda45e;
     font-size: 13px;
     font-weight: 600;
@@ -98,6 +104,7 @@
   }
 
   .gallery-title {
+    display: none;
     color: #fff;
     font-size: 20px;
     font-weight: 700;
@@ -157,7 +164,12 @@
     }
     .gallery-overlay {
       opacity: 1 !important;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.3) 75%, rgba(0, 0, 0, 0) 100%) !important;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.85) 0%,
+        rgba(0, 0, 0, 0.3) 75%,
+        rgba(0, 0, 0, 0) 100%
+      ) !important;
       padding: 15px !important;
     }
     .gallery-category {
@@ -177,46 +189,109 @@
     }
   }
 </style>
-{% endblock %}
-
-{% block content %}
+{% endblock %} {% block content %}
 <!-- Banner -->
-  <section class="bannr" style="background: url('{{ url_for('static', filename='img/about/about_01.png') }}') no-repeat center/cover; position: relative;">
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5);"></div>
-    <div class="container" style="position: relative; z-index: 2;">
-      <div class="hero-text-three">
-        <h1>Our Gallery</h1>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"> <a href="{{ url_for('index') }}">Home</a> </li>
-          <li class="breadcrumb-item active" aria-current="page">Gallery</li>
-        </ol>
-      </div>
+<section
+  class="bannr"
+  style="background: url('{{ url_for('static', filename='img/about/about_01.png') }}') no-repeat center/cover; position: relative;"
+>
+  <div
+    style="
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    "
+  ></div>
+  <div class="container" style="position: relative; z-index: 2">
+    <div class="hero-text-three">
+      <h1>Our Gallery</h1>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{{ url_for('index') }}">Home</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Gallery</li>
+      </ol>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Gallery Section -->
-  <section class="gap">
-    <div class="container">
-      <div class="heading text-center sec-title-animation animation-style2">
-        <img src="{{ url_for('static', filename='img/heading-img.png') }}" alt="img" style="margin: 0 auto 10px; display: block;">
-        <span class="title-animation" style="color: #cda45e; display: block; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;">Visual Journey</span>
-        <h2 class="title-animation">Explore Our Interior Creations</h2>
-      </div>
+<!-- Gallery Section -->
+<section class="gap">
+  <div class="container">
+    <div class="heading text-center sec-title-animation animation-style2">
+      <img
+        src="{{ url_for('static', filename='img/heading-img.png') }}"
+        alt="img"
+        style="margin: 0 auto 10px; display: block"
+      />
+      <span
+        class="title-animation"
+        style="
+          color: #cda45e;
+          display: block;
+          font-weight: 500;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+        "
+        >Visual Journey</span
+      >
+      <h2 class="title-animation">Explore Our Interior Creations</h2>
+    </div>
 
-      <!-- Filters -->
-      <div class="gallery-filter-buttons">
-        <button class="filter-btn active" data-filter="all">All Designs</button>
-        <button class="filter-btn" data-filter="kitchen">Modular Kitchen</button>
-        <button class="filter-btn" data-filter="bedroom">Bedroom</button>
-        <button class="filter-btn" data-filter="living">Living & Decor</button>
-        <button class="filter-btn" data-filter="commercial">Commercial / False Ceiling</button>
-      </div>
+    <!-- Filters -->
+    <div class="gallery-filter-buttons">
+      <button class="filter-btn active" data-filter="all">All Designs</button>
+      <button class="filter-btn" data-filter="kitchen">Modular Kitchen</button>
+      <button class="filter-btn" data-filter="bedroom">Bedroom</button>
+      <button class="filter-btn" data-filter="living">Living & Decor</button>
+      <button class="filter-btn" data-filter="commercial">
+        Commercial / False Ceiling
+      </button>
+      <button class="filter-btn" data-filter="other">Other</button>
+    </div>
 
-      <!-- Grid -->
-      <div class="gallery-grid" id="gallery-grid">
-        <!-- Image 1 -->
-        
-        <!-- Image 2 -->
+    <!-- Grid -->
+    <div class="gallery-grid" id="gallery-grid">
+      {% if images %}
+        {% for image in images %}
+        <div class="gallery-item" data-category="{{ image.category }}">
+          <a
+            href="{{ image.image_url }}"
+            data-fancybox="gallery"
+            data-caption="{% if image.caption %}{{ image.caption }}{% elif image.category == 'kitchen' %}Modular Kitchen{% elif image.category == 'bedroom' %}Bedroom{% elif image.category == 'living' %}Living & Decor{% elif image.category == 'commercial' %}Commercial / False Ceiling{% elif image.category == 'other' %}Other{% else %}{{ image.category|capitalize }}{% endif %}"
+          >
+            <img
+              src="{{ image.image_url }}"
+              alt="{{ image.category|capitalize }} Design"
+            />
+            <div class="gallery-overlay">
+              <span class="gallery-category">
+                {% if image.category == 'kitchen' %}Modular Kitchen
+                {% elif image.category == 'bedroom' %}Bedroom
+                {% elif image.category == 'living' %}Living & Decor
+                {% elif image.category == 'commercial' %}Commercial / False Ceiling
+                {% elif image.category == 'other' %}Other
+                {% else %}{{ image.category|capitalize }}{% endif %}
+              </span>
+              <h4 class="gallery-title">
+                {% if image.caption %}
+                  {{ image.caption }}
+                {% elif image.category == 'kitchen' %}Modular Kitchen
+                {% elif image.category == 'bedroom' %}Bedroom Design
+                {% elif image.category == 'living' %}Living Space
+                {% elif image.category == 'commercial' %}Commercial Interior
+                {% elif image.category == 'other' %}Interior Design
+                {% else %}{{ image.category|capitalize }} Design{% endif %}
+              </h4>
+              <div class="gallery-zoom-btn"><i class="fa-solid fa-plus"></i></div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+<!-- Image 2 -->
         <div class="gallery-item" data-category="kitchen">
           <a href="{{ url_for('static', filename='img/gallery/interiorimages-2.jpeg') }}" data-fancybox="gallery" data-caption="Modern Modular Kitchen with Smart Cabinets">
             <img src="{{ url_for('static', filename='img/gallery/interiorimages-2.jpeg') }}" alt="Smart Kitchen">
@@ -695,55 +770,66 @@
             </div>
           </a>
         </div>
-      </div>
+      
+      {% else %}
+        <div class="col-12 text-center py-5">
+          <p>No gallery images uploaded yet.</p>
+        </div>
+      {% endif %}
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CTA section -->
-  <section class="gap project-section" style="background-color: #000;">
-    <div class="container">
-      <div class="project sec-title-animation animation-style2">
-        <h2 class="title-animation" style="color: #fff;">Ready to Build Your Dream Home</h2>
-        <p style="color: #fff;">Building your dream home is about desire, fantasy — but it is achievable. Anyone can do it with the right team by their side.</p>
-        <a href="{{ url_for('contact') }}" class="theme-btn hvr-light">Request a Quote</a>
-      </div>
+<!-- CTA section -->
+<section class="gap project-section" style="background-color: #000">
+  <div class="container">
+    <div class="project sec-title-animation animation-style2">
+      <h2 class="title-animation" style="color: #fff">
+        Ready to Build Your Dream Home
+      </h2>
+      <p style="color: #fff">
+        Building your dream home is about desire, fantasy — but it is
+        achievable. Anyone can do it with the right team by their side.
+      </p>
+      <a href="{{ url_for('contact') }}" class="theme-btn hvr-light"
+        >Request a Quote</a
+      >
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Footer -->
-{% endblock %}
-
-{% block extra_scripts %}
+<!-- Footer -->
+{% endblock %} {% block extra_scripts %}
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const galleryItems = document.querySelectorAll('.gallery-item');
+  document.addEventListener("DOMContentLoaded", function () {
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const galleryItems = document.querySelectorAll(".gallery-item");
 
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
         // Remove active class from all buttons
-        filterButtons.forEach(btn => btn.classList.remove('active'));
+        filterButtons.forEach((btn) => btn.classList.remove("active"));
         // Add active class to clicked button
-        button.classList.add('active');
+        button.classList.add("active");
 
-        const filterValue = button.getAttribute('data-filter');
+        const filterValue = button.getAttribute("data-filter");
 
-        galleryItems.forEach(item => {
-          const category = item.getAttribute('data-category');
-          
+        galleryItems.forEach((item) => {
+          const category = item.getAttribute("data-category");
+
           // Adding a simple fade animation effect
-          item.style.opacity = '0';
-          item.style.transform = 'scale(0.9)';
-          
+          item.style.opacity = "0";
+          item.style.transform = "scale(0.9)";
+
           setTimeout(() => {
-            if (filterValue === 'all' || category === filterValue) {
-              item.classList.remove('hidden');
+            if (filterValue === "all" || category === filterValue) {
+              item.classList.remove("hidden");
               setTimeout(() => {
-                item.style.opacity = '1';
-                item.style.transform = 'scale(1)';
+                item.style.opacity = "1";
+                item.style.transform = "scale(1)";
               }, 50);
             } else {
-              item.classList.add('hidden');
+              item.classList.add("hidden");
             }
           }, 300);
         });

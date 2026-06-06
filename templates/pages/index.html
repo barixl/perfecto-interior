@@ -1,6 +1,52 @@
 {% extends "base.html" %}
 
 {% block content %}
+<style>
+  .slider-control-btn {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .slider-control-btn:hover {
+    background: #cda45e;
+    color: #000;
+    border-color: #cda45e;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(205, 164, 94, 0.5);
+  }
+  .slider-control-btn i {
+    font-size: 16px;
+    transition: transform 0.2s ease;
+  }
+  .slider-control-btn:active {
+    transform: scale(0.95);
+  }
+  @media (max-width: 768px) {
+    .slider-control-btn {
+      bottom: 20px;
+      right: 20px;
+      width: 38px;
+      height: 38px;
+    }
+    .slider-control-btn i {
+      font-size: 13px;
+    }
+  }
+</style>
 <section
       class="hero-two-section"
       style="background-image: url(&quot;{{ url_for('static', filename='img/bg/bg_02.jpg') }}&quot;)"
@@ -8,14 +54,32 @@
       <div class="container">
         <div class="hero-two-slider swiper">
           <div class="swiper-wrapper">
+            {% if images %}
+              {% for image in images %}
+              <div class="hero-two-text swiper-slide">
+                <h2>{{ image.title or '' }}</h2>
+                <p>{{ image.subtitle or '' }}</p>
+                <div class="btnn">
+                  <a href="https://wa.me/918759636811" target="_blank" class="theme-btn hvr-light"
+                    >Book Free Consulation</a
+                  >
+                  <a href="{{ url_for('about') }}" class="bt2"
+                    >View Our Work<i class="fa-solid fa-arrow-right"></i
+                  ></a>
+                </div>
+                <img src="{{ image.image_url }}" alt="img" />
+              </div>
+              {% endfor %}
+            {% endif %}
+
             <div class="hero-two-text swiper-slide">
               <h2>Need an Innovative interior design?</h2>
               <p>Make Your dream home a reality, with house architets</p>
               <div class="btnn">
-                <a href="#" class="theme-btn hvr-light"
+                <a href="https://wa.me/918759636811" target="_blank" class="theme-btn hvr-light"
                   >Book Free Consulation</a
                 >
-                <a href="#" class="bt2"
+                <a href="{{ url_for('about') }}" class="bt2"
                   >View Our Work<i class="fa-solid fa-arrow-right"></i
                 ></a>
               </div>
@@ -28,10 +92,10 @@
                 within your budget.
               </p>
               <div class="btnn">
-                <a href="#" class="theme-btn hvr-light"
+                <a href="https://wa.me/918759636811" target="_blank" class="theme-btn hvr-light"
                   >Get Free Consultation</a
                 >
-                <a href="#" class="bt2"
+                <a href="{{ url_for('about') }}" class="bt2"
                   >View Our Work<i class="fa-solid fa-arrow-right"></i
                 ></a>
               </div>
@@ -44,20 +108,55 @@
                 Medinipur & Ghatal.
               </p>
               <div class="btnn">
-                <a href="#" class="theme-btn hvr-light"
+                <a href="https://wa.me/918759636811" target="_blank" class="theme-btn hvr-light"
                   >Get Free Consultation</a
                 >
-                <a href="#" class="bt2"
+                <a href="{{ url_for('about') }}" class="bt2"
                   >How it works<i class="fa-solid fa-arrow-right"></i
                 ></a>
               </div>
               <img src="{{ url_for('static', filename='img/slider/slider_03.jpg') }}" alt="img" />
             </div>
+            
           </div>
           <div class="swiper-pagination"></div>
+          <!-- Play/Pause Control Button -->
+          <button id="slider-pause-play-btn" class="slider-control-btn" title="Pause Slider" type="button">
+            <i class="fa-solid fa-pause"></i>
+          </button>
         </div>
       </div>
-    </section>
+      
+      <!-- News Ticker Slider -->
+      {% if news_items %}
+      <div class="news-ticker-container">
+        <div class="container">
+          <div class="news-ticker-inner">
+            <div class="news-ticker-label">
+              <span class="pulse-dot"></span>
+              <span class="label-text">ANNOUNCEMENTS</span>
+            </div>
+            <div class="news-content-slider swiper-container">
+              <div class="swiper-wrapper">
+                {% for item in news_items %}
+                <div class="swiper-slide">
+                  {% if item.link %}
+                  <a href="{{ item.link }}" class="news-ticker-link">
+                    {{ item.text }}
+                    <i class="fa-solid fa-arrow-right-long ms-2"></i>
+                  </a>
+                  {% else %}
+                  <span class="news-ticker-text">{{ item.text }}</span>
+                  {% endif %}
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+</section>
 
     <section class="gap">
       <div class="container">
@@ -869,9 +968,48 @@
         <div class="project-mind sec-title-animation animation-style2">
           <span class="title-animation">Perfecto Interior</span>
           <h2 class="title-animation">Architecture and Town Planning</h2>
-          <a href="#" class="theme-btn hvr-light">Get Free Consultation</a>
+          <a href="https://wa.me/918759636811" target="_blank" class="theme-btn hvr-light">Get Free Consultation</a>
         </div>
       </div>
       <img src="{{ url_for('static', filename='img/bg/Design.png') }}" alt="img" />
     </section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof Swiper !== 'undefined') {
+      var newsSwiper = new Swiper('.news-content-slider', {
+        direction: 'vertical',
+        loop: true,
+        autoplay: {
+          delay: 4500,
+          disableOnInteraction: false,
+        },
+        speed: 800,
+        autoHeight: false,
+        allowTouchMove: false
+      });
+    }
+
+    // Play/Pause Button Logic for hero slider
+    const pausePlayBtn = document.getElementById('slider-pause-play-btn');
+    if (pausePlayBtn) {
+      pausePlayBtn.addEventListener('click', function() {
+        const icon = pausePlayBtn.querySelector('i');
+        if (window.heroTwoSwiper) {
+          if (window.heroTwoSwiper.autoplay.running) {
+            window.heroTwoSwiper.autoplay.stop();
+            icon.className = 'fa-solid fa-play';
+            pausePlayBtn.setAttribute('title', 'Play Slider');
+          } else {
+            window.heroTwoSwiper.autoplay.start();
+            icon.className = 'fa-solid fa-pause';
+            pausePlayBtn.setAttribute('title', 'Pause Slider');
+          }
+        }
+      });
+    }
+  });
+</script>
 {% endblock %}
