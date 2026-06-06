@@ -291,6 +291,7 @@ endblock %} {% block extra_head %}
           </a>
         </div>
         {% endfor %}
+      {% endif %}
 <!-- Image 2 -->
         <div class="gallery-item" data-category="kitchen">
           <a href="{{ url_for('static', filename='img/gallery/interiorimages-2.jpeg') }}" data-fancybox="gallery" data-caption="Modern Modular Kitchen with Smart Cabinets">
@@ -771,11 +772,6 @@ endblock %} {% block extra_head %}
           </a>
         </div>
       
-      {% else %}
-        <div class="col-12 text-center py-5">
-          <p>No gallery images uploaded yet.</p>
-        </div>
-      {% endif %}
     </div>
   </div>
 </section>
