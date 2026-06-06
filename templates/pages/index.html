@@ -659,24 +659,27 @@
             </div>
           </div>
           <div class="col-lg-5">
-            <form class="meet-experts">
+            <form class="meet-experts" id="meet-experts-form">
               <h2>Meet Experts!</h2>
               <p>contact with designer for interior design</p>
               <input
                 type="text"
                 name="full_name"
                 placeholder="Full Name"
+                required
               />
               <input
                 type="email"
-                name="email address"
+                name="email"
                 placeholder="email address"
+                required
               />
-              <input type="number" name="phone no" placeholder="phone no" />
-              <textarea placeholder="message"></textarea>
-              <button class="theme-btn hvr-light">
+              <input type="number" name="phone" placeholder="phone no" required />
+              <textarea name="message" placeholder="message" required></textarea>
+              <button type="submit" class="theme-btn hvr-light">
                 Book Free Consultation
               </button>
+              <div id="meet-experts-message" class="mt-3"></div>
             </form>
           </div>
         </div>
@@ -697,147 +700,56 @@
         <div class="row">
           <div class="col-lg-8">
             <div class="tab-content" id="v-pills-tabContent">
+              {% if team %}
+                {% for member in team %}
               <div
-                class="tab-pane fade show active"
-                id="v-pills-home"
+                class="tab-pane fade {% if loop.first %}show active{% endif %}"
+                id="v-pills-{{ member.id }}"
                 role="tabpanel"
-                aria-labelledby="v-pills-home-tab"
+                aria-labelledby="v-pills-{{ member.id }}-tab"
               >
                 <div class="leadership">
-                  <img src="https://placehold.co/351x520" alt="img" />
+                  <img src="{{ member.image_url }}" alt="{{ member.name }}" />
                   <div>
-                    <h3>Team 1</h3>
-                    <p>Lead Interior Designer</p>
-                    <h5>
-                      “ We don't just design spaces — we craft experiences that
-                      feel like home.”
-                    </h5>
+                    <h3>{{ member.name }}</h3>
+                    <p>{{ member.role }}</p>
+                    {% if member.description %}
+                    <h5>{{ member.description }}</h5>
+                    {% endif %}
+                    {% if member.phone %}
                     <h6>
-                      P.<a href="callto:+44-1123-2234-21">+44 1123-2234-21</a>
+                      P.<a href="callto:{{ member.phone|replace(' ', '-') }}">{{ member.phone }}</a>
                     </h6>
+                    {% endif %}
+                    {% if member.email %}
                     <h6>
-                      E.<a href="mailto:usernamei@domain.com"
-                        >usernamei@domain.com</a
+                      E.<a href="mailto:{{ member.email }}"
+                        >{{ member.email }}</a
                       >
                     </h6>
+                    {% endif %}
                     <ul class="social-media">
+                      {% if member.facebook_link %}
                       <li>
-                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="{{ member.facebook_link }}" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
                       </li>
+                      {% endif %}
+                      {% if member.twitter_link %}
                       <li>
-                        <a href="#"><i class="flaticon-twitter"></i></a>
+                        <a href="{{ member.twitter_link }}" target="_blank"><i class="fa-brands fa-twitter"></i></a>
                       </li>
+                      {% endif %}
+                      {% if member.instagram_link %}
                       <li>
-                        <a href="#"><i class="flaticon-instagram"></i></a>
+                        <a href="{{ member.instagram_link }}" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                       </li>
+                      {% endif %}
                     </ul>
                   </div>
                 </div>
               </div>
-              <div
-                class="tab-pane fade"
-                id="v-pills-profile"
-                role="tabpanel"
-                aria-labelledby="v-pills-profile-tab"
-              >
-                <div class="leadership">
-                  <img src="https://placehold.co/351x520" alt="img" />
-                  <div>
-                    <h3>Team 2</h3>
-                    <p>Modular Kitchen Specialist</p>
-                    <h5>
-                      “Smart kitchens are where beauty meets functionality.”
-                    </h5>
-                    <h6>
-                      P.<a href="callto:+44-1123-2234-21">+44 1123-2234-21</a>
-                    </h6>
-                    <h6>
-                      E.<a href="mailto:usernamei@domain.com"
-                        >usernamei@domain.com</a
-                      >
-                    </h6>
-                    <ul class="social-media">
-                      <li>
-                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                      </li>
-                      <li>
-                        <a href="#"><i class="flaticon-twitter"></i></a>
-                      </li>
-                      <li>
-                        <a href="#"><i class="flaticon-instagram"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="tab-pane fade"
-                id="v-pills-messages"
-                role="tabpanel"
-                aria-labelledby="v-pills-messages-tab"
-              >
-                <div class="leadership">
-                  <img src="https://placehold.co/351x520" alt="img" />
-                  <div>
-                    <h3>Team 3</h3>
-                    <p>Furniture & Decor Expert</p>
-                    <h5>“Every detail adds beauty to a space.”</h5>
-                    <h6>
-                      P.<a href="callto:+44-1123-2234-21">+44 1123-2234-21</a>
-                    </h6>
-                    <h6>
-                      E.<a href="mailto:usernamei@domain.com"
-                        >usernamei@domain.com</a
-                      >
-                    </h6>
-                    <ul class="social-media">
-                      <li>
-                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                      </li>
-                      <li>
-                        <a href="#"><i class="flaticon-twitter"></i></a>
-                      </li>
-                      <li>
-                        <a href="#"><i class="flaticon-instagram"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="tab-pane fade"
-                id="v-pills-settings"
-                role="tabpanel"
-                aria-labelledby="v-pills-settings-tab"
-              >
-                <div class="leadership">
-                  <img src="https://placehold.co/351x520" alt="img" />
-                  <div>
-                    <h3>Team 4</h3>
-                    <p>Site Supervisor & Quality Head</p>
-                    <h5>“Quality and precision build lasting spaces.”</h5>
-                    <h6>
-                      P.<a href="callto:+44-1123-2234-21">+44 1123-2234-21</a>
-                    </h6>
-                    <h6>
-                      E.<a href="mailto:usernamei@domain.com"
-                        >usernamei@domain.com</a
-                      >
-                    </h6>
-                    <ul class="social-media">
-                      <li>
-                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                      </li>
-                      <li>
-                        <a href="#"><i class="flaticon-twitter"></i></a>
-                      </li>
-                      <li>
-                        <a href="#"><i class="flaticon-instagram"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+                {% endfor %}
+              {% endif %}
             </div>
           </div>
           <div class="col-lg-4">
@@ -847,54 +759,22 @@
               role="tablist"
               aria-orientation="vertical"
             >
+              {% if team %}
+                {% for member in team %}
               <button
-                class="nav-link active"
-                id="v-pills-home-tab"
+                class="nav-link {% if loop.first %}active{% endif %}"
+                id="v-pills-{{ member.id }}-tab"
                 data-bs-toggle="pill"
-                data-bs-target="#v-pills-home"
+                data-bs-target="#v-pills-{{ member.id }}"
                 type="button"
                 role="tab"
-                aria-controls="v-pills-home"
-                aria-selected="true"
+                aria-controls="v-pills-{{ member.id }}"
+                aria-selected="{% if loop.first %}true{% else %}false{% endif %}"
               >
-                Team 1 <span>Lead Interior Designer</span>
+                {{ member.name }} <span>{{ member.role }}</span>
               </button>
-              <button
-                class="nav-link"
-                id="v-pills-profile-tab"
-                data-bs-toggle="pill"
-                data-bs-target="#v-pills-profile"
-                type="button"
-                role="tab"
-                aria-controls="v-pills-profile"
-                aria-selected="false"
-              >
-                Team 2<span> Modular Kitchen Specialist</span>
-              </button>
-              <button
-                class="nav-link"
-                id="v-pills-messages-tab"
-                data-bs-toggle="pill"
-                data-bs-target="#v-pills-messages"
-                type="button"
-                role="tab"
-                aria-controls="v-pills-messages"
-                aria-selected="false"
-              >
-                Team 3<span> Furniture & Decor Expert</span>
-              </button>
-              <button
-                class="nav-link"
-                id="v-pills-settings-tab"
-                data-bs-toggle="pill"
-                data-bs-target="#v-pills-settings"
-                type="button"
-                role="tab"
-                aria-controls="v-pills-settings"
-                aria-selected="false"
-              >
-                Team 4<span>Site Supervisor & Quality Head</span>
-              </button>
+                {% endfor %}
+              {% endif %}
             </div>
           </div>
         </div>
@@ -977,6 +857,45 @@
 
 {% block extra_scripts %}
 <script>
+document.getElementById('meet-experts-form')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    var form = this;
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var originalText = submitBtn.innerText;
+    submitBtn.innerText = 'Sending...';
+    submitBtn.disabled = true;
+
+    var msgContainer = document.getElementById('meet-experts-message');
+    var formData = new FormData(form);
+
+    fetch('{{ url_for("contact") }}', {
+        method: 'POST',
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        submitBtn.innerText = originalText;
+        submitBtn.disabled = false;
+        
+        if (data.success) {
+            msgContainer.innerHTML = '<div class="alert alert-success">' + data.message + '</div>';
+            form.reset();
+            setTimeout(() => { msgContainer.innerHTML = ''; }, 5000);
+        } else {
+            msgContainer.innerHTML = '<div class="alert alert-danger">' + data.message + '</div>';
+        }
+    })
+    .catch(error => {
+        submitBtn.innerText = originalText;
+        submitBtn.disabled = false;
+        msgContainer.innerHTML = '<div class="alert alert-danger">An error occurred. Please try again.</div>';
+    });
+});
+
   document.addEventListener('DOMContentLoaded', function() {
     if (typeof Swiper !== 'undefined') {
       var newsSwiper = new Swiper('.news-content-slider', {

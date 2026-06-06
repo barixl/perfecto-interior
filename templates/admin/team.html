@@ -1,0 +1,247 @@
+{% extends "admin/base_admin.html" %}
+
+{% block title %}Manage Team Members{% endblock %}
+
+{% block content %}
+<div class="dashboard-header d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="mb-2">Team Members</h2>
+        <p class="text-muted mb-0">Manage the expert team members displayed on the About Us page.</p>
+    </div>
+</div>
+
+<div class="d-flex justify-content-end align-items-center mb-4">
+    <button class="btn btn-primary-custom px-4 py-2" data-bs-toggle="modal" data-bs-target="#uploadModal">
+        <i class="fa-solid fa-plus me-2"></i> Add Team Member
+    </button>
+</div>
+
+<div class="row g-4">
+    {% if members %}
+        {% for member in members %}
+        <div class="col-12 col-md-6 col-lg-3">
+            <div class="card card-custom h-100">
+                <img src="{{ member.image_url }}" class="card-img-top" alt="Team Member" style="height: 300px; object-fit: cover; border-top-left-radius: 16px; border-top-right-radius: 16px; object-position: top;">
+                <div class="card-body p-4 text-center">
+                    <h5 class="card-title text-truncate mb-1">{{ member.name }}</h5>
+                    <p class="card-text text-muted text-truncate mb-3" style="font-size: 0.85rem;">{{ member.role }}</p>
+                    <div class="d-flex justify-content-center gap-2 mb-2">
+                        {% if member.facebook_link %}
+                        <a href="{{ member.facebook_link }}" target="_blank" class="text-muted"><i class="fa-brands fa-facebook"></i></a>
+                        {% endif %}
+                        {% if member.instagram_link %}
+                        <a href="{{ member.instagram_link }}" target="_blank" class="text-muted"><i class="fa-brands fa-instagram"></i></a>
+                        {% endif %}
+                        {% if member.twitter_link %}
+                        <a href="{{ member.twitter_link }}" target="_blank" class="text-muted"><i class="fa-brands fa-twitter"></i></a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="card-footer p-3 border-top border-dark d-flex justify-content-center gap-2 bg-transparent">
+                    <button type="button" class="btn btn-sm btn-outline-warning edit-team-btn" 
+                            data-id="{{ member.id }}" 
+                            data-name="{{ member.name }}" 
+                            data-role="{{ member.role }}"
+                            data-email="{{ member.email or '' }}"
+                            data-phone="{{ member.phone or '' }}"
+                            data-description="{{ member.description or '' }}"
+                            data-facebook="{{ member.facebook_link or '' }}"
+                            data-instagram="{{ member.instagram_link or '' }}"
+                            data-twitter="{{ member.twitter_link or '' }}">
+                        <i class="fa-solid fa-pen-to-square me-1"></i> Edit
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteMemberModal{{ member.id }}">
+                        <i class="fa-solid fa-trash me-1"></i> Delete
+                    </button>
+
+                    <!-- Delete Member Modal -->
+                    <div class="modal fade" id="deleteMemberModal{{ member.id }}" tabindex="-1" aria-hidden="true" style="text-align: left;">
+                        <div class="modal-dialog modal-dialog-centered modal-sm">
+                            <div class="modal-content" style="background: var(--card-bg); border: 1px solid var(--border-color);">
+                                <div class="modal-body text-center p-4">
+                                    <i class="fa-solid fa-circle-exclamation text-danger mb-3" style="font-size: 3rem;"></i>
+                                    <h5 class="mb-2 text-white" style="white-space: normal;">Delete Member?</h5>
+                                    <p class="text-muted mb-4" style="white-space: normal;">Are you sure you want to remove <strong>{{ member.name }}</strong>? This action cannot be undone.</p>
+                                    <form action="{{ url_for('delete_team_member', id=member.id) }}" method="POST" class="d-flex gap-2">
+                                        <button type="button" class="btn btn-secondary w-50" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-danger w-50">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-12">
+            <div class="text-center p-5" style="background: var(--card-bg); border-radius: 16px; border: 1px dashed var(--border-color);">
+                <i class="fa-solid fa-users text-muted mb-3" style="font-size: 4rem;"></i>
+                <h4 class="text-muted">No Team Members Added</h4>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+<!-- Upload Member Modal -->
+<div class="modal fade" id="uploadModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background: var(--card-bg); border: 1px solid var(--border-color);">
+            <div class="modal-header border-bottom border-dark">
+                <h5 class="modal-title">Add Team Member</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
+            </div>
+            <form action="{{ url_for('admin_team') }}" method="POST" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Full Name <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Role / Designation <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="role" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email Address (Optional)</label>
+                        <input type="email" class="form-control" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Phone Number (Optional)</label>
+                        <input type="text" class="form-control" name="phone">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Description / Quote (Optional)</label>
+                        <textarea class="form-control" name="description" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Profile Image <span class="text-danger">*</span></label>
+                        <input type="file" class="form-control" name="image" accept="image/*" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Facebook Link (Optional)</label>
+                        <input type="url" class="form-control" name="facebook_link">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Instagram Link (Optional)</label>
+                        <input type="url" class="form-control" name="instagram_link">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Twitter Link (Optional)</label>
+                        <input type="url" class="form-control" name="twitter_link">
+                    </div>
+                </div>
+                <div class="modal-footer border-top border-dark">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-warning" style="background: var(--primary); border: none; color: black; font-weight: 600;">Add Member</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Member Modal -->
+<div class="modal fade" id="editMemberModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background: var(--card-bg); border: 1px solid var(--border-color);">
+            <div class="modal-header border-bottom border-dark">
+                <h5 class="modal-title"><i class="fa-solid fa-pen-to-square text-warning me-2"></i> Edit Team Member</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: invert(1) grayscale(100%) brightness(200%);"></button>
+            </div>
+            <form id="editMemberForm" method="POST" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Full Name <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="editName" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Role / Designation <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="editRole" name="role" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email Address (Optional)</label>
+                        <input type="email" class="form-control" id="editEmail" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Phone Number (Optional)</label>
+                        <input type="text" class="form-control" id="editPhone" name="phone">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Description / Quote (Optional)</label>
+                        <textarea class="form-control" id="editDescription" name="description" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Change Image (Optional)</label>
+                        <input type="file" class="form-control" name="image" accept="image/*">
+                        <div class="form-text text-muted">Leave empty to keep the current image.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Facebook Link (Optional)</label>
+                        <input type="url" class="form-control" id="editFacebook" name="facebook_link">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Instagram Link (Optional)</label>
+                        <input type="url" class="form-control" id="editInstagram" name="instagram_link">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Twitter Link (Optional)</label>
+                        <input type="url" class="form-control" id="editTwitter" name="twitter_link">
+                    </div>
+                </div>
+                <div class="modal-footer border-top border-dark">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-warning" style="background: var(--primary); border: none; color: black; font-weight: 600;">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const editMemberForm = document.getElementById('editMemberForm');
+        const editName = document.getElementById('editName');
+        const editRole = document.getElementById('editRole');
+        const editEmail = document.getElementById('editEmail');
+        const editPhone = document.getElementById('editPhone');
+        const editDescription = document.getElementById('editDescription');
+        const editFacebook = document.getElementById('editFacebook');
+        const editInstagram = document.getElementById('editInstagram');
+        const editTwitter = document.getElementById('editTwitter');
+        const editMemberModal = new bootstrap.Modal(document.getElementById('editMemberModal'));
+        
+        document.querySelectorAll('.edit-team-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const id = this.getAttribute('data-id');
+                
+                editName.value = this.getAttribute('data-name');
+                editRole.value = this.getAttribute('data-role');
+                editEmail.value = this.getAttribute('data-email');
+                editPhone.value = this.getAttribute('data-phone');
+                editDescription.value = this.getAttribute('data-description');
+                editFacebook.value = this.getAttribute('data-facebook');
+                editInstagram.value = this.getAttribute('data-instagram');
+                editTwitter.value = this.getAttribute('data-twitter');
+                
+                editMemberForm.action = `/admin/team/edit/${id}`;
+                editMemberModal.show();
+            });
+        });
+
+        // Add loading states to all forms
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function() {
+                const submitBtn = this.querySelector('button[type="submit"]');
+                if (submitBtn) {
+                    const isDelete = submitBtn.classList.contains('btn-danger');
+                    submitBtn.innerHTML = isDelete ? '<i class="fa-solid fa-spinner fa-spin me-2"></i>Deleting...' : '<i class="fa-solid fa-spinner fa-spin me-2"></i>Processing...';
+                    submitBtn.style.pointerEvents = 'none';
+                    submitBtn.style.opacity = '0.7';
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

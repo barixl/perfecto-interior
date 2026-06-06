@@ -25,7 +25,12 @@
                             <i class="fa-solid fa-user"></i>
                         </div>
                         <div>
-                            <h5 class="mb-0" style="font-weight: 600; font-size: 1.1rem;">{{ contact.full_name }}</h5>
+                            <h5 class="mb-0" style="font-weight: 600; font-size: 1.1rem;">
+                                {{ contact.full_name }}
+                                <span class="badge ms-2" style="font-size: 0.75rem; background: {% if contact.status == 'Contacted' %}rgba(16, 185, 129, 0.2); color: var(--success);{% elif contact.status == 'Closed' %}rgba(225, 29, 72, 0.2); color: var(--danger);{% elif contact.status == 'In Progress' %}rgba(59, 130, 246, 0.2); color: #3b82f6;{% else %}rgba(245, 158, 11, 0.2); color: #f59e0b;{% endif %} border: 1px solid currentColor;">
+                                    {{ contact.status or 'New' }}
+                                </span>
+                            </h5>
                             <span class="text-muted" style="font-size: 0.85rem;">#{{ contact.id }}</span>
                         </div>
                     </div>
@@ -73,11 +78,20 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Email Address</label>
-                                <input type="email" class="form-control" name="email" value="{{ contact.email }}" required>
+                                <input type="email" class="form-control" name="email" value="{{ contact.email }}" required readonly style="opacity: 0.7; cursor: not-allowed;">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Phone Number</label>
-                                <input type="text" class="form-control" name="phone" value="{{ contact.phone or '' }}">
+                                <input type="text" class="form-control" name="phone" value="{{ contact.phone or '' }}" readonly style="opacity: 0.7; cursor: not-allowed;">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Status</label>
+                                <select class="form-control form-select" name="status" style="background: rgba(0, 0, 0, 0.2); border: 1px solid var(--border-color); color: var(--text-main);" required>
+                                    <option value="New" style="background: #141414; color: #fff;" {% if contact.status == 'New' %}selected{% endif %}>New</option>
+                                    <option value="Contacted" style="background: #141414; color: #fff;" {% if contact.status == 'Contacted' %}selected{% endif %}>Contacted</option>
+                                    <option value="In Progress" style="background: #141414; color: #fff;" {% if contact.status == 'In Progress' %}selected{% endif %}>In Progress</option>
+                                    <option value="Closed" style="background: #141414; color: #fff;" {% if contact.status == 'Closed' %}selected{% endif %}>Closed</option>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Message</label>
@@ -119,4 +133,21 @@
         </div>
     {% endif %}
 </div>
+{% block extra_js %}
+<script>
+    // Add loading states to all forms to prevent UI freezing
+    document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', function() {
+            const submitBtn = this.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                // If it's a delete button, use appropriate text
+                const isDelete = submitBtn.classList.contains('btn-danger');
+                submitBtn.innerHTML = isDelete ? '<i class="fa-solid fa-spinner fa-spin me-2"></i>Deleting...' : '<i class="fa-solid fa-spinner fa-spin me-2"></i>Processing...';
+                submitBtn.style.pointerEvents = 'none';
+                submitBtn.style.opacity = '0.7';
+            }
+        });
+    });
+</script>
+{% endblock %}
 {% endblock %}

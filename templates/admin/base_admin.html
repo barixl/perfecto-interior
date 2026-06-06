@@ -214,6 +214,10 @@
             <a href="{{ url_for('admin_gallery') }}" class="sidebar-link {% if request.endpoint == 'admin_gallery' %}active{% endif %}">
                 <i class="fa-solid fa-images"></i> Gallery
             </a>
+            <a href="{{ url_for('admin_team') }}" class="sidebar-link {% if request.endpoint == 'admin_team' %}active{% endif %}">
+                <i class="fa-solid fa-users"></i> Team Members
+            </a>
+
         </div>
     </div>
 

@@ -1,0 +1,94 @@
+{% extends "admin/base_admin.html" %}
+
+{% block title %}Manage Contact Info Settings{% endblock %}
+
+{% block content %}
+<div class="dashboard-header d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="mb-2">Contact Info Settings</h2>
+        <p class="text-muted mb-0">Update the addresses, emails, and phone numbers shown on your Contact page.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 col-xl-8">
+        <div class="card card-custom">
+            <div class="card-header p-4 border-bottom border-dark" style="background: rgba(255,255,255,0.02);">
+                <h5 class="mb-0 text-white"><i class="fa-solid fa-address-book text-warning me-2"></i> General Contact Info</h5>
+            </div>
+            <div class="card-body p-4">
+                <form action="{{ url_for('admin_settings') }}" method="POST">
+                    
+                    <h6 class="mb-3 text-warning border-bottom border-dark pb-2">Main Contact Details</h6>
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-12">
+                            <label class="form-label">Main Address</label>
+                            <input type="text" class="form-control" name="contact_address" value="{{ settings.get('contact_address', '') }}" placeholder="E.g., Ripon Street, Kolkata - 700016...">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Phone Number 1</label>
+                            <input type="text" class="form-control" name="contact_phone1" value="{{ settings.get('contact_phone1', '') }}" placeholder="E.g., +91 87596 36811">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Phone Number 2 (Optional)</label>
+                            <input type="text" class="form-control" name="contact_phone2" value="{{ settings.get('contact_phone2', '') }}" placeholder="E.g., +91 75860 01602">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" name="contact_email" value="{{ settings.get('contact_email', '') }}" placeholder="E.g., info@perfectointerior.com">
+                        </div>
+                    </div>
+
+                    <h6 class="mb-3 text-warning border-bottom border-dark pb-2">Kolkata Office</h6>
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-12">
+                            <label class="form-label">Office Address</label>
+                            <input type="text" class="form-control" name="kolkata_address" value="{{ settings.get('kolkata_address', '') }}" placeholder="Kolkata address...">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" name="kolkata_phone" value="{{ settings.get('kolkata_phone', '') }}" placeholder="Kolkata phone number...">
+                        </div>
+                    </div>
+
+                    <h6 class="mb-3 text-warning border-bottom border-dark pb-2">Medinipur Office</h6>
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-12">
+                            <label class="form-label">Office Address</label>
+                            <input type="text" class="form-control" name="medinipur_address" value="{{ settings.get('medinipur_address', '') }}" placeholder="Medinipur address...">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" name="medinipur_phone" value="{{ settings.get('medinipur_phone', '') }}" placeholder="Medinipur phone number...">
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end mt-4 pt-3 border-top border-dark">
+                        <button type="submit" class="btn btn-warning px-4 py-2" style="background: var(--primary); border: none; color: black; font-weight: 600;">
+                            <i class="fa-solid fa-save me-2"></i> Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add loading states to all forms
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function() {
+                const submitBtn = this.querySelector('button[type="submit"]');
+                if (submitBtn) {
+                    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i>Saving...';
+                    submitBtn.style.pointerEvents = 'none';
+                    submitBtn.style.opacity = '0.7';
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

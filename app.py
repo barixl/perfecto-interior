@@ -4,6 +4,9 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
@@ -21,14 +24,14 @@ app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD', 'your_app_password
 app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('MAIL_USERNAME', 'your_email@gmail.com')
 
 # SQLAlchemy configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres.uddbcvgslfjeylfandle:Perfecto%4003021@aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Cloudinary configuration
 cloudinary.config(
-  cloud_name = "dmeqqzshc",
-  api_key = "845426421424695",
-  api_secret = "o0zyWcU8hLbnWuz1KSB1nPWPdJk"
+  cloud_name = os.environ.get('CLOUDINARY_CLOUD_NAME'),
+  api_key = os.environ.get('CLOUDINARY_API_KEY'),
+  api_secret = os.environ.get('CLOUDINARY_API_SECRET')
 )
 
 mail = Mail(app)
@@ -44,6 +47,7 @@ class Contact(db.Model):
     email = db.Column(db.String(120), nullable=False)
     phone = db.Column(db.String(20))
     message = db.Column(db.Text, nullable=False)
+    status = db.Column(db.String(50), default='New')
 
 class Admin(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -86,6 +90,25 @@ class SiteImage(db.Model):
     image_url = db.Column(db.String(500), nullable=False)
     public_id = db.Column(db.String(200), nullable=False)
 
+class TeamMember(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    role = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120))
+    phone = db.Column(db.String(50))
+    description = db.Column(db.Text)
+    image_url = db.Column(db.String(500), nullable=False)
+    public_id = db.Column(db.String(200), nullable=False)
+    facebook_link = db.Column(db.String(500))
+    instagram_link = db.Column(db.String(500))
+    twitter_link = db.Column(db.String(500))
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+class SiteSetting(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    key = db.Column(db.String(100), unique=True, nullable=False)
+    value = db.Column(db.Text)
+
 @login_manager.user_loader
 def load_user(user_id):
     return db.session.get(Admin, int(user_id))
@@ -94,30 +117,32 @@ def load_user(user_id):
 with app.app_context():
     db.create_all()
     # Create default admin if not exists
-    if not Admin.query.filter_by(username='PerfectoInterior').first():
-        hashed_password = generate_password_hash('PerfectoInterior@2026')
-        default_admin = Admin(username='PerfectoInterior', password_hash=hashed_password)
+    admin_username = os.environ.get('ADMIN_USERNAME', 'PerfectoInterior')
+    admin_password = os.environ.get('ADMIN_PASSWORD', 'PerfectoInterior@2026')
+    if not Admin.query.filter_by(username=admin_username).first():
+        hashed_password = generate_password_hash(admin_password)
+        default_admin = Admin(username=admin_username, password_hash=hashed_password)
         db.session.add(default_admin)
         db.session.commit()
 
 @app.route('/')
 def index():
-    images = HeroImage.query.order_by(HeroImage.id.asc()).all()
-    news_items = NewsItem.query.filter_by(is_active=True).order_by(NewsItem.id.desc()).all()
-    return render_template('pages/index.html', images=images, news_items=news_items)
+    images = HeroImage.query.all()
+    news_items = NewsItem.query.order_by(NewsItem.created_at.desc()).limit(3).all()
+    settings_records = SiteSetting.query.all()
+    settings = {s.key: s.value for s in settings_records}
+    team = TeamMember.query.order_by(TeamMember.created_at.desc()).all()
+    return render_template('pages/index.html', images=images, news_items=news_items, settings=settings, team=team)
 
 @app.route('/about')
 def about():
-    return render_template('pages/about.html')
+    team_members = TeamMember.query.order_by(TeamMember.created_at.asc()).all()
+    return render_template('pages/about.html', team=team_members)
 
 @app.route('/gallery')
 def gallery():
     images = GalleryImage.query.order_by(GalleryImage.created_at.desc()).all()
     return render_template('pages/gallery.html', images=images)
-
-@app.route('/services')
-def services():
-    return render_template('pages/our-service.html')
 
 @app.route('/projects')
 def projects():
@@ -125,6 +150,9 @@ def projects():
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
+    settings_list = SiteSetting.query.all()
+    settings = {s.key: s.value for s in settings_list}
+
     if request.method == 'POST':
         # Handling the contact form submission
         is_ajax = request.headers.get('X-Requested-With') == 'XMLHttpRequest' or request.is_json
@@ -170,7 +198,7 @@ def contact():
                 return jsonify({'success': False, 'message': f'An error occurred: {str(e)}'}), 500
             flash(f'An error occurred: {str(e)}', 'error')
 
-    return render_template('pages/contact.html')
+    return render_template('pages/contact.html', settings=settings)
 
 @app.route('/admin/login', methods=['GET', 'POST'])
 def admin_login():
@@ -227,6 +255,7 @@ def edit_contact(id):
         contact.email = request.form.get('email', contact.email)
         contact.phone = request.form.get('phone', contact.phone)
         contact.message = request.form.get('message', contact.message)
+        contact.status = request.form.get('status', contact.status)
         db.session.commit()
         flash('Contact updated successfully.', 'success')
     else:
@@ -453,6 +482,110 @@ def edit_gallery_image(id):
     else:
         flash('Image not found.', 'error')
     return redirect(url_for('admin_gallery'))
+
+@app.route('/admin/team', methods=['GET', 'POST'])
+@login_required
+def admin_team():
+    if request.method == 'POST':
+        if 'image' not in request.files:
+            flash('No image file selected', 'error')
+            return redirect(request.url)
+        file = request.files['image']
+        if file.filename == '':
+            flash('No image file selected', 'error')
+            return redirect(request.url)
+        if file:
+            name = request.form.get('name')
+            role = request.form.get('role')
+            email = request.form.get('email')
+            phone = request.form.get('phone')
+            description = request.form.get('description')
+            facebook = request.form.get('facebook_link')
+            instagram = request.form.get('instagram_link')
+            twitter = request.form.get('twitter_link')
+            try:
+                upload_result = cloudinary.uploader.upload(file, folder="perfecto_interior/team")
+                new_member = TeamMember(
+                    name=name,
+                    role=role,
+                    email=email,
+                    phone=phone,
+                    description=description,
+                    image_url=upload_result['secure_url'],
+                    public_id=upload_result['public_id'],
+                    facebook_link=facebook,
+                    instagram_link=instagram,
+                    twitter_link=twitter
+                )
+                db.session.add(new_member)
+                db.session.commit()
+                flash('Team member added successfully!', 'success')
+            except Exception as e:
+                flash(f'Failed to add team member: {str(e)}', 'error')
+        return redirect(url_for('admin_team'))
+    
+    members = TeamMember.query.order_by(TeamMember.created_at.desc()).all()
+    return render_template('admin/team.html', members=members)
+
+@app.route('/admin/team/delete/<int:id>', methods=['POST'])
+@login_required
+def delete_team_member(id):
+    member = db.session.get(TeamMember, id)
+    if member:
+        try:
+            cloudinary.uploader.destroy(member.public_id)
+            db.session.delete(member)
+            db.session.commit()
+            flash('Team member deleted successfully.', 'success')
+        except Exception as e:
+            flash(f'Deletion failed: {str(e)}', 'error')
+    else:
+        flash('Team member not found.', 'error')
+    return redirect(url_for('admin_team'))
+
+@app.route('/admin/team/edit/<int:id>', methods=['POST'])
+@login_required
+def edit_team_member(id):
+    member = db.session.get(TeamMember, id)
+    if member:
+        member.name = request.form.get('name')
+        member.role = request.form.get('role')
+        member.email = request.form.get('email')
+        member.phone = request.form.get('phone')
+        member.description = request.form.get('description')
+        member.facebook_link = request.form.get('facebook_link')
+        member.instagram_link = request.form.get('instagram_link')
+        member.twitter_link = request.form.get('twitter_link')
+        
+        if 'image' in request.files:
+            file = request.files['image']
+            if file and file.filename != '':
+                try:
+                    if member.public_id:
+                        cloudinary.uploader.destroy(member.public_id)
+                    upload_result = cloudinary.uploader.upload(file, folder="perfecto_interior/team")
+                    member.image_url = upload_result['secure_url']
+                    member.public_id = upload_result['public_id']
+                except Exception as e:
+                    flash(f'Image upload failed: {str(e)}', 'error')
+                    return redirect(url_for('admin_team'))
+        
+        try:
+            db.session.commit()
+            flash('Team member updated successfully.', 'success')
+        except Exception as e:
+            flash(f'Failed to update team member: {str(e)}', 'error')
+    else:
+        flash('Team member not found.', 'error')
+    return redirect(url_for('admin_team'))
+
+
+@app.route('/our-service')
+def services():
+    settings_records = SiteSetting.query.all()
+    settings = {s.key: s.value for s in settings_records}
+    team = TeamMember.query.order_by(TeamMember.created_at.desc()).all()
+    return render_template('pages/our-service.html', settings=settings, team=team)
 
 @app.errorhandler(404)
 def page_not_found(e):

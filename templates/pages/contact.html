@@ -45,8 +45,7 @@
                  <i class="flaticon-map-location"></i>
                  </div>
                 <div>
-                  <span class="pt-2 pb-0">Ripon Street, Kolkata - 700016</span>
-                  <span class="d-block">Purba Medinipur, West Bengal</span>
+                  <span class="pt-2 pb-0" style="white-space: pre-wrap;">{{ settings.get('contact_address', 'Ripon Street, Kolkata - 700016\nPurba Medinipur, West Bengal') }}</span>
                 </div>
               </div>
               <div class="get-in-touch">
@@ -55,8 +54,12 @@
               </div>
                 <div>
                   <span>Phone No:</span>
-                  <h6><a href="tel:+918759636811">+91 87596 36811</a></h6>
+                  <h6><a href="tel:{{ settings.get('contact_phone1', '+918759636811') | replace(' ', '') }}">{{ settings.get('contact_phone1', '+91 87596 36811') }}</a></h6>
+                  {% if settings.get('contact_phone2') %}
+                  <h6><a href="tel:{{ settings.get('contact_phone2') | replace(' ', '') }}">{{ settings.get('contact_phone2') }}</a></h6>
+                  {% elif not settings.get('contact_phone1') %}
                   <h6><a href="tel:+917586001602">+91 75860 01602</a></h6>
+                  {% endif %}
                 </div>
               </div>
               <div class="get-in-touch">
@@ -64,7 +67,7 @@
                 <i class="flaticon-mail-inbox-app"></i></div>
                 <div>
                   <span>Email Address:</span>
-                  <h6><a href="mailto:info@perfectointerior.com">info@perfectointerior.com</a></h6>
+                  <h6><a href="mailto:{{ settings.get('contact_email', 'info@perfectointerior.com') }}">{{ settings.get('contact_email', 'info@perfectointerior.com') }}</a></h6>
                 </div>
               </div> 
             </div>
@@ -105,8 +108,8 @@
         <div class="col-lg-4">
           <div class="contact-location">
             <h4>Kolkata Office</h4>
-            <p>Ripon Street, Kolkata - 700016, West Bengal, India</p>
-            <h5>Telephone:<a href="tel:+918759636811">+91 87596 36811</a></h5>
+            <p>{{ settings.get('kolkata_address', 'Ripon Street, Kolkata - 700016, West Bengal, India') }}</p>
+            <h5>Telephone:<a href="tel:{{ settings.get('kolkata_phone', '+91 87596 36811') | replace(' ', '') }}">{{ settings.get('kolkata_phone', '+91 87596 36811') }}</a></h5>
           </div>
         </div>
         <div class="col-lg-8">
@@ -119,8 +122,8 @@
         <div class="col-lg-4">
           <div class="contact-location">
             <h4>Medinipur Office</h4>
-            <p>Purba Medinipur, West Bengal, India</p>
-            <h5>Telephone:<a href="tel:+917586001602">+91 75860 01602</a></h5>
+            <p>{{ settings.get('medinipur_address', 'Purba Medinipur, West Bengal, India') }}</p>
+            <h5>Telephone:<a href="tel:{{ settings.get('medinipur_phone', '+91 75860 01602') | replace(' ', '') }}">{{ settings.get('medinipur_phone', '+91 75860 01602') }}</a></h5>
           </div>
         </div>
         <div class="col-lg-8">
