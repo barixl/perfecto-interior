@@ -644,6 +644,103 @@
       </div>
     </section>
 
+    <!-- Reviews Section -->
+    <section class="reviews-section" style="background: #fff; padding: 80px 0;">
+      <div class="container">
+        <div class="heading text-center sec-title-animation animation-style2 mb-5">
+          <img src="{{ url_for('static', filename='img/heading-img.png') }}" alt="img" style="margin: 0 auto 10px; display: block;">
+          <span class="title-animation" style="color: #cda45e; display: block; margin-bottom: 5px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase;">Client Testimonials</span>
+          <h2 class="title-animation" style="color: #1a1a1a; font-size: 32px;">What Our Clients Say</h2>
+        </div>
+
+        {% if reviews %}
+        <div class="reviews-slider-wrapper" style="position: relative;">
+          <!-- Prev / Next arrows -->
+          <button class="reviews-arrow reviews-arrow-prev" aria-label="Previous review">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <button class="reviews-arrow reviews-arrow-next" aria-label="Next review">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+
+          <div class="swiper reviews-swiper">
+            <div class="swiper-wrapper">
+              {% for review in reviews %}
+              <div class="swiper-slide">
+                <div class="review-card">
+                  <div class="review-card-stars">
+                    {% for i in range(1, 6) %}
+                      <i class="fa-{% if i <= review.rating %}solid{% else %}regular{% endif %} fa-star"></i>
+                    {% endfor %}
+                  </div>
+                  <p class="review-card-text">"{{ review.review_text }}"</p>
+                  <div class="review-card-author">
+                    <div class="review-card-avatar">
+                      <i class="fa-solid fa-user"></i>
+                    </div>
+                    <span class="review-card-name">{{ review.name }}</span>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            <div class="swiper-pagination reviews-pagination"></div>
+          </div>
+        </div>
+        {% else %}
+        <div class="text-center" style="color: #888; padding: 40px 0;">
+          <i class="fa-solid fa-star" style="font-size: 3rem; color: #cda45e; display: block; margin-bottom: 12px;"></i>
+          <p>Be the first to share your experience!</p>
+        </div>
+        {% endif %}
+
+        <div class="text-center mt-5">
+          <button class="theme-btn hvr-light" id="openReviewModal">
+            <i class="fa-solid fa-pen-to-square me-2"></i> Write a Review
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Reviews Section End -->
+
+    <!-- Write Review Modal -->
+    <div class="review-modal-overlay" id="reviewModalOverlay">
+      <div class="review-modal">
+        <button class="review-modal-close" id="closeReviewModal" aria-label="Close">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="review-modal-header">
+          <img src="{{ url_for('static', filename='img/heading-img.png') }}" alt="" style="height: 30px; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto;">
+          <h3>Share Your Experience</h3>
+          <p>Your feedback helps us serve better</p>
+        </div>
+        <form id="reviewForm">
+          <div class="review-modal-stars" id="starRating">
+            <span class="review-star-label">Your Rating</span>
+            <div class="review-stars-row">
+              {% for i in range(1, 6) %}
+              <i class="fa-regular fa-star review-star" data-value="{{ i }}"></i>
+              {% endfor %}
+            </div>
+            <input type="hidden" name="rating" id="ratingInput" value="">
+          </div>
+          <div class="review-modal-field">
+            <label>Your Name</label>
+            <input type="text" name="name" id="reviewName" placeholder="e.g. Rahul Sharma" required>
+          </div>
+          <div class="review-modal-field">
+            <label>Your Review</label>
+            <textarea name="review_text" id="reviewText" rows="4" placeholder="Tell us about your experience..." required></textarea>
+          </div>
+          <div id="reviewFormMsg" style="display:none; margin-bottom: 12px; padding: 10px 14px; border-radius: 8px; font-size: 0.9rem;"></div>
+          <button type="submit" class="theme-btn hvr-light w-100" id="reviewSubmitBtn">
+            Submit Review
+          </button>
+        </form>
+      </div>
+    </div>
+    <!-- Write Review Modal End -->
+
     <section
       class="design-your gap no-bottom"
       style="background-image: url(https://placehold.co/1920x732)"
@@ -910,6 +1007,123 @@ document.getElementById('meet-experts-form')?.addEventListener('submit', functio
         allowTouchMove: false
       });
     }
+
+    // Reviews Swiper
+    if (typeof Swiper !== 'undefined' && document.querySelector('.reviews-swiper')) {
+      var reviewsSwiper = new Swiper('.reviews-swiper', {
+        slidesPerView: 1,
+        spaceBetween: 24,
+        loop: true,
+        pagination: {
+          el: '.reviews-pagination',
+          clickable: true,
+        },
+        navigation: {
+          prevEl: '.reviews-arrow-prev',
+          nextEl: '.reviews-arrow-next',
+        },
+        breakpoints: {
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+        }
+      });
+    }
+
+    // Review modal
+    var overlay = document.getElementById('reviewModalOverlay');
+    document.getElementById('openReviewModal')?.addEventListener('click', function() {
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+    document.getElementById('closeReviewModal')?.addEventListener('click', closeModal);
+    overlay?.addEventListener('click', function(e) {
+      if (e.target === overlay) closeModal();
+    });
+    function closeModal() {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Star rating
+    var stars = document.querySelectorAll('.review-star');
+    var ratingInput = document.getElementById('ratingInput');
+    stars.forEach(function(star) {
+      star.addEventListener('mouseover', function() {
+        var val = parseInt(this.dataset.value);
+        stars.forEach(function(s, i) {
+          s.className = i < val ? 'fa-solid fa-star review-star' : 'fa-regular fa-star review-star';
+        });
+      });
+      star.addEventListener('mouseout', function() {
+        var selected = parseInt(ratingInput.value) || 0;
+        stars.forEach(function(s, i) {
+          s.className = i < selected ? 'fa-solid fa-star review-star' : 'fa-regular fa-star review-star';
+        });
+      });
+      star.addEventListener('click', function() {
+        ratingInput.value = this.dataset.value;
+        var val = parseInt(this.dataset.value);
+        stars.forEach(function(s, i) {
+          s.className = i < val ? 'fa-solid fa-star review-star' : 'fa-regular fa-star review-star';
+        });
+      });
+    });
+
+    // Review form submit
+    document.getElementById('reviewForm')?.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var msgBox = document.getElementById('reviewFormMsg');
+      var submitBtn = document.getElementById('reviewSubmitBtn');
+      var rating = ratingInput.value;
+      if (!rating) {
+        msgBox.style.display = 'block';
+        msgBox.style.background = 'rgba(225,29,72,0.15)';
+        msgBox.style.color = '#E11D48';
+        msgBox.style.border = '1px solid rgba(225,29,72,0.3)';
+        msgBox.textContent = 'Please select a star rating.';
+        return;
+      }
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i>Submitting...';
+      submitBtn.disabled = true;
+      fetch('{{ url_for("submit_review") }}', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: document.getElementById('reviewName').value,
+          rating: rating,
+          review_text: document.getElementById('reviewText').value
+        })
+      })
+      .then(r => r.json())
+      .then(data => {
+        submitBtn.innerHTML = 'Submit Review';
+        submitBtn.disabled = false;
+        msgBox.style.display = 'block';
+        if (data.success) {
+          msgBox.style.background = 'rgba(16,185,129,0.15)';
+          msgBox.style.color = '#10B981';
+          msgBox.style.border = '1px solid rgba(16,185,129,0.3)';
+          msgBox.textContent = data.message;
+          document.getElementById('reviewForm').reset();
+          ratingInput.value = '';
+          stars.forEach(s => s.className = 'fa-regular fa-star review-star');
+          setTimeout(closeModal, 2500);
+        } else {
+          msgBox.style.background = 'rgba(225,29,72,0.15)';
+          msgBox.style.color = '#E11D48';
+          msgBox.style.border = '1px solid rgba(225,29,72,0.3)';
+          msgBox.textContent = data.message;
+        }
+      })
+      .catch(() => {
+        submitBtn.innerHTML = 'Submit Review';
+        submitBtn.disabled = false;
+        msgBox.style.display = 'block';
+        msgBox.style.background = 'rgba(225,29,72,0.15)';
+        msgBox.style.color = '#E11D48';
+        msgBox.textContent = 'Something went wrong. Please try again.';
+      });
+    });
 
     // Play/Pause Button Logic for hero slider
     const pausePlayBtn = document.getElementById('slider-pause-play-btn');

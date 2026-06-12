@@ -113,6 +113,14 @@ class SiteSetting(db.Model):
     key = db.Column(db.String(100), unique=True, nullable=False)
     value = db.Column(db.Text)
 
+class Review(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    rating = db.Column(db.Integer, nullable=False)
+    review_text = db.Column(db.Text, nullable=False)
+    status = db.Column(db.String(20), default='pending')
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
 @login_manager.user_loader
 def load_user(user_id):
     return db.session.get(Admin, int(user_id))
@@ -129,6 +137,17 @@ with app.app_context():
         db.session.add(default_admin)
         db.session.commit()
 
+    # Seed default reviews if none exist
+    if Review.query.count() == 0:
+        seed_reviews = [
+            Review(name='Priya Sharma', rating=5, review_text='Perfecto Interior transformed our living room beyond our expectations. The attention to detail and choice of materials was outstanding. Truly a world-class team!', status='approved'),
+            Review(name='Rahul Mehta', rating=5, review_text='We hired Perfecto for our entire 3BHK and the result was breathtaking. They delivered on time, within budget, and the craftsmanship was exceptional.', status='approved'),
+            Review(name='Ananya Bose', rating=4, review_text='Very professional team with a great eye for design. They understood our vision perfectly and brought it to life. Would definitely recommend to anyone looking for quality interior work.', status='approved'),
+            Review(name='Souvik Das', rating=5, review_text='From the initial consultation to the final handover, the entire experience was seamless. The designers were creative, responsive, and truly passionate about their work.', status='approved'),
+        ]
+        db.session.add_all(seed_reviews)
+        db.session.commit()
+
 @app.route('/')
 def index():
     images = HeroImage.query.all()
@@ -136,7 +155,8 @@ def index():
     settings_records = SiteSetting.query.all()
     settings = {s.key: s.value for s in settings_records}
     team = TeamMember.query.order_by(TeamMember.created_at.desc()).all()
-    return render_template('pages/index.html', images=images, news_items=news_items, settings=settings, team=team)
+    reviews = Review.query.filter_by(status='approved').order_by(Review.created_at.desc()).all()
+    return render_template('pages/index.html', images=images, news_items=news_items, settings=settings, team=team, reviews=reviews)
 
 @app.route('/about')
 def about():
@@ -583,6 +603,61 @@ def edit_team_member(id):
         flash('Team member not found.', 'error')
     return redirect(url_for('admin_team'))
 
+
+@app.route('/reviews/submit', methods=['POST'])
+def submit_review():
+    data = request.json if request.is_json else request.form
+    name = data.get('name', '').strip()
+    rating = data.get('rating')
+    review_text = data.get('review_text', '').strip()
+
+    if not name or not rating or not review_text:
+        return jsonify({'success': False, 'message': 'All fields are required.'}), 400
+
+    try:
+        rating = int(rating)
+        if rating < 1 or rating > 5:
+            return jsonify({'success': False, 'message': 'Rating must be between 1 and 5.'}), 400
+    except (ValueError, TypeError):
+        return jsonify({'success': False, 'message': 'Invalid rating.'}), 400
+
+    try:
+        new_review = Review(name=name, rating=rating, review_text=review_text)
+        db.session.add(new_review)
+        db.session.commit()
+        return jsonify({'success': True, 'message': 'Thank you! Your review has been submitted for approval.'}), 200
+    except Exception as e:
+        return jsonify({'success': False, 'message': f'An error occurred: {str(e)}'}), 500
+
+@app.route('/admin/reviews')
+@login_required
+def admin_reviews():
+    reviews = Review.query.order_by(Review.created_at.desc()).all()
+    return render_template('admin/reviews.html', reviews=reviews)
+
+@app.route('/admin/reviews/approve/<int:id>', methods=['POST'])
+@login_required
+def approve_review(id):
+    review = db.session.get(Review, id)
+    if review:
+        review.status = 'approved'
+        db.session.commit()
+        flash('Review approved successfully.', 'success')
+    else:
+        flash('Review not found.', 'error')
+    return redirect(url_for('admin_reviews'))
+
+@app.route('/admin/reviews/delete/<int:id>', methods=['POST'])
+@login_required
+def delete_review(id):
+    review = db.session.get(Review, id)
+    if review:
+        db.session.delete(review)
+        db.session.commit()
+        flash('Review deleted successfully.', 'success')
+    else:
+        flash('Review not found.', 'error')
+    return redirect(url_for('admin_reviews'))
 
 @app.route('/our-service')
 def services():
